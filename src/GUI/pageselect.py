@@ -7,7 +7,9 @@ class PageSelect(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
         #initiation of Widows
+        self.setWindowTitle('Liberary')
         self.loginWindow = LoginWindow(self)
+        #self.mainWindow = MainW
         
         #Add them to ustom Stacked Widget
         self.widget = Pages(self.loginWindow)
