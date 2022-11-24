@@ -1,6 +1,6 @@
 <p align="center">
     <img src="src/assets/Logo/hse-library-logo-smaller.png" alt="HSE LIBRARY">
-    <h1 align="center">Library Application to lend and manage Books</h1>
+    <h2 align="center">Library Application to lend and manage Books</h2>
 </p>
 
 <br></br>
