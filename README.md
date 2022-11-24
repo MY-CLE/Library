@@ -3,6 +3,8 @@
     <h1 align="center">Library Application to lend and manage Books</h1>
 </p>
 
+<br></br>
+
 ## :computer: Installation
 
 From source:
