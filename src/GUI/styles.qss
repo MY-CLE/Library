@@ -19,14 +19,13 @@ QFrame#loginWindow {
     background:  #00C5F0;
 }
 QPushButton#loginBtn {
-    background-color: #be06ff;
+    background-color: #00C5F0;
     border: 2px solid black;
     color: black;
     font-weight: bold;
 }
 
 QWidget#loginContainer {
-    background: white;
     border-top-left-radius:30px;
     border-bottom-left-radius:30px;
     border-top-right-radius:30px;

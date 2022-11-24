@@ -61,6 +61,7 @@ class LoginWindow(QFrame):
         loginBtn = QPushButton()
         loginBtn.setFixedSize(250,50)
         loginBtn.setObjectName("loginBtn")
+        loginBtn.setStyleSheet("background-color: #00C5F0")
         loginBtn.setText("Login")
         loginBtn.clicked.connect(lambda: self.loginBtnPressed(emailTextInput.text(), passwordTextInput.text()))
         
@@ -86,31 +87,30 @@ class LoginWindow(QFrame):
         container.setLayout(containerLayout)
         
         # The container is wrapped in a Vertical BoxLayout to keep it in the middle
-        vertMainLayout = QVBoxLayout()
-        vertMainLayout.addStretch()     
-        vertMainLayout.addWidget(container)
-        vertMainLayout.addStretch()        
         
         #The logo is loaded from the assets folder
         logoLable = QLabel()
-        logo = QPixmap(os.path.abspath('src/assets/images/swt_logo.png'))
+        logo = QPixmap(os.path.abspath('src/assets/Logo/hse-library-logo-smaller.png'))
         logoLable.setPixmap(logo)
         
-        #Layout to keep logo in the center
-        logoVerLayout = QVBoxLayout()
-        logoVerLayout.addStretch()       
-        logoVerLayout.addWidget(logoLable)
-        logoVerLayout.addStretch()
+        logoHLayout = QHBoxLayout()
+        logoHLayout.addStretch()
+        logoHLayout.addWidget(logoLable)
+        logoHLayout.addStretch()
+        
+        containerHLayot = QHBoxLayout()
+        containerHLayot.addStretch()
+        containerHLayot.addWidget(container)
+        containerHLayot.addStretch()
+        
+        mainVertLayot = QVBoxLayout()
+        mainVertLayot.addStretch()
+        mainVertLayot.addLayout(logoHLayout)
+        mainVertLayot.addLayout(containerHLayot)
+        mainVertLayot.addStretch()
         
         
-        #Layout to allign the widgets horizontilay
-        horiMainLayout = QHBoxLayout()
-        #horiMainLayout.addLayout(logoVerLayout)
-        #horiMainLayout.addStretch()
-        horiMainLayout.addLayout(vertMainLayout)
-        #horiMainLayout.addSpacing(50)
-        
-        self.setLayout(horiMainLayout)
+        self.setLayout(mainVertLayot)
     
     #returns loginStatus as an integer
     def isLogedIn(self):
