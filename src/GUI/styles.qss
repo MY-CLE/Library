@@ -1,0 +1,46 @@
+QLabel {
+    background-repeat: no-repeat;
+}
+QPushButton {
+    font-size: 16px;
+    border-radius : 20; 
+    border: 0px;
+    background-repeat: no-repeat;
+    text-align: center
+}
+QLineEdit {
+ border: 2px solid gray;
+ border-radius: 10px;
+ font-size: 20px;
+ color: black;
+}
+
+QFrame#loginWindow {
+    background:  #00C5F0;
+}
+QPushButton#loginBtn {
+    background-color: #be06ff;
+    border: 2px solid black;
+    color: black;
+    font-weight: bold;
+}
+
+QWidget#loginContainer {
+    background: white;
+    border-top-left-radius:30px;
+    border-bottom-left-radius:30px;
+    border-top-right-radius:30px;
+    border-bottom-right-radius:30px;
+}
+
+QLabel#forgottenpwdLable {
+    font-size: 12px;
+    color:blue;
+    background-color: white;
+}
+
+QLabel#loginTitle { 
+    font-size: 30px;
+    color: black;
+    background-color: white;
+}
