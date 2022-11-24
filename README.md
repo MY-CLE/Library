@@ -10,7 +10,7 @@
 From source:
 ```
 git clone https://github.com/Chaotic-Librarians/Library.git
-cd Softwaretechnik_2022
+cd Library
 ```
 ## :card_index_dividers: Dependencies:
 
