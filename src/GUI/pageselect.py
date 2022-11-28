@@ -10,7 +10,7 @@ class PageSelect(QMainWindow):
         #initiation of Widows
         self.setWindowTitle('Liberary')
         self.loginWindow = LoginWindow(self)
-        self.landingWindow = LandingWindow(self)
+        self.landingWindow = LandingWindow()
         
         #Add them to ustom Stacked Widget
         self.widget = Pages(self.loginWindow)
@@ -19,7 +19,7 @@ class PageSelect(QMainWindow):
         
         #self.widget.setStyleSheet('background-color: #be06ff')
         #Display the Loginpage as default
-        self.widget.setCurrentIndex(0)
+        self.widget.setCurrentIndex(1)
         self.widget.show()
         
 #This Custom StackedWidegt is basicly the same as a normal one.

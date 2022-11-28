@@ -12,17 +12,20 @@ QLineEdit {
  border: 2px solid gray;
  border-radius: 10px;
  font-size: 20px;
+ background: white;
  color: black;
+}
+
+QLineEdit#searchTextInput {
+    border-radius: 30;
+}
+
+QFrame#landingWindow {
+    background:  #00C5F0;
 }
 
 QFrame#loginWindow {
     background:  #00C5F0;
-}
-QPushButton#loginBtn {
-    background-color: #00C5F0;
-    border: 2px solid black;
-    color: black;
-    font-weight: bold;
 }
 
 QWidget#loginContainer {
@@ -32,6 +35,44 @@ QWidget#loginContainer {
     border-bottom-right-radius:30px;
 }
 
+QWidget#iconBarContainer {
+    border-top-left-radius:15;
+    border-bottom-left-radius:15px;
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+    background-color: white;
+}
+QWidget#bookViewContainer {
+    border-top-left-radius:15;
+    border-bottom-left-radius:15px;
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+    background-color: white;
+}
+
+QPushButton{
+    background-color: pink;
+}
+QPushButton#loginBtn {
+    background-color: #00C5F0;
+    border: 2px solid black;
+    color: black;
+    font-weight: bold;
+}
+QPushButton#filterBtn {
+    border-radius: 12;
+    background-color: white;
+    border: 1px solid grey;
+    color: black;
+    font-weight: semi-bold;
+}
+
+QLabel#bookTitleLable {
+    font-size: 14px;
+    color:black;
+    background-color: white;
+    font-weight: bold;
+} 
 QLabel#forgottenpwdLable {
     font-size: 12px;
     color:blue;

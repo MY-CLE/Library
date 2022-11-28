@@ -14,37 +14,47 @@ class CustHeader(QFrame):
         
         logoLable = QLabel()
         logo = QPixmap(os.path.abspath('src/assets/Logo/hse-library-logo-smaller.png'))
+        logo = logo.scaledToHeight(65)
         logoLable.setPixmap(logo)
         
         searchTextInput = QLineEdit()
-        searchTextInput.setPlaceholderText("Email")
+        searchTextInput.setPlaceholderText("Search")
         searchTextInput.setObjectName("searchTextInput")
-        searchTextInput.setMaximumWidth(250)
-        searchTextInput.setMinimumHeight(40)
+        #searchTextInput.setMaximumWidth()
+        searchTextInput.setMinimumHeight(65)
         searchTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
         
         
         
+        iconbar = IconBar()
         
         horiLayout = QHBoxLayout()
         horiLayout.addWidget(logoLable)
         horiLayout.addWidget(searchTextInput)
+        horiLayout.addWidget(iconbar)
         self.setLayout(horiLayout)
         
         
-class Iconbar(QFrame):
-    container = QWidget()
-    container.setObjectName("loginContainer")
-    container.setFixedSize(400,300)
-    container.setStyleSheet('background-color: white')
+class IconBar(QFrame):
+    
+    def __init__(self):
+        super(QFrame, self).__init__()
+        self.setObjectName('iconBar')
+        
+        container = QWidget()
+        container.setObjectName("iconBarContainer")
+        container.setFixedSize(100,65)
 
-    
-    
-    
-    containerLayout = QHBoxLayout()
-    containerLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-    
-    containerLayout.addWidget()
-    containerLayout.addWidget()        
-    container.setLayout(containerLayout)
+        containerLayout = QHBoxLayout()
+        containerLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        
+        profileBtn = QPushButton()
+        homeBtn = QPushButton()
+        containerLayout.addWidget(profileBtn)
+        containerLayout.addWidget(homeBtn)        
+        container.setLayout(containerLayout)
+        
+        layout = QHBoxLayout()
+        layout.addWidget(container)
+        self.setLayout(layout)
