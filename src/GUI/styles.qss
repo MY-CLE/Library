@@ -84,3 +84,9 @@ QLabel#loginTitle {
     color: black;
     background-color: white;
 }
+
+QLabel#boxDescription {
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+}
