@@ -17,7 +17,7 @@ CREATE TABLE "public.customer" (
 	"userID" serial NOT NULL,
 	"customer_name" varchar(255) NOT NULL,
 	"customer_firstName" varchar(255) NOT NULL,
-	"customer_mail" varchar(255) NOT NULL,
+	"customer_mail" varchar(255) NOT NULL UNIQUE,
 	CONSTRAINT "customer_pk" PRIMARY KEY ("userID")
 ) WITH (
   OIDS=FALSE
@@ -29,7 +29,7 @@ CREATE TABLE "public.borrowed" (
 	"borrowID" serial NOT NULL,
 	"bookID" integer NOT NULL,
 	"userID" integer NOT NULL,
-	"due_date" DATE NOT NULL,
+	"due_date" DATE NOT NULL UNIQUE,
 	CONSTRAINT "borrowed_pk" PRIMARY KEY ("borrowID")
 ) WITH (
   OIDS=FALSE
@@ -60,13 +60,18 @@ CREATE TABLE "public.credentials" (
 
 
 
-ALTER TABLE "books" ADD CONSTRAINT "books_fk2" FOREIGN KEY ("due_date") REFERENCES "public.borrowed"("due_date");
+ALTER TABLE "books" ADD CONSTRAINT "books_fk0" FOREIGN KEY ("due_date") REFERENCES "borrowed"("due_date");
 
 
-ALTER TABLE "borrowed" ADD CONSTRAINT "borrowed_fk0" FOREIGN KEY ("bookID") REFERENCES "public.books"("bookID");
-ALTER TABLE "borrowed" ADD CONSTRAINT "borrowed_fk1" FOREIGN KEY ("userID") REFERENCES "public.customer"("userID");
+ALTER TABLE "borrowed" ADD CONSTRAINT "borrowed_fk0" FOREIGN KEY ("bookID") REFERENCES "books"("bookID");
+ALTER TABLE "borrowed" ADD CONSTRAINT "borrowed_fk1" FOREIGN KEY ("userID") REFERENCES "customer"("userID");
 
-ALTER TABLE "removed" ADD CONSTRAINT "removed_fk0" FOREIGN KEY ("bookID") REFERENCES "public.books"("bookID");
+ALTER TABLE "removed" ADD CONSTRAINT "removed_fk0" FOREIGN KEY ("bookID") REFERENCES "books"("bookID");
 
-ALTER TABLE "credentials" ADD CONSTRAINT "credentials_fk0" FOREIGN KEY ("email") REFERENCES "public.customer"("customer_mail");
-ALTER TABLE "credentials" ADD CONSTRAINT "credentials_fk1" FOREIGN KEY ("userID") REFERENCES "public.customer"("userID");
+ALTER TABLE "credentials" ADD CONSTRAINT "credentials_fk0" FOREIGN KEY ("email") REFERENCES "customer"("customer_mail");
+ALTER TABLE "credentials" ADD CONSTRAINT "credentials_fk1" FOREIGN KEY ("userID") REFERENCES "customer"("userID");
+
+
+
+
+
