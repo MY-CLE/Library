@@ -60,16 +60,16 @@ CREATE TABLE "public.credentials" (
 
 
 
-ALTER TABLE "books" ADD CONSTRAINT "books_fk0" FOREIGN KEY ("due_date") REFERENCES "borrowed"("due_date");
+ALTER TABLE "public.books" ADD CONSTRAINT "books_fk0" FOREIGN KEY ("due_date") REFERENCES "public.borrowed"("due_date");
 
 
-ALTER TABLE "borrowed" ADD CONSTRAINT "borrowed_fk0" FOREIGN KEY ("bookID") REFERENCES "books"("bookID");
-ALTER TABLE "borrowed" ADD CONSTRAINT "borrowed_fk1" FOREIGN KEY ("userID") REFERENCES "customer"("userID");
+ALTER TABLE "public.borrowed" ADD CONSTRAINT "borrowed_fk0" FOREIGN KEY ("bookID") REFERENCES "public.books"("bookID");
+ALTER TABLE "public.borrowed" ADD CONSTRAINT "borrowed_fk1" FOREIGN KEY ("userID") REFERENCES "public.customer"("userID");
 
-ALTER TABLE "removed" ADD CONSTRAINT "removed_fk0" FOREIGN KEY ("bookID") REFERENCES "books"("bookID");
+ALTER TABLE "public.removed" ADD CONSTRAINT "removed_fk0" FOREIGN KEY ("bookID") REFERENCES "public.books"("bookID");
 
-ALTER TABLE "credentials" ADD CONSTRAINT "credentials_fk0" FOREIGN KEY ("email") REFERENCES "customer"("customer_mail");
-ALTER TABLE "credentials" ADD CONSTRAINT "credentials_fk1" FOREIGN KEY ("userID") REFERENCES "customer"("userID");
+ALTER TABLE "public.credentials" ADD CONSTRAINT "credentials_fk0" FOREIGN KEY ("email") REFERENCES "public.customer"("customer_mail");
+ALTER TABLE "public.credentials" ADD CONSTRAINT "credentials_fk1" FOREIGN KEY ("userID") REFERENCES "public.customer"("userID");
 
 
 
