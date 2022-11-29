@@ -67,13 +67,13 @@ class BookView(QFrame, BookViewFunktions):
         with open(os.path.abspath("src/assets/books/books.json")) as json_file:
             data = json.load(json_file)
         
-        self.loadBooks(data[:5])
                
         self.container.setLayout(self.containerHoriLayout)
         
         layout = QHBoxLayout()
         layout.addWidget(self.container)
         self.setLayout(layout)
+        self.loadBooks(data[:5])
         
     def addBook(self, book):
         
