@@ -14,7 +14,7 @@ CREATE TABLE "public.books" (
 
 
 CREATE TABLE "public.customer" (
-	"userID" integer(255) NOT NULL,
+	"userID" integer NOT NULL,
 	"customer_name" varchar(255) NOT NULL,
 	"customer_firstName" varchar(255) NOT NULL,
 	"customer_mail" varchar(255) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE "public.removed" (
 	"removedID" serial NOT NULL,
 	"bookID" serial NOT NULL,
 	"removed_date" serial NOT NULL,
-	"removed_reason" serial(255) NOT NULL,
+	"removed_reason" serial NOT NULL,
 	CONSTRAINT "removed_pk" PRIMARY KEY ("removedID")
 ) WITH (
   OIDS=FALSE
