@@ -10,12 +10,11 @@ class DownloadImg(QRunnable):
         self.signals = DownloadImgSignals()
     
     def run(self):
-        
         self.dic['localpath'] = os.path.abspath(os.path.join('src/assets/covers/', f"Image_{str(self.dic['id'])}.jpg"))
         print(os.path.exists(self.dic['localpath']))
         if not os.path.exists(self.dic['localpath']):
             img_data = requests.get(self.dic['img-src']).content
-            with open(os.path.abspath(self.dic['localpath']), 'wb') as handler:
+            with open(self.dic['localpath'], 'wb') as handler:
                 handler.write(img_data)
         self.signals.returnBook.emit(self.dic)
         self.signals.finished.emit()
@@ -30,14 +29,12 @@ class BookViewFunktions():
         self.threadpool = QThreadPool().globalInstance()
         for count, book in enumerate(data):
             book['id'] = count
-            print(book["id"])
             worker = DownloadImg(book)
             worker.signals.returnBook.connect(self.bookRecived)
             worker.signals.finished.connect(lambda: self.workerfinished(len(data)))
             self.threadpool.tryStart(worker)
     
     def bookRecived(self, book):
-        print(book)
         self.addBook(book)
     
     def workerfinished(self, len):
