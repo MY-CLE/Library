@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(0, "/src/")
 
+from GUI.Elements.borrowedView import BorrowedView
 from GUI.Elements.header import CustHeader
 from GUI.Elements.libaryView import LibraryView
 
@@ -18,9 +19,11 @@ class LandingWindow(QFrame):
         
         self.header = CustHeader()
         self.libraryView = LibraryView()
+        self.borrowedView = BorrowedView()
         viewQVlayout = QVBoxLayout()
         viewQVlayout.addWidget(self.header)
         viewQVlayout.addWidget(self.libraryView)
+        viewQVlayout.addWidget(self.borrowedView)
         viewQVlayout.addStretch()
         #viewQVlayout.addWidget(viewWidget)
         viewQVlayout.setContentsMargins(0,0,0,0)
