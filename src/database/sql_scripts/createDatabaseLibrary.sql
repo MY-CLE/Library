@@ -60,8 +60,6 @@ CREATE TABLE "public.credentials" (
 
 
 
-ALTER TABLE "books" ADD CONSTRAINT "books_fk0" FOREIGN KEY ("rating") REFERENCES ""("");
-ALTER TABLE "books" ADD CONSTRAINT "books_fk1" FOREIGN KEY ("borrowed_counter") REFERENCES ""("");
 ALTER TABLE "books" ADD CONSTRAINT "books_fk2" FOREIGN KEY ("due_date") REFERENCES "borrowed"("due_date");
 
 
