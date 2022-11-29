@@ -1,9 +1,9 @@
 CREATE TABLE "public.books" (
 	"bookID" serial,
 	"rating" FLOAT,
-	"book_name" varchar(255),
+	"book_name" varchar(255) NOT NULL,
 	"borrowed_status" BOOLEAN NOT NULL,
-	"borrowed_counter" serial NOT NULL,
+	"borrowed_counter" integer NOT NULL,
 	"borrowed_date" DATE NOT NULL,
 	"due_date" DATE NOT NULL,
 	CONSTRAINT "books_pk" PRIMARY KEY ("bookID")
@@ -14,7 +14,7 @@ CREATE TABLE "public.books" (
 
 
 CREATE TABLE "public.customer" (
-	"userID" integer NOT NULL,
+	"userID" serial NOT NULL,
 	"customer_name" varchar(255) NOT NULL,
 	"customer_firstName" varchar(255) NOT NULL,
 	"customer_mail" varchar(255) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE "public.customer" (
 
 CREATE TABLE "public.borrowed" (
 	"borrowID" serial NOT NULL,
-	"bookID" serial NOT NULL,
+	"bookID" integer NOT NULL,
 	"userID" integer NOT NULL,
 	"due_date" DATE NOT NULL,
 	CONSTRAINT "borrowed_pk" PRIMARY KEY ("borrowID")
@@ -39,9 +39,9 @@ CREATE TABLE "public.borrowed" (
 
 CREATE TABLE "public.removed" (
 	"removedID" serial NOT NULL,
-	"bookID" serial NOT NULL,
-	"removed_date" serial NOT NULL,
-	"removed_reason" serial NOT NULL,
+	"bookID" integer NOT NULL,
+	"removed_date" DATE NOT NULL,
+	"removed_reason" varchar(255) NOT NULL,
 	CONSTRAINT "removed_pk" PRIMARY KEY ("removedID")
 ) WITH (
   OIDS=FALSE
@@ -72,4 +72,3 @@ ALTER TABLE "removed" ADD CONSTRAINT "removed_fk0" FOREIGN KEY ("bookID") REFERE
 
 ALTER TABLE "credentials" ADD CONSTRAINT "credentials_fk0" FOREIGN KEY ("email") REFERENCES "customer"("customer_mail");
 ALTER TABLE "credentials" ADD CONSTRAINT "credentials_fk1" FOREIGN KEY ("userID") REFERENCES "customer"("userID");
-
