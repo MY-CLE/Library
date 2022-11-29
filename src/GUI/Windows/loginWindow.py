@@ -61,7 +61,6 @@ class LoginWindow(QFrame):
         loginBtn = QPushButton()
         loginBtn.setFixedSize(250,50)
         loginBtn.setObjectName("loginBtn")
-        loginBtn.setStyleSheet("background-color: #00C5F0")
         loginBtn.setText("Login")
         loginBtn.clicked.connect(lambda: self.loginBtnPressed(emailTextInput.text(), passwordTextInput.text()))
         

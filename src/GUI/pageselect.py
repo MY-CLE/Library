@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(0, "src//")
 from GUI.Windows.loginWindow import LoginWindow
+from GUI.Windows.landingWindow import LandingWindow
 from PyQt6.QtWidgets import (QMainWindow,QStackedWidget)
 
 class PageSelect(QMainWindow):
@@ -9,15 +10,16 @@ class PageSelect(QMainWindow):
         #initiation of Widows
         self.setWindowTitle('Liberary')
         self.loginWindow = LoginWindow(self)
-        #self.mainWindow = MainW
+        self.landingWindow = LandingWindow()
         
         #Add them to ustom Stacked Widget
         self.widget = Pages(self.loginWindow)
         self.widget.addWidget(self.loginWindow)
+        self.widget.addWidget(self.landingWindow)
         
         #self.widget.setStyleSheet('background-color: #be06ff')
         #Display the Loginpage as default
-        self.widget.setCurrentIndex(0)
+        self.widget.setCurrentIndex(1)
         self.widget.show()
         
 #This Custom StackedWidegt is basicly the same as a normal one.
