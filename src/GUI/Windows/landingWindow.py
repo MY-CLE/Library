@@ -1,9 +1,9 @@
 import sys
 sys.path.insert(0, "/src/")
 
-from GUI.Elements.borrowedView import BorrowedView
-from GUI.Elements.header import CustHeader
-from GUI.Elements.libaryView import LibraryView
+from GUI.elements.borrowedView import BorrowedView
+from GUI.elements.header import CustHeader
+from GUI.elements.libaryView import LibraryView
 
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QWidget, QFrame)
 from PyQt6.QtCore import QSize
