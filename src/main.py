@@ -11,7 +11,7 @@ def main():
     stylesheet = os.path.join(root, os.path.abspath("src/GUI/styles.qss"))
     
     with open(stylesheet, "r") as file:
-        app.setStyleSheet(file.read())
+       app.setStyleSheet(file.read())
         
     application = PageSelect()
     app.exec()
