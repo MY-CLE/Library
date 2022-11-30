@@ -1,9 +1,13 @@
+import sys
+
+sys.path.insert(0,'src//')
 import json
 import os
 import requests
-from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit)
+from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit, )
 from PyQt6.QtGui import QPixmap, QImage
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import Qt, QThreadPool
+from GUI.helper.downloadImg import BookViewFunktions
 class BorrowedView(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
@@ -14,8 +18,8 @@ class BorrowedView(QFrame):
         mainHoriLayout.addWidget(self.bookView)
         self.setLayout(mainHoriLayout)
         
-class BookView(QFrame):
-    
+class BookView(QFrame, BookViewFunktions):
+    borrowedBooksViewCount = 0
     def __init__(self):
         super(QFrame, self).__init__()
         self.setObjectName('bookView')
@@ -32,12 +36,7 @@ class BookView(QFrame):
         with open(os.path.abspath("src/assets/books/books.json")) as json_file:
             data = json.load(json_file)
         
-        for count, book in enumerate(data):
-            print(book["img-src"])
-            if count< 3:
-                self.addBook(book)
-               
-        self.containerHoriLayout.addStretch()
+        self.loadBooks(data[:3])
                
         boxDescription = QLabel()
         boxDescription.setObjectName('boxDescription')
@@ -54,31 +53,3 @@ class BookView(QFrame):
         horilayout = QHBoxLayout()
         horilayout.addWidget(self.container)
         self.setLayout(horilayout)
-        
-    def addBook(self, book):
-        
-        self.book = QWidget()
-        
-        self.title = QLabel()
-        self.title.setObjectName('bookTitleLable')
-        
-        if len(book['title']) <= 20: 
-            self.title.setText(book['title'])
-        else:
-            self.title.setText(book['title'][:18] + '...')
-        self.lable = QLabel()
-        self.lable.setObjectName('bookCoveLable')
-        image = QImage()
-        image.loadFromData(requests.get(book['img-src']).content)
-        cover = QPixmap(image)
-        cover = cover.scaledToHeight(200)
-        self.lable.setPixmap(cover)
-        
-        bookLayout = QVBoxLayout()
-        bookLayout.addStretch()
-        bookLayout.addWidget(self.lable)
-        bookLayout.addWidget(self.title)
-        bookLayout.addStretch()
-        self.book.setLayout(bookLayout)
-        
-        self.containerHoriLayout.addWidget(self.book)
