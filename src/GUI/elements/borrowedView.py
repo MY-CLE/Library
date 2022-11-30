@@ -41,7 +41,7 @@ class BookView(QFrame):
                
         boxDescription = QLabel()
         boxDescription.setObjectName('boxDescription')
-        boxDescription.setText('Your Borrowes Books:')  
+        boxDescription.setText('Your Borrowed Books:')  
         
         
         self.containerVertLayout = QVBoxLayout()
