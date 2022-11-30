@@ -4,6 +4,8 @@ import requests
 from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit)
 from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import QSize, Qt
+
+from GUI.helper.downloadImg import BookViewFunktions
 class LibraryView(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
@@ -47,7 +49,7 @@ class BooksFilter(QFrame):
         
         
         
-class BookView(QFrame):
+class BookView(QFrame, BookViewFunktions):
     
     def __init__(self):
         super(QFrame, self).__init__()
@@ -58,25 +60,20 @@ class BookView(QFrame):
         self.container.setMinimumWidth(500)
         self.container.setMaximumHeight(300)
 
-        self.containerLayout = QHBoxLayout()
-        self.containerLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.containerHoriLayout = QHBoxLayout()
+        self.containerHoriLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
         data = None
         with open(os.path.abspath("src/assets/books/books.json")) as json_file:
             data = json.load(json_file)
         
-        for count, book in enumerate(data):
-            print(book["img-src"])
-            if count< 5:
-                self.addBook(book)
-        #for book in self.books:
-        #    self.addBook(book)
                
-        self.container.setLayout(self.containerLayout)
+        self.container.setLayout(self.containerHoriLayout)
         
         layout = QHBoxLayout()
         layout.addWidget(self.container)
         self.setLayout(layout)
+        self.loadBooks(data[:5])
         
     def addBook(self, book):
         
@@ -103,4 +100,4 @@ class BookView(QFrame):
         bookLayout.addStretch()
         self.book.setLayout(bookLayout)
         
-        self.containerLayout.addWidget(self.book)
+        self.containerHoriLayout.addWidget(self.book)
