@@ -10,7 +10,7 @@ class DownloadImg(QRunnable):
         self.signals = DownloadImgSignals()
     
     def run(self):
-        self.dic['localpath'] = os.path.abspath(os.path.join('src/assets/covers/', f"Image_{str(self.dic['id'])}.jpg"))
+        self.dic['localpath'] = os.path.join(os.path.abspath('src/assets/covers/'), f"Image_{str(self.dic['id'])}.jpg")
         print(os.path.exists(self.dic['localpath']))
         if not os.path.exists(self.dic['localpath']):
             img_data = requests.get(self.dic['img-src']).content
