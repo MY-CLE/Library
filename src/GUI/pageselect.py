@@ -1,7 +1,7 @@
 import sys
-sys.path.insert(0, "src//")
-from GUI.Windows.loginWindow import LoginWindow
-from GUI.Windows.landingWindow import LandingWindow
+#sys.path.insert(0, "src//")
+from gui.windows.loginWindow import LoginWindow
+from gui.windows.landingWindow import LandingWindow
 from PyQt6.QtWidgets import (QMainWindow,QStackedWidget)
 
 class PageSelect(QMainWindow):
