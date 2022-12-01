@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, "src//")
-from database.dbconnect import DatabaseHandler
+from Database.dbconnect import DatabaseHandler
 import re
 class Login(object):
     

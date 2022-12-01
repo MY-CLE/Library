@@ -1,7 +1,8 @@
 import sys
+
 sys.path.insert(0,'src//')
-from GUI.pageselect import PageSelect
 import os
+from gui.pageselect import PageSelect
 from PyQt6.QtWidgets import QApplication
 
 def myExitHandler():

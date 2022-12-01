@@ -7,7 +7,7 @@ import requests
 from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit, )
 from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import Qt, QThreadPool
-from GUI.helper.downloadImg import BookViewFunktions
+from gui.helper.downloadImg import BookViewFunktions
 class BorrowedView(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()

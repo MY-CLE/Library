@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidg
 from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import QSize, Qt
 
-from GUI.helper.downloadImg import BookViewFunktions
+from gui.helper.downloadImg import BookViewFunktions
 class LibraryView(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
