@@ -1,6 +1,4 @@
 import sys
-
-sys.path.insert(0,'src//')
 import json
 import os
 import requests

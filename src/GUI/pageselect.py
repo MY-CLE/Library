@@ -1,5 +1,3 @@
-import sys
-#sys.path.insert(0, "src//")
 from gui.windows.loginWindow import LoginWindow
 from gui.windows.landingWindow import LandingWindow
 from PyQt6.QtWidgets import (QMainWindow,QStackedWidget)
