@@ -1,5 +1,3 @@
-import sys
-sys.path.insert(0, "src//")
 import psycopg2
 from pathlib import Path
 from configparser import ConfigParser

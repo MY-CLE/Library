@@ -1,5 +1,3 @@
-import sys
-sys.path.insert(0, "src//")
 import os
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)

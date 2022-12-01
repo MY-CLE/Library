@@ -1,4 +1,4 @@
-from Rating import Rating
+from rating import rating
 
 
 class Book(object):
@@ -9,7 +9,7 @@ class Book(object):
         self.__publishingYear = publishingYear
         self.__edition = edition
         self.__publisher = publisher
-        self.__ratings: Rating = []
+        self.__ratings: rating = []
         self.__isBorrowed: bool = False
 
     def getTitle(self) -> str:
@@ -45,7 +45,7 @@ class Book(object):
     def getRatings(self) -> list:
         return self.__ratings
 
-    def addRating(self, newRating: Rating) -> None:
+    def addRating(self, newRating: rating) -> None:
         self.__ratings.append(newRating)
 
     # get average rating of a book rounded to an int.
@@ -68,7 +68,7 @@ class Book(object):
 
 book = Book("egal", "egal", 2001, "gal", "egal")
 for i in range(0, 6):
-    book.addRating(Rating(i))
+    book.addRating(rating(i))
     print(book.getAverageRating())
     
 

@@ -1,6 +1,4 @@
 import sys
-
-sys.path.insert(0,'src//')
 import os
 from gui.pageselect import PageSelect
 from PyQt6.QtWidgets import QApplication
