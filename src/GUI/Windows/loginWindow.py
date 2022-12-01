@@ -121,16 +121,15 @@ class LoginWindow(QFrame):
         
         if(email == '' or pwd == ''):
             print("Please enter values")
-        """else:
+        else:
             credentilas = {
                 "email": email,
                 "password": pwd,
             }
-            user = lc.Login(credentilas['email'], credentilas["password"])
-            if(user.userlogin()):
-                self.loginStatus = True 
-                print(credentilas)
-                self.parent().changeStackedWidget()"""
+            
+            self.loginStatus = True 
+            print(credentilas)
+            self.parent().changeStackedWidget()
         
     
     
