@@ -24,6 +24,7 @@ pip install -r requirements.txt
 ## :page_with_curl: Documentation
 
 The [Databasemodel] was created using dbdesigner.net
+Figma design can be found [here]
 
 Can be found [here](Documentation)
 
@@ -40,3 +41,4 @@ Can be found [here](Documentation)
 
 [//]: # 
    [Databasemodel]: <https://sqlspy.io/import_db_designer/newone=>
+   [here]: <https://www.figma.com/file/WDUvHBhv6LMjt7FrcCiUHU/Design-Library?t=hBZbcGuOz585cVKC-1>
