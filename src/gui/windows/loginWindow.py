@@ -87,7 +87,7 @@ class LoginWindow(QFrame):
         
         #The logo is loaded from the assets folder
         logoLable = QLabel()
-        logo = QPixmap(os.path.abspath('src/assets/Logo/hse-library-logo-smaller.png'))
+        logo = QPixmap(os.path.abspath('src/assets/Logo/hse-library-logo-smaller-removebg-preview.png'))
         logoLable.setPixmap(logo)
         
         logoHLayout = QHBoxLayout()

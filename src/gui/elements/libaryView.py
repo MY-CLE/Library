@@ -67,6 +67,7 @@ class BookView(QFrame, BookViewFunktions):
         with open(os.path.abspath("src/assets/books/books.json")) as json_file:
             data = json.load(json_file)
         
+        self.loadBooks(data[:5])
                
         self.container.setLayout(self.containerHoriLayout)
         
@@ -74,30 +75,3 @@ class BookView(QFrame, BookViewFunktions):
         layout.addWidget(self.container)
         self.setLayout(layout)
         self.loadBooks(data[:5])
-        
-    def addBook(self, book):
-        
-        self.book = QWidget()
-        
-        self.title = QLabel()
-        self.title.setObjectName('bookTitleLable')
-        if len(book['title']) <= 20: 
-            self.title.setText(book['title'])
-        else:
-            self.title.setText(book['title'][:18] + '...')
-        self.lable = QLabel()
-        self.lable.setObjectName('bookCoveLable')
-        image = QImage()
-        image.loadFromData(requests.get(book['img-src']).content)
-        cover = QPixmap(image)
-        cover = cover.scaledToHeight(200)
-        self.lable.setPixmap(cover)
-        
-        bookLayout = QVBoxLayout()
-        bookLayout.addStretch()
-        bookLayout.addWidget(self.lable)
-        bookLayout.addWidget(self.title)
-        bookLayout.addStretch()
-        self.book.setLayout(bookLayout)
-        
-        self.containerHoriLayout.addWidget(self.book)

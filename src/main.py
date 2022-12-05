@@ -14,6 +14,7 @@ def myExitHandler():
 def main():
     app = QApplication(sys.argv)
     app.aboutToQuit.connect(myExitHandler)
+    myExitHandler()
     
     root = os.getcwd()
     stylesheet = os.path.join(root, os.path.abspath("src/gui/styles.qss"))

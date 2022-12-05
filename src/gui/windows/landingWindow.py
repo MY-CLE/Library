@@ -1,11 +1,11 @@
 from gui.elements.borrowedView import BorrowedView
 from gui.elements.header import CustHeader
 from gui.elements.libaryView import LibraryView
-from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QWidget, QFrame)
+from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize
 
 class LandingWindow(QFrame):
-    def __init__(self, parent):
+    def __init__(self, parent=None):
         super(QFrame, self).__init__()
         self.userid = None
         self.setWindowTitle("TIME")
@@ -29,9 +29,8 @@ class LandingWindow(QFrame):
         mainQHlayout.setContentsMargins(0,0,0,0)
 
         self.setLayout(mainQHlayout)
-        print(str(self.parent()))
-        #self.parent().sendUserId.connect(self.setUserid)
 
     def setUserid(self, id):
         self.userid = id
         print(f'Landing Page User id ${self.userid}')
+        self.borrowedView.bookView.updateUser(self.userid)

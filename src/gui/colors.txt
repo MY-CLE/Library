@@ -1,0 +1,5 @@
+main:#7EFA4D
+second:#DE9502
+third:#F50A41
+forth:#020ADE
+fith:#8CFFC9

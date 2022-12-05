@@ -1,8 +1,6 @@
 from gui.windows.loginWindow import LoginWindow
 from gui.windows.landingWindow import LandingWindow
 from PyQt6.QtWidgets import (QMainWindow,QStackedWidget)
-from PyQt6.QtCore import pyqtSignal
-
 class PageSelect(QMainWindow):    
     def __init__(self):
         super(QMainWindow, self).__init__()
@@ -13,14 +11,14 @@ class PageSelect(QMainWindow):
         self.landingWindow = LandingWindow(self)
         
         #Add them to ustom Stacked Widget
-        self.widget = Pages()
-        self.widget.addWidget(self.loginWindow)
-        self.widget.addWidget(self.landingWindow)
-        
-        #self.widget.setStyleSheet('background-color: #be06ff')
+        self.pages = QStackedWidget()
+        self.pages.addWidget(self.loginWindow)
+        self.pages.addWidget(self.landingWindow)
         #Display the Loginpage as default
-        self.widget.setCurrentIndex(0)
-        self.widget.show()
+        self.pages.setCurrentIndex(0)
+        self.pages.show()
+        
+        #Signals from Children
         self.loginWindow.sendUser.connect(self.setUser)
     
     def setUser(self, user):
@@ -30,12 +28,4 @@ class PageSelect(QMainWindow):
         self.landingWindow.setUserid(self.userId)
         
     def changeStackedWidget(self, index):
-        self.widget.setCurrentIndex(index)
-        
-        
-#This Custom Stac0kedWidegt is basicly the same as a normal one.
-#but it has a custom function which allows the Children of it to
-#change the visble widget
-class Pages(QStackedWidget):    
-    def __init__(self):
-        super(QStackedWidget, self).__init__()
+        self.pages.setCurrentIndex(index)

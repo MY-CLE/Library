@@ -1,7 +1,7 @@
 import os
 import requests
 from PyQt6.QtCore import pyqtSignal, QRunnable, QObject, QThreadPool
-from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit, )
+from PyQt6.QtWidgets import (QVBoxLayout, QWidget,QLabel)
 from PyQt6.QtGui import QPixmap, QImage
 class DownloadImg(QRunnable):
     def __init__(self, dic) :
