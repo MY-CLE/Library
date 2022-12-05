@@ -5,8 +5,9 @@ from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QWidget, QFrame)
 from PyQt6.QtCore import QSize
 
 class LandingWindow(QFrame):
-    def __init__(self):
-        super(QFrame, self).__init__()       
+    def __init__(self, parent):
+        super(QFrame, self).__init__()
+        self.userid = None
         self.setWindowTitle("TIME")
         self.setMinimumSize(QSize(1080,720))
         self.setObjectName("landingWindow")
@@ -21,12 +22,16 @@ class LandingWindow(QFrame):
         viewQVlayout.addWidget(self.libraryView)
         viewQVlayout.addWidget(self.borrowedView)
         viewQVlayout.addStretch()
-        #viewQVlayout.addWidget(viewWidget)
         viewQVlayout.setContentsMargins(0,0,0,0)
         
         mainQHlayout = QHBoxLayout()
-        #mainQHlayout.addWidget(sidebar)
         mainQHlayout.addLayout(viewQVlayout)
         mainQHlayout.setContentsMargins(0,0,0,0)
 
         self.setLayout(mainQHlayout)
+        print(str(self.parent()))
+        #self.parent().sendUserId.connect(self.setUserid)
+
+    def setUserid(self, id):
+        self.userid = id
+        print(f'Landing Page User id ${self.userid}')

@@ -1,5 +1,5 @@
-from database.dbconnect import DatabaseHandler
 import re
+import database.dbconnect as db
 class Login(object):
     
         logincheck = False
@@ -22,16 +22,15 @@ class Login(object):
         def get_email(self) -> str:
             return self.__email
 
-        def userlogin(self) -> int:
-            sqlpass = DatabaseHandler()
+        def userloginId(self) -> int:
+            sqlpass = db.DatabaseHandler()
             
             #add sql logic
-            
             self.__logincheckingfunc = f"SELECT login('{self.get_email()}','{self.get_password()}')"
             return sqlpass.parser(self.__logincheckingfunc)[0][0]
         
-        def user_login2(self) -> bool:
-            db = DatabaseHandler()
+        def user_loginBool(self) -> bool:
+            db = db.DatabaseHandler()
             query = f"SELECT login('{self.get_email()}','{self.get_password()}')"
             return db.parser(query)
         
@@ -39,7 +38,7 @@ class Login(object):
                 
 def main():
     a = Login("peter@riecht.com","meinPassword")
-    print(a.userlogin())
+    print(a.userloginId())
     #print(a.user_login2())
     
         

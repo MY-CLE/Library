@@ -16,7 +16,7 @@ def main():
     app.aboutToQuit.connect(myExitHandler)
     
     root = os.getcwd()
-    stylesheet = os.path.join(root, os.path.abspath("src/GUI/styles.qss"))
+    stylesheet = os.path.join(root, os.path.abspath("src/gui/styles.qss"))
     
     with open(stylesheet, "r") as file:
        app.setStyleSheet(file.read())

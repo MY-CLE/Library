@@ -1,7 +1,8 @@
 import os
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import QSize, Qt, pyqtSignal
+from database.login import Login
 
 # This Class displays a login page from which the user can login to his account
 # It contains 2 Text Inputs and one login button, the forgotten password lable is purly for visual
@@ -10,11 +11,10 @@ from PyQt6.QtCore import QSize, Qt
 
 class LoginWindow(QFrame):
     
-    
-    def __init__(self, parent):
+    sendUser = pyqtSignal(int)
+    def __init__(self, parent=None):
         super(QFrame, self).__init__()
         # Keeps track of login status
-        self.loginStatus = False
         self.setWindowTitle("Login")
         self.setMinimumSize(QSize(1080,720))
         self.setObjectName('loginWindow')
@@ -125,10 +125,11 @@ class LoginWindow(QFrame):
                 "password": pwd,
             }
             
-            self.loginStatus = True 
-            print(credentilas)
-            self.parent().changeStackedWidget()
+            userlogin = Login(credentilas["email"],  credentilas["password"])
+            newuserid = userlogin.userloginId()
+
+            if newuserid is not None:
+                self.sendUser.emit(newuserid)    
         
     
     
-    #def changeLoginStatusfnc(self):

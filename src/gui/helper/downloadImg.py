@@ -24,6 +24,7 @@ class DownloadImgSignals(QObject):
     
     
 class BookViewFunktions():
+    
     def loadBooks(self, data):
         self.threadpool = QThreadPool().globalInstance()
         for count, book in enumerate(data):
