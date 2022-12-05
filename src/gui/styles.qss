@@ -21,11 +21,11 @@ QLineEdit#searchTextInput {
 }
 
 QFrame#landingWindow {
-    background:  #00C5F0;
+    background:  #7EFA4D;
 }
 
 QFrame#loginWindow {
-    background:  #00C5F0;
+    background:  #7EFA4D;
 }
 
 QWidget#loginContainer {

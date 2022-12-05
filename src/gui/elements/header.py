@@ -10,10 +10,11 @@ class CustHeader(QFrame):
         self.setMaximumHeight(200)
         
         self.setFrameShape(QFrame.Shape.NoFrame)
+        #self.widget.setStyleSheet('background-color: #be06ff')
         self.setLineWidth(0)
         
         logoLable = QLabel()
-        logo = QPixmap(os.path.abspath('src/assets/Logo/hse-library-logo-smaller.png'))
+        logo = QPixmap(os.path.abspath('src/assets/Logo/hse-library-logo-smaller-removebg-preview.png'))
         logo = logo.scaledToHeight(65)
         logoLable.setPixmap(logo)
         
@@ -23,9 +24,6 @@ class CustHeader(QFrame):
         #searchTextInput.setMaximumWidth()
         searchTextInput.setMinimumHeight(65)
         searchTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        
-        
-        
         
         iconbar = IconBar()
         

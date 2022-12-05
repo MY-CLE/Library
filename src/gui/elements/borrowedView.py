@@ -1,16 +1,12 @@
-import sys
 import json
 import os
-import requests
-from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit, )
-from PyQt6.QtGui import QPixmap, QImage
-from PyQt6.QtCore import Qt, QThreadPool
+from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QFrame, QWidget,QLabel )
+from PyQt6.QtCore import Qt
 from gui.helper.downloadImg import BookViewFunktions
 class BorrowedView(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
         self.setObjectName('libraryView')
-        
         self.bookView = BookView()
         mainHoriLayout = QHBoxLayout()
         mainHoriLayout.addWidget(self.bookView)
@@ -36,13 +32,13 @@ class BookView(QFrame, BookViewFunktions):
         
         self.loadBooks(data[:3])
                
-        boxDescription = QLabel()
-        boxDescription.setObjectName('boxDescription')
-        boxDescription.setText('Your Borrowed Books:')  
+        self.boxDescription = QLabel()
+        self.boxDescription.setObjectName('boxDescription')
+        self.boxDescription.setText('No User logged in')  
         
         
         self.containerVertLayout = QVBoxLayout()
-        self.containerVertLayout.addWidget(boxDescription)
+        self.containerVertLayout.addWidget(self.boxDescription)
         self.containerVertLayout.addLayout(self.containerHoriLayout)
         self.container.setLayout(self.containerVertLayout)
         
@@ -51,3 +47,7 @@ class BookView(QFrame, BookViewFunktions):
         horilayout = QHBoxLayout()
         horilayout.addWidget(self.container)
         self.setLayout(horilayout)
+        
+    def updateUser(self, id):
+        self.boxDescription.setText(f'Your Borrowed Books, ${id}')
+        
