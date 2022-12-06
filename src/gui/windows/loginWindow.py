@@ -124,11 +124,10 @@ class LoginWindow(QFrame):
                 "email": email,
                 "password": pwd,
             }
-            
             userlogin = Login(credentilas["email"],  credentilas["password"])
             newuserid = userlogin.userloginId()
 
-            if newuserid is not None:
+            if newuserid != 0:
                 self.sendUser.emit(newuserid)    
         
     
