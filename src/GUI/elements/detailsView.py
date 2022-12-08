@@ -2,7 +2,7 @@ import json
 import os
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame, QWidget, QLabel)
 from PyQt6.QtCore import Qt
-from GUI.helper.downloadImg import BookViewFunktions
+from PyQt6.QtGui import QPixmap, QImage
 
 
 class DetailsView(QFrame):
@@ -15,7 +15,7 @@ class DetailsView(QFrame):
         self.setLayout(mainHoriLayout)
 
 
-class BookView(QFrame, BookViewFunktions):
+class BookView(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
         self.setObjectName('bookView')
@@ -31,24 +31,21 @@ class BookView(QFrame, BookViewFunktions):
 
         self.containerHoriLayout = QHBoxLayout()
         self.containerHoriLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        self.containerHoriLayout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
 
         data = None
         with open(os.path.abspath("src/assets/books/books.json")) as json_file:
             data = json.load(json_file)
 
-        self.loadBooks(data[:3])
+        # self.loadBooks(data[:3])
 
-        self.author = QLabel()
-        self.pages = QLabel()
+        #cover = QPixmap()
+
+        #self.author = QLabel()
+        #self.pages = QLabel()
         self.title = QLabel()
 
-        self.author.setObjectName('details')
-        self.author.setText('Suhi')
-        self.pages.setObjectName('details')
-        self.pages.setText('123')
-        self.title.setObjectName('details')
-        self.title.setText('SUHIC')
+        # self.title.setObjectName('details')
+        #self.title = title
 
         #self.boxDescription = QLabel()
         # self.boxDescription.setObjectName('boxDescription')
@@ -56,8 +53,8 @@ class BookView(QFrame, BookViewFunktions):
 
         self.containerVertLayout = QVBoxLayout()
         self.containerVertLayout.addWidget(self.title)
-        self.containerVertLayout.addWidget(self.author)
-        self.containerVertLayout.addWidget(self.pages)
+        # self.containerVertLayout.addWidget(self.author)
+        # self.containerVertLayout.addWidget(self.pages)
         self.containerVertLayout.addLayout(self.containerHoriLayout)
         self.textContainer.setLayout(self.containerVertLayout)
 

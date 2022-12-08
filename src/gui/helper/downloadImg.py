@@ -1,9 +1,10 @@
 import os
 import requests
-from PyQt6.QtCore import pyqtSignal, QRunnable, QObject, QThreadPool
-from PyQt6.QtWidgets import (QVBoxLayout, QWidget, QLabel, QMainWindow)
+from PyQt6.QtCore import pyqtSignal, pyqtSlot, QRunnable, QObject, QThreadPool
+from PyQt6.QtWidgets import (QVBoxLayout, QWidget, QMainWindow, QLabel)
 from PyQt6.QtGui import QPixmap, QImage
 from GUI.Windows.detailsWindow import DetailWindow
+from GUI.elements.detailsView import BookView
 
 
 class DownloadImg(QRunnable):
@@ -14,7 +15,7 @@ class DownloadImg(QRunnable):
 
     def run(self):
         self.dic['localpath'] = os.path.join(os.path.abspath(
-            'src/assets/covers/'), f"Image_{str(self.dic['id'])}.jpg")
+            'src/assets/books/'), f"Image_{str(self.dic['id'])}.jpg")
         if not os.path.exists(self.dic['localpath']):
             img_data = requests.get(self.dic['img-src']).content
             with open(self.dic['localpath'], 'wb') as handler:
@@ -71,16 +72,8 @@ class BookViewFunktions():
 
         self.containerHoriLayout.addWidget(self.book)
 
-    def openStatPage(self):
-        self.window = QMainWindow()
-        self.stats = DetailWindow()
-        self.stats.__init__(self.window)
-        self.window.show()
-
 
 class PictureLabel(QLabel):
-
-    pictureClicked = pyqtSignal(object)
 
     def __init__(self, image, parent=None):
         super(PictureLabel, self).__init__(parent)
@@ -89,4 +82,8 @@ class PictureLabel(QLabel):
         self.setPixmap(cover)
 
     def mousePressEvent(self, event):
-        self.pictureClicked.connect(BookViewFunktions.openStatPage(self))
+        #self.window = QMainWindow()
+        self.stats = DetailWindow()
+        self.stats.__init__()
+        self.stats.show()
+        # self.window.hide()
