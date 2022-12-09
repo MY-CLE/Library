@@ -1,5 +1,5 @@
-from rating import rating
-
+from Rating import rating
+import database.dbconnect as db
 
 class Book(object):
 
@@ -64,12 +64,23 @@ class Book(object):
     def setUnBorrowed(self) -> None:
         self.__isBorrowed = False
 
+    def addBook(self) -> None:
+        db = db.DataseHandler()
+
+        helper = f"SELECT * FROM books WHERE name=?", (self.__title)
+        result = db.parser(helper)
+        if result:
+            print(f"Book is already in the database. Please add a NEW book.")
+            return;
+        else:
+            query = f"INSERT into books (book_name) VALUES(?)", (self.__title)
+            db.parser(query)
+            print(f"Book has been added to the database")
+
 
 
 book = Book("egal", "egal", 2001, "gal", "egal")
 for i in range(0, 6):
     book.addRating(rating(i))
     print(book.getAverageRating())
-    
-
 
