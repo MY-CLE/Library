@@ -12,15 +12,15 @@ class PageSelect(QMainWindow):
         self.setWindowTitle('Liberary')
         self.loginWindow = LoginWindow(self)
         self.landingWindow = LandingWindow(self)
-        self.detailWindow = DetailWindow(self)
+        #self.detailWindow = DetailWindow(self)
 
         # Add them to ustom Stacked Widget
         self.pages = QStackedWidget()
         self.pages.addWidget(self.loginWindow)
         self.pages.addWidget(self.landingWindow)
-        self.pages.addWidget(self.detailWindow)
+        # self.pages.addWidget(self.detailWindow)
         # Display the Loginpage as default
-        self.pages.setCurrentIndex(2)
+        self.pages.setCurrentIndex(1)
         self.pages.show()
 
         # Signals from Children
