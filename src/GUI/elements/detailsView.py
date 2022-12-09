@@ -1,62 +1,74 @@
 import json
 import os
-from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame, QWidget, QLabel)
+from PyQt6.QtWidgets import (
+    QHBoxLayout, QLayout, QVBoxLayout, QFrame, QWidget, QLabel)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QImage
 
 
 class DetailsView(QFrame):
-    def __init__(self):
+    def __init__(self, img, title):
         super(QFrame, self).__init__()
         self.setObjectName('libraryView')
-        self.bookView = BookView()
+        self.bookView = BookView(img, title)
         mainHoriLayout = QHBoxLayout()
         mainHoriLayout.addWidget(self.bookView)
         self.setLayout(mainHoriLayout)
 
 
 class BookView(QFrame):
-    def __init__(self):
+    def __init__(self, img, title):
         super(QFrame, self).__init__()
         self.setObjectName('bookView')
         self.container = QWidget()
         self.container.setObjectName("bookViewContainer")
-        self.container.setMinimumWidth(200)
-        self.container.setMinimumHeight(300)
+        self.container.setMaximumWidth(300)
+        self.container.setMaximumHeight(300)
 
         self.textContainer = QWidget()
         self.textContainer.setObjectName("bookViewContainer")
         self.textContainer.setMinimumWidth(200)
-        self.textContainer.setMaximumHeight(200)
+        self.textContainer.setMaximumHeight(300)
 
         self.containerHoriLayout = QHBoxLayout()
         self.containerHoriLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
-        data = None
-        with open(os.path.abspath("src/assets/books/books.json")) as json_file:
-            data = json.load(json_file)
+        self.textContainerHoriLayout = QHBoxLayout()
+        self.textContainerHoriLayout.setAlignment(
+            Qt.AlignmentFlag.AlignHCenter)
 
-        # self.loadBooks(data[:3])
+        self.label = QLabel()
+        cover = QPixmap(img)
+        cover = cover.scaledToHeight(290)
+        cover = cover.scaledToWidth(200)
+        self.label.setPixmap(cover)
 
-        #cover = QPixmap()
-
-        #self.author = QLabel()
-        #self.pages = QLabel()
         self.title = QLabel()
+        self.title = title
 
-        # self.title.setObjectName('details')
-        #self.title = title
+        bookData = None
+        with open(os.path.abspath("src/assets/books/books.json")) as json_file:
+            bookData = json.load(json_file)
 
-        #self.boxDescription = QLabel()
-        # self.boxDescription.setObjectName('boxDescription')
-        #self.boxDescription.setText('No User logged in')
+        self.bookDesc = QLabel
+        self.bookAuth = QLabel
+        self.bookDate = QLabel
+
+        for book in bookData:
+            if book[:'title'] == self.title:
+                self.bookAuth = book[:'author']
+
+        self.textContainerVertLayout = QVBoxLayout()
+        self.textContainerVertLayout.addWidget(self.bookAuth)
+        self.textContainerVertLayout.addLayout(self.textContainerHoriLayout)
+        self.textContainer.setLayout(self.textContainerVertLayout)
 
         self.containerVertLayout = QVBoxLayout()
+        self.containerHoriLayout.addWidget(self.label)
+
         self.containerVertLayout.addWidget(self.title)
-        # self.containerVertLayout.addWidget(self.author)
-        # self.containerVertLayout.addWidget(self.pages)
         self.containerVertLayout.addLayout(self.containerHoriLayout)
-        self.textContainer.setLayout(self.containerVertLayout)
+        self.container.setLayout(self.containerVertLayout)
 
         horilayout = QHBoxLayout()
         horilayout.addWidget(self.container)

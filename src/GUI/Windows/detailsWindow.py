@@ -5,7 +5,7 @@ from PyQt6.QtCore import QSize
 
 
 class DetailWindow(QFrame):
-    def __init__(self, parent=None):
+    def __init__(self, img, title, parent=None):
         super(QFrame, self).__init__()
         self.setWindowTitle("Details")
         self.setMinimumSize(QSize(1080, 720))
@@ -14,7 +14,7 @@ class DetailWindow(QFrame):
         # self.setLineWidth(0)
 
         self.header = CustHeader()
-        self.details = DetailsView()
+        self.details = DetailsView(img, title)
         viewQVlayout = QVBoxLayout()
         viewQVlayout.addWidget(self.header)
         viewQVlayout.addWidget(self.details)

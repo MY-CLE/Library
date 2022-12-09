@@ -60,7 +60,7 @@ class BookViewFunktions():
             self.title.setText(bookDic['title'][:18] + '...')
 
         image = QImage(bookDic['localpath'])
-        self.lable = PictureLabel(image)
+        self.lable = PictureLabel(image, self.title)
         self.lable.setObjectName('bookCoveLable')
 
         bookLayout = QVBoxLayout()
@@ -75,15 +75,17 @@ class BookViewFunktions():
 
 class PictureLabel(QLabel):
 
-    def __init__(self, image, parent=None):
+    imgParam = QLabel
+    titleParam = QLabel
+
+    def __init__(self, image, title, parent=None):
         super(PictureLabel, self).__init__(parent)
+        self.imgParam = image
+        self.titleParam = title
         cover = QPixmap(image)
         cover = cover.scaledToHeight(200)
         self.setPixmap(cover)
 
     def mousePressEvent(self, event):
-        #self.window = QMainWindow()
-        self.stats = DetailWindow()
-        self.stats.__init__()
+        self.stats = DetailWindow(self.imgParam, self.titleParam)
         self.stats.show()
-        # self.window.hide()
