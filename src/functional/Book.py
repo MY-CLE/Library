@@ -1,16 +1,25 @@
 from rating import rating
+from datetime import date
 
 
 class Book(object):
 
-    def __init__(self, title: str, author: str, publishingYear: int, edition: str, publisher: str) -> None:
+    def __init__(self, bookid: int, title: str, author: str, genre: str, publishingYear: int, borrowedDate: date, publisher: str) -> None:
+        self.__bookid = bookid
         self.__title = title
         self.__author = author
+        self.__genre = genre
         self.__publishingYear = publishingYear
-        self.__edition = edition
+        self.__borrowedDate = borrowedDate #YYYY-MM-DD
         self.__publisher = publisher
         self.__ratings: rating = []
         self.__isBorrowed: bool = False
+
+    def getbookid(self) -> int:
+        return self.__bookid
+    
+    def setbookid(self, bookid: int) -> None:
+        self.__bookid = bookid
 
     def getTitle(self) -> str:
         return self.__title
@@ -24,17 +33,23 @@ class Book(object):
     def setAuthor(self, author: str) -> None:
         self.__author = author
 
+    def getGenre(self) -> str:
+        return self.__genre
+
+    def setGenre(self, genre) -> None:
+        self.__genre = genre
+
     def getPublishingYear(self) -> int:
         return self.__publishingYear
 
     def setPublishingYear(self, publishingYear: int) -> None:
         self.__publishingYear = publishingYear
 
-    def getEdition(self) -> str:
-        return self.__edition
+    def getBorrowedDate(self) -> date:
+        return self.__borrowedDate
 
-    def setEdition(self, edition: str) -> None:
-        self.__edition = edition
+    def setBorrowedDate(self, borrowedDate) -> None:
+        self.__borrowedDate = borrowedDate
 
     def getPublisher(self) -> str:
         return self.__publisher
@@ -73,7 +88,7 @@ class Book(object):
             print(f"Book is already in the database. Please add a NEW book.")
             return;
         else:
-            query = f"INSERT into books (book_name) VALUES(?)", (self.__title)
+            query = f"INSERT into books (bookid, title, author, genre) VALUES(?)", (self.__bookid, self.__title, self.__author, self.__genre)
             db.parser(query)
             print(f"Book has been added to the database")
 
@@ -85,5 +100,7 @@ for i in range(0, 6):
     book.addRating(rating(i))
     print(book.getAverageRating())
     
+book2 = Book(5000, "test", "tester", "NSFW", 1999, (2005,9,5), "stranz")
+book2.addBook()
 
 
