@@ -1,41 +1,42 @@
 import os
-from PyQt6.QtGui import QPixmap, QIcon
+from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
-from database.login import Login
 
-# This Class displays a login page from which the user can login to his account
-# It contains 2 Text Inputs and one login button, the forgotten password lable is purly for visual
-# after the LoginBtn is pressed a function is  called which comunicates with the DB and returns a value
-# after a succsessfull login the this function calles a parent function to change the current displyed widgets
 
-class LoginWindow(QFrame):
+class RegisterWindow(QFrame):
     
-    sendUser = pyqtSignal(int)
     pageSwap = pyqtSignal(str)
     def __init__(self, parent=None):
         super(QFrame, self).__init__()
         # Keeps track of login status
-        self.setWindowTitle("Login")
+        self.setWindowTitle("Registration")
         self.setMinimumSize(QSize(1080,720))
-        self.setObjectName('loginWindow')
+        self.setObjectName('registerWindow')
         
         #Title 
         title = QLabel()
-        title.setText("Login")
-        title.setObjectName('loginTitle')
+        title.setText("Registration")
+        title.setObjectName('registrationTitle')
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title.setMaximumHeight(40)
-        
-        #Forgotten Password Lable
-        forgotenpwd = QLabel()
-        forgotenpwd.setText("Forgotten Password?")
-        forgotenpwd.setFixedSize(250,20)
-        forgotenpwd.setAlignment(Qt.AlignmentFlag.AlignBottom)
-        forgotenpwd.setObjectName("forgottenpwdLable")
-
+    
         
         #Textinput
+        firstNameTextInput = QLineEdit()
+        firstNameTextInput.setPlaceholderText("First Name")
+        firstNameTextInput.setObjectName("firstNameTextInput")
+        firstNameTextInput.setMaximumWidth(250)
+        firstNameTextInput.setMinimumHeight(40)
+        firstNameTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+
+        lastNameTextInput = QLineEdit()
+        lastNameTextInput.setPlaceholderText("Last Name")
+        lastNameTextInput.setObjectName("lastNameTextInput")
+        lastNameTextInput.setMaximumWidth(250)
+        lastNameTextInput.setMinimumHeight(40)
+        lastNameTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+
         emailTextInput = QLineEdit()
         emailTextInput.setPlaceholderText("Email")
         emailTextInput.setObjectName("emailTextInput")
@@ -51,20 +52,14 @@ class LoginWindow(QFrame):
         passwordTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         passwordTextInput.setEchoMode(QLineEdit.EchoMode.Password)
 
-        #Login Button
-        loginBtn = QPushButton()
-        loginBtn.setFixedSize(250,50)
-        loginBtn.setObjectName("loginBtn")
-        loginBtn.setText("Login")
-        loginBtn.clicked.connect(lambda: self.loginBtnPressed(emailTextInput.text(), passwordTextInput.text()))
         
         #Registration Button
-        registerBtn = QPushButton()
-        registerBtn.setText("No Account? Register here")
-        registerBtn.setFixedSize(250,20)
+        loginBtn = QPushButton()
+        loginBtn.setText("Already have an Account? Sign in")
+        loginBtn.setFixedSize(250,20)
         #registerBtn.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        registerBtn.setObjectName("registerBtn")
-        registerBtn.clicked.connect(lambda: self.registerBtnPressed())
+        loginBtn.setObjectName("registerBtn")
+        loginBtn.clicked.connect(lambda: self.loginBtnPressed())
 
         # The Widgets are conatined in a QWidget to create a white background for the visual effects
         container = QWidget()
@@ -77,13 +72,13 @@ class LoginWindow(QFrame):
         
         containerLayout.addWidget(title)
         containerLayout.addSpacing(12)
+        containerLayout.addWidget(firstNameTextInput)
+        containerLayout.addWidget(lastNameTextInput)
         containerLayout.addWidget(emailTextInput)
         containerLayout.setSpacing(12)
         containerLayout.addWidget(passwordTextInput)
-        containerLayout.addWidget(forgotenpwd)
         containerLayout.setSpacing(12)
-        containerLayout.addWidget(loginBtn)        
-        containerLayout.addWidget(registerBtn)
+        containerLayout.addWidget(loginBtn)
             
         container.setLayout(containerLayout)
         
@@ -112,32 +107,10 @@ class LoginWindow(QFrame):
         
         
         self.setLayout(mainVertLayot)
-    
-    #returns loginStatus as an integer
-    def isLogedIn(self):
-        return int(self.loginStatus)
-    
-    
+
     #this is a signal fierd by the loginBtnPressed
-    def loginBtnPressed(self, email, pwd):
-        
-        if(email == '' or pwd == ''):
-            print("Please enter values")
-        else:
-            credentilas = {
-                "email": email,
-                "password": pwd,
-            }
-            
-            userlogin = Login(credentilas["email"],  credentilas["password"])
-            newuserid = userlogin.userloginId()
+    def loginBtnPressed(self):
 
-            if newuserid is not None:
-                self.sendUser.emit(newuserid)
-
-    #this is a signal fierd by the registerBtnPressed
-    def registerBtnPressed(self):
-
-        print("User Registration")
+        print("User already has an account")
         self.pageSwap.emit("PageSwap")
     
