@@ -54,12 +54,10 @@ class BookView(QFrame):
         self.bookAuth = QLabel
         self.bookDate = QLabel
 
-        for book in bookData:
-            if book[:'title'] == self.title:
-                self.bookAuth = book[:'author']
+        # alle Daten eines Buchs anzeigen, Hashmap(titel,Book-Object)?
 
         self.textContainerVertLayout = QVBoxLayout()
-        self.textContainerVertLayout.addWidget(self.bookAuth)
+        # self.textContainerVertLayout.addWidget(self.bookAuth)
         self.textContainerVertLayout.addLayout(self.textContainerHoriLayout)
         self.textContainer.setLayout(self.textContainerVertLayout)
 
