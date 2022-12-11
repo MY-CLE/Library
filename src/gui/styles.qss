@@ -28,6 +28,10 @@ QFrame#loginWindow {
     background:  #7EFA4D;
 }
 
+QFrame#registerWindow {
+    background:  #7EFA4D;
+}
+
 QWidget#loginContainer {
     border-top-left-radius:30px;
     border-bottom-left-radius:30px;
@@ -59,6 +63,18 @@ QPushButton#loginBtn {
     color: black;
     font-weight: bold;
 }
+
+QPushButton#registerBtn {
+    font-size: 12px;
+    color:blue;
+    background-color: white;
+}
+QPushButton#registerBtn:hover {
+    font-size: 13px;
+    color:blue;
+    background-color: white;
+}
+
 QPushButton#filterBtn {
     border-radius: 12;
     background-color: white;
@@ -73,6 +89,7 @@ QLabel#bookTitleLable {
     background-color: white;
     font-weight: bold;
 } 
+
 QLabel#forgottenpwdLable {
     font-size: 12px;
     color:blue;
@@ -80,6 +97,12 @@ QLabel#forgottenpwdLable {
 }
 
 QLabel#loginTitle { 
+    font-size: 30px;
+    color: black;
+    background-color: white;
+}
+
+QLabel#registrationTitle { 
     font-size: 30px;
     color: black;
     background-color: white;
