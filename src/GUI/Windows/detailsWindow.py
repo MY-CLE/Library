@@ -1,12 +1,13 @@
-from GUI.elements.detailsView import DetailsView
-from GUI.elements.header import CustHeader
+from gui.elements.detailsView import DetailsView
+from gui.elements.header import CustHeader
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize
 
 
 class DetailWindow(QFrame):
-    def __init__(self, img, title, parent=None):
+    def __init__(self,bookNo, parent=None):
         super(QFrame, self).__init__()
+        self.bookNo = bookNo
         self.setWindowTitle("Details")
         self.setMinimumSize(QSize(1080, 720))
         self.setObjectName("detailsWindow")
@@ -14,7 +15,7 @@ class DetailWindow(QFrame):
         # self.setLineWidth(0)
 
         self.header = CustHeader()
-        self.details = DetailsView(img, title)
+        self.details = DetailsView(bookNo)
         viewQVlayout = QVBoxLayout()
         viewQVlayout.addWidget(self.header)
         viewQVlayout.addWidget(self.details)

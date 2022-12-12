@@ -7,10 +7,10 @@ from PyQt6.QtGui import QPixmap, QImage
 
 
 class DetailsView(QFrame):
-    def __init__(self, img, title):
+    def __init__(self, bookNo):
         super(QFrame, self).__init__()
         self.setObjectName('libraryView')
-        self.bookView = BookView(img, title)
+        self.bookView = BookView(img = "Dfault", title ="Defautlt")
         mainHoriLayout = QHBoxLayout()
         mainHoriLayout.addWidget(self.bookView)
         self.setLayout(mainHoriLayout)
@@ -44,7 +44,7 @@ class BookView(QFrame):
         self.label.setPixmap(cover)
 
         self.title = QLabel()
-        self.title = title
+        self.title.setText(title)
 
         bookData = None
         with open(os.path.abspath("src/assets/books/books.json")) as json_file:

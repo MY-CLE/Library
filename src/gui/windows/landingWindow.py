@@ -1,6 +1,6 @@
-from GUI.elements.borrowedView import BorrowedView
-from GUI.elements.header import CustHeader
-from GUI.elements.libaryView import LibraryView
+from gui.elements.borrowedView import BorrowedView
+from gui.elements.header import CustHeader
+from gui.elements.libaryView import LibraryView
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize
 

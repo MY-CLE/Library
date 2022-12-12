@@ -1,12 +1,13 @@
-import json
+import sys
+sys.path.insert(0, "src//")
 import os
-import requests
 from PyQt6.QtWidgets import (
     QHBoxLayout, QVBoxLayout, QPushButton, QFrame, QWidget, QLabel, QLineEdit)
 from PyQt6.QtGui import QPixmap, QImage
-from PyQt6.QtCore import QSize, Qt
-
-from GUI.helper.downloadImg import BookViewFunktions
+from PyQt6.QtCore import QSize, Qt, pyqtSignal
+from gui.elements.guibook import GuiBook
+from gui.helper.downloadImg import BookViewFunktions
+from gui.helper.loadImgDB import Bookloader, LoadBookSignals
 
 
 class LibraryView(QFrame):
@@ -50,12 +51,13 @@ class BooksFilter(QFrame):
         return btn
 
 
-class BookView(QFrame, BookViewFunktions):
-
+class BookView(QFrame):
+    bookclickedBookView = pyqtSignal(int)
     def __init__(self):
         super(QFrame, self).__init__()
         self.setObjectName('bookView')
-
+        self.bookLoader = Bookloader()
+        self.bookLoader.bookloaded.connect(self.bookRecived)
         self.container = QWidget()
         self.container.setObjectName("bookViewContainer")
         self.container.setMinimumWidth(500)
@@ -64,15 +66,24 @@ class BookView(QFrame, BookViewFunktions):
         self.containerHoriLayout = QHBoxLayout()
         self.containerHoriLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
-        data = None
-        with open(os.path.abspath("src/assets/books/books.json")) as json_file:
-            data = json.load(json_file)
-
-        self.loadBooks(data[:5])
-
         self.container.setLayout(self.containerHoriLayout)
-
+        
+        self.loadBooks()
+    
         layout = QHBoxLayout()
         layout.addWidget(self.container)
         self.setLayout(layout)
-        self.loadBooks(data[:5])
+
+    def loadBooks(self, amount =6):
+        print('loadbooks in Libview')
+        for i in range(1,amount):
+            self.bookLoader.loadBook(i)
+            
+    def bookRecived(self, bookinfo):
+        print('recive books in Libview')
+        self.book = GuiBook(bookinfo)
+        self.book.sendClicked.connect(self.sendClickedBookview)
+        self.containerHoriLayout.addWidget(self.book)
+        
+    def sendClickedBookview(self, bookNo):
+        self.bookclickedBookView.emit(bookNo)
