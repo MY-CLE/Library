@@ -125,7 +125,6 @@ class LoginWindow(QFrame):
         if(email == '' or pwd == ''):
             print("Please enter values")
         else:
-            
             userlogin = Login(email,pwd)
             newuserid = userlogin.userloginId()
 
@@ -136,5 +135,5 @@ class LoginWindow(QFrame):
     def registerBtnPressed(self):
 
         print("User Registration")
-        self.pageSwap.emit("PageSwap")
+        self.pageSwap.emit("PageSwap"
     
