@@ -11,8 +11,9 @@ from database.login import Login
 
 class LoginWindow(QFrame):
     
-    sendUser = pyqtSignal(int)
+    sendUser = pyqtSignal(Login)
     pageSwap = pyqtSignal(str)
+
     def __init__(self, parent=None):
         super(QFrame, self).__init__()
         # Keeps track of login status
@@ -58,13 +59,13 @@ class LoginWindow(QFrame):
         loginBtn.setText("Login")
         loginBtn.clicked.connect(lambda: self.loginBtnPressed(emailTextInput.text(), passwordTextInput.text()))
         
-        #Registration Button
-        registerBtn = QPushButton()
-        registerBtn.setText("No Account? Register here")
-        registerBtn.setFixedSize(250,20)
+        #Registration forwarding Button
+        registerForwardingBtn = QPushButton()
+        registerForwardingBtn.setText("No Account? Register here")
+        registerForwardingBtn.setFixedSize(250,20)
         #registerBtn.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        registerBtn.setObjectName("registerBtn")
-        registerBtn.clicked.connect(lambda: self.registerBtnPressed())
+        registerForwardingBtn.setObjectName("forwardingBtn")
+        registerForwardingBtn.clicked.connect(lambda: self.registerBtnPressed())
 
         # The Widgets are conatined in a QWidget to create a white background for the visual effects
         container = QWidget()
@@ -83,7 +84,7 @@ class LoginWindow(QFrame):
         containerLayout.addWidget(forgotenpwd)
         containerLayout.setSpacing(12)
         containerLayout.addWidget(loginBtn)        
-        containerLayout.addWidget(registerBtn)
+        containerLayout.addWidget(registerForwardingBtn)
             
         container.setLayout(containerLayout)
         
@@ -119,21 +120,17 @@ class LoginWindow(QFrame):
     
     
     #this is a signal fierd by the loginBtnPressed
-    def loginBtnPressed(self, email, pwd):
+    def loginBtnPressed(self, email: str, pwd: str):
         
         if(email == '' or pwd == ''):
             print("Please enter values")
         else:
-            credentilas = {
-                "email": email,
-                "password": pwd,
-            }
             
-            userlogin = Login(credentilas["email"],  credentilas["password"])
+            userlogin = Login(email,pwd)
             newuserid = userlogin.userloginId()
 
             if newuserid is not None:
-                self.sendUser.emit(newuserid)
+                self.sendUser.emit(userlogin)
 
     #this is a signal fierd by the registerBtnPressed
     def registerBtnPressed(self):

@@ -23,12 +23,15 @@ class PageSelect(QMainWindow):
         self.pages.setCurrentIndex(0)
         self.pages.show()
         
-        #Signals from Children
+        #Signals from children
         self.loginWindow.sendUser.connect(self.setUser)
-        #Signal from RegistrationBtn
+        #Signal from registrationForwardBtn
         self.loginWindow.pageSwap.connect(self.registrationPage)
-        #Signal from LoginBtn
+        #Signal from loginBtn
         self.registerWindow.pageSwap.connect(self.loginPage)
+        #Signal from registerBtn
+        self.registerWindow.newUser.connect(self.newUser)
+
     
     def registrationPage(self, text):
         print('Registration Window '+ text)
@@ -39,11 +42,15 @@ class PageSelect(QMainWindow):
         self.changeStackedWidget(0)
 
     def setUser(self, user):
-        self.userId = user
+        self.user = user
         print('main window got signal')
         self.changeStackedWidget(2)
-        self.landingWindow.setUserid(self.userId)
+        self.landingWindow.setUserid(self.user.email())
 
+    def newUser(self, user):
+        print(f"INSERT VALUES{user.password}")
+        print('New User in landingWindow')
+        self.changeStackedWidget(2)
         
     def changeStackedWidget(self, index):
         self.pages.setCurrentIndex(index)
