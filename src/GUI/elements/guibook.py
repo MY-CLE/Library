@@ -19,7 +19,7 @@ class GuiBook(QWidget):
 
         
         if bookinfo['picture'] == None:
-            bookinfo['picture'] = os.path.join(os.path.abspath('src/assets/books/'), f"Image_{1}.jpg")
+            bookinfo['picture'] = os.path.join(os.path.abspath('src/assets/books/'), f"50_shades_of_grey.jpg")
         image = QImage(bookinfo['picture'])
         lable = PictureLabel(image,title, bookinfo['bookid'])
         lable.clicked.connect(self.bookClicked)

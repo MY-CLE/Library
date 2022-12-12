@@ -4,6 +4,8 @@ from gui.windows.detailsWindow import DetailWindow
 from gui.windows.loginWindow import LoginWindow
 from PyQt6.QtWidgets import (QMainWindow, QStackedWidget)
 
+from gui.windows.registerWindow import RegisterWindow
+
 class PageSelect(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
@@ -50,7 +52,7 @@ class PageSelect(QMainWindow):
         self.user = user
         print('main window got signal')
         self.changeStackedWidget(2)
-        self.landingWindow.setUserid(self.user.email())
+        self.landingWindow.setUserid(self.user.get_email())
 
     def newUser(self, user):
         print(f"INSERT VALUES{user.password}")
