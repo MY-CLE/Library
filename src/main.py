@@ -2,6 +2,7 @@ import sys
 import os
 from gui.pageselect import PageSelect
 from PyQt6.QtWidgets import QApplication
+from PyQt6.QtGui import QIcon
 
 def myExitHandler():
     path = os.path.abspath('src/assets/covers/')
@@ -13,6 +14,7 @@ def myExitHandler():
             os.remove(file)
 def main():
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon("src/assets/logo/hse-library-book-icon.jpg"))
     app.aboutToQuit.connect(myExitHandler)
     myExitHandler()
     
