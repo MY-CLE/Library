@@ -1,4 +1,6 @@
-from illegalRatingError import illegalRatingError
+import sys
+sys.path.insert(0, "src//")
+from functional.IllegalRatingError import illegalRatingError
 
 
 class rating(object):

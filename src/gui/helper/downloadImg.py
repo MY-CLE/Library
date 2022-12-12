@@ -3,8 +3,8 @@ import requests
 from PyQt6.QtCore import pyqtSignal, pyqtSlot, QRunnable, QObject, QThreadPool
 from PyQt6.QtWidgets import (QVBoxLayout, QWidget, QMainWindow, QLabel)
 from PyQt6.QtGui import QPixmap, QImage
-from GUI.Windows.detailsWindow import DetailWindow
-from GUI.elements.detailsView import BookView
+from gui.windows.detailsWindow import DetailWindow
+from gui.elements.detailsView import BookView
 
 
 class DownloadImg(QRunnable):
@@ -69,6 +69,7 @@ class BookViewFunktions():
         bookLayout.addWidget(self.title)
         bookLayout.addStretch()
         self.book.setLayout(bookLayout)
+        #self.book.mousePressEvent(print('pressed'))
 
         self.containerHoriLayout.addWidget(self.book)
 
