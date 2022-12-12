@@ -135,5 +135,5 @@ class LoginWindow(QFrame):
     def registerBtnPressed(self):
 
         print("User Registration")
-        self.pageSwap.emit("PageSwap"
+        self.pageSwap.emit("PageSwap")
     
