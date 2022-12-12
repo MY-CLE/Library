@@ -7,27 +7,31 @@ class fetchBooks(object):
 
     def fetchAllBooks(self) -> list:
         bookArray = []
-        temp1:str
-        temp2:bytes
+        bookDict:dict
+        title:str
+        author:str
+        picture:bytes
         data = db.DatabaseHandler()
-        self.query = f"SELECT book_name, book_picture FROM books;"
+        self.query = f"SELECT title,author,picture FROM books;"
         array = data.parser(self.query)
         for i in range(len(array)):
             for j in range(len(array[i])):
                 if (j == 0):
-                    temp1 = array[i][j]
+                    title = array[i][j]
+                elif (j==1):
+                    author = array[i][j]
                 else:
-                    temp2 = array[i][j]
-                    
-            bookArray.append(book.Book(temp1,temp2))
+                    picture = array[i][j]
+            bookDict = {"title":title,"author":author,"picture":picture}    
+            bookArray.append(bookDict)
         return bookArray
     
     
 def main():
     a = fetchBooks()
-    #for book in a.fetchAllBooks():
-        #print(book.getBookName())
-        #print(book.getBookPicture())
+    
+    for book in a.fetchAllBooks():
+        print(book)
     
     
         
