@@ -12,22 +12,21 @@ class Login(object):
             if filter_email.findall(email) == []:
                 raise ValueError
 
-            self.__email = email
-            self.__password = password
+            self._email = email
+            self._password = password
 
                 
         def get_password(self) -> str:
-            return self.__password
+            return self._password
         
         def get_email(self) -> str:
-            return self.__email
+            return self._email
 
         def userloginId(self) -> int:
             sqlpass = db.DatabaseHandler()
-            
             #add sql logic
-            self.__logincheckingfunc = f"SELECT login('{self.get_email()}','{self.get_password()}')"
-            return sqlpass.parser(self.__logincheckingfunc)[0][0]
+            self._logincheckingfunc = f"SELECT login('{self.get_email()}','{self.get_password()}')"
+            return sqlpass.parser(self._logincheckingfunc)[0]
         
         def user_loginBool(self) -> bool:
             db = db.DatabaseHandler()
