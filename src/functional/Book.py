@@ -1,3 +1,8 @@
+import sys
+sys.path.insert(0, "src//")
+from Rating import rating
+import database.dbconnect as db
+
 
 class Book(object):
 
@@ -9,3 +14,4 @@ class Book(object):
         self.__publisher = publisher
         self.__ratings: rating = []
         self.__isBorrowed: bool = False
+
