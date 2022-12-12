@@ -1,4 +1,4 @@
-from illegalRatingError import illegalRatingError
+from IllegalRatingError import illegalRatingError
 
 
 class rating(object):
