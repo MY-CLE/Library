@@ -31,6 +31,10 @@ QFrame#landingWindow {
     background:  #7EFA4D;
 }
 
+QFrame#detailsWindow {
+    background:  #7EFA4D;
+}
+
 QFrame#loginWindow {
     background:  #7EFA4D;
 }
@@ -147,4 +151,8 @@ QLabel#boxDescription {
     font-size: 24px;
     color: black;
     font-weight: bold;
+}
+QLabel#details{
+    font-size: 10px;
+    color: black;
 }

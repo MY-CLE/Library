@@ -1,4 +1,7 @@
-from rating import rating
+import sys
+sys.path.insert(0, "src//")
+from functional.Rating import rating
+#from rating import rating
 
 
 class Book(object):
