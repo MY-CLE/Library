@@ -1,7 +1,7 @@
-from illegalRatingError import illegalRatingError
+from functional.illegalRatingError import illegalRatingError
 
 
-class rating(object):
+class Rating(object):
 
     def __init__(self, value: int) -> None:
         if((value > 5) or (value < 0)):
