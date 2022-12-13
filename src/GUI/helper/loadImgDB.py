@@ -18,7 +18,7 @@ class LoadBook(QRunnable):
         self.signals.returnBook.emit(bookinfo)
         self.signals.finished.emit()
         
-class LoadBookSignals(QObject):
+class  LoadBookSignals(QObject):
     returnBook = pyqtSignal(dict)
     finished = pyqtSignal()
     
