@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, "src//")
 import database.dbconnect as db
-import functional.book as Book
+from functional.book import Book
 
 class fetchBooks(object):
 
