@@ -52,6 +52,17 @@ class DatabaseHandler(object):
         finally:
             self.cursor.close()
             self.conn.close()
+    
+    def insert(self, sql):
+        try:
+            self.connect()
+            self.cursor.execute(sql)
+            self.conn.commit()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally:
+            self.cursor.close()
+            self.conn.close()
         
 if __name__ == '__main__':
     a = DatabaseHandler()

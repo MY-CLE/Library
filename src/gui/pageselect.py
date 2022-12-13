@@ -38,6 +38,7 @@ class PageSelect(QMainWindow):
         self.registerWindow.newUser.connect(self.newUser)
         #Singal for Book clicked
         self.landingWindow.libraryView.bookView.bookclickedBookView.connect(self.bookclicked)
+        self.landingWindow.borrowedView.bookView.bookclickedBookView.connect(self.bookclicked)
 
     
     def registrationPage(self, text):
