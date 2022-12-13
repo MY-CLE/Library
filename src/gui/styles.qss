@@ -9,6 +9,13 @@ QPushButton {
     text-align: center
 }
 QLineEdit {
+ border: 2px solid darkgray;
+ border-radius: 10px;
+ font-size: 20px;
+ background: white;
+ color: black;
+}
+QLineEdit:focus {
  border: 2px solid gray;
  border-radius: 10px;
  font-size: 20px;
@@ -24,11 +31,25 @@ QFrame#landingWindow {
     background:  #7EFA4D;
 }
 
+QFrame#detailsWindow {
+    background:  #7EFA4D;
+}
+
 QFrame#loginWindow {
     background:  #7EFA4D;
 }
 
+QFrame#registerWindow {
+    background:  #7EFA4D;
+}
+
 QWidget#loginContainer {
+    border-top-left-radius:30px;
+    border-bottom-left-radius:30px;
+    border-top-right-radius:30px;
+    border-bottom-right-radius:30px;
+}
+QWidget#registerContainer {
     border-top-left-radius:30px;
     border-bottom-left-radius:30px;
     border-top-right-radius:30px;
@@ -53,12 +74,46 @@ QWidget#bookViewContainer {
 QPushButton{
     background-color: pink;
 }
+
+QPushButton#registerBtn {
+    background-color: #00C5F0;
+    border: 2px solid black;
+    color: black;
+    font-weight: bold;
+}
+QPushButton#registerBtn:hover {
+    font-size: 17px;
+    background-color: #00C5F0;
+    border: 3px solid black;
+    color: black;
+    font-weight: bold;
+}
+
 QPushButton#loginBtn {
     background-color: #00C5F0;
     border: 2px solid black;
     color: black;
     font-weight: bold;
 }
+QPushButton#loginBtn:hover {
+    font-size: 17px;
+    background-color: #00C5F0;
+    border: 3px solid black;
+    color: black;
+    font-weight: bold;
+}
+
+QPushButton#forwardingBtn {
+    font-size: 12px;
+    color:blue;
+    background-color: white;
+}
+QPushButton#forwardingBtn:hover {
+    font-size: 13px;
+    color:blue;
+    background-color: white;
+}
+
 QPushButton#filterBtn {
     border-radius: 12;
     background-color: white;
@@ -73,6 +128,7 @@ QLabel#bookTitleLable {
     background-color: white;
     font-weight: bold;
 } 
+
 QLabel#forgottenpwdLable {
     font-size: 12px;
     color:blue;
@@ -85,8 +141,18 @@ QLabel#loginTitle {
     background-color: white;
 }
 
+QLabel#registrationTitle { 
+    font-size: 30px;
+    color: black;
+    background-color: white;
+}
+
 QLabel#boxDescription {
     font-size: 24px;
     color: black;
     font-weight: bold;
+}
+QLabel#details{
+    font-size: 10px;
+    color: black;
 }
