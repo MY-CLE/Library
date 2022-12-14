@@ -80,7 +80,7 @@ class BookView(QFrame):
             self.bookLoader.loadBook(i)
             
     def bookRecived(self, bookinfo):
-        print('recive books in Libview')
+        #print('recive books in Libview')
         self.book = GuiBook(bookinfo)
         self.book.sendClicked.connect(self.sendClickedBookview)
         self.containerHoriLayout.addWidget(self.book)

@@ -1,6 +1,6 @@
 import os
 from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit)
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtCore import QSize, Qt
 class CustHeader(QFrame):
     def __init__(self):
@@ -40,13 +40,23 @@ class IconBar(QFrame):
         
         container = QWidget()
         container.setObjectName("iconBarContainer")
-        container.setFixedSize(100,65)
+        container.setFixedSize(100,100)
 
         containerLayout = QHBoxLayout()
         containerLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
         self.profileBtn = QPushButton()
+        self.profileBtn.setObjectName('profilBtn')
+        self.profilIcon = QIcon('src/assets/icon/logout.png')
+        self.profileBtn.setIcon(self.profilIcon)
+        self.profileBtn.iconSize(QSize(50,50))
+        
         self.homeBtn = QPushButton()
+        self.homeBtn.setObjectName('homeBtn')
+        self.homeIcon = QIcon('src/assets/icon/home.png')
+        self.homeBtn.setIcon(self.homeIcon)
+        self.homeBtn.iconSize(QSize(50,50))
+        
         containerLayout.addWidget(self.profileBtn)
         containerLayout.addWidget(self.homeBtn)        
         container.setLayout(containerLayout)

@@ -46,17 +46,17 @@ class BookView(QFrame):
         self.setLayout(horilayout)
         
     def updateUser(self, id):
-        self.boxDescription.setText(f'Your Borrowed Books, ${id}')
+        self.boxDescription.setText(f'Your Borrowed Books, {id}')
         
     def loadBooks(self, amount =6):
-        print('loadbooks in Libview')
+        #print('loadbooks in Libview')
         for i in range(1,amount):
             self.bookLoader.loadBook(i)
             
     def bookRecived(self, bookinfo):
-        print('recive books in Libview')
+        #print('recive books in Libview')
         book = GuiBook(bookinfo)
-        print(book.getId())
+        #print(book.getId())
         self.containerHoriLayout.addWidget(book)
         
     
