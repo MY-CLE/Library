@@ -71,6 +71,15 @@ QWidget#bookViewContainer {
   background-color: white;
 }
 
+QPushButton#homeBtn {
+  background-image: url(src/assets/icons/home_small.png);
+  background-position: center;
+}
+QPushButton#profilBtn {
+  background-image: url(src/assets/icons/logout_small.png);
+  background-position: center;
+}
+
 QPushButton#registerBtn {
   background-color: #00c5f0;
   border: 2px solid black;
