@@ -1,4 +1,5 @@
 import os
+import re
 from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
@@ -121,15 +122,12 @@ class LoginWindow(QFrame):
     
     #this is a signal fierd by the loginBtnPressed
     def loginBtnPressed(self, email: str, pwd: str):
-        
-        if(email == '' or pwd == ''):
-            print("Please enter values")
-        else:
-            userlogin = Login(email,pwd)
-            newuserid = userlogin.userloginId()
-
-            if newuserid is not None:
-                self.sendUser.emit(userlogin)
+            if self.validateInput(email, pwd):
+                userlogin = Login(email,pwd)
+                newuserid = userlogin.userloginId()[0]
+                print(newuserid)
+                if newuserid >= 0:
+                    self.sendUser.emit(userlogin)
 
     #this is a signal fierd by the registerBtnPressed
     def registerBtnPressed(self):
@@ -137,3 +135,21 @@ class LoginWindow(QFrame):
         print("User Registration")
         self.pageSwap.emit("PageSwap")
     
+    def validateInput (self, email, password):
+        try:
+            if (email == '') or (password == ''):
+                raise ValueError
+        except ValueError as e:
+            print("please put in a Email adress and Password ")
+            return False
+        
+        try:
+            filter_email = re.compile(r"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")
+            if filter_email.findall(email) == []:
+                raise ValueError
+        except ValueError as e:
+            print("Error pls use a valid E-Mailadress")
+            return False
+        
+        return True
+            

@@ -5,16 +5,8 @@ class Login(object):
         logincheck = False
         
         def __init__(self, email:str, password:str):
-            if (email == '') or (password == ''):
-                raise ValueError
-            
-            filter_email = re.compile(r"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")
-            if filter_email.findall(email) == []:
-                raise ValueError
-
             self._email = email
             self._password = password
-
                 
         def get_password(self) -> str:
             return self._password
@@ -28,17 +20,11 @@ class Login(object):
             self._logincheckingfunc = f"SELECT login('{self.get_email()}','{self.get_password()}')"
             return sqlpass.parser(self._logincheckingfunc)[0]
         
-        def user_loginBool(self) -> bool:
-            db = db.DatabaseHandler()
-            query = f"SELECT login('{self.get_email()}','{self.get_password()}')"
-            return db.parser(query)
-        
             
                 
 def main():
     a = Login("peter@riecht.com","meinPassword")
     print(a.userloginId())
-    #print(a.user_login2())
     
         
 if __name__ == '__main__':
