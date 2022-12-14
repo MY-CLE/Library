@@ -33,5 +33,5 @@ class LandingWindow(QFrame):
 
     def setUserid(self, id):
         self.userid = id
-        print(f'Landing Page User id ${self.userid}')
+        print(f'Landing Page User id {self.userid}')
         self.borrowedView.bookView.updateUser(self.userid)
