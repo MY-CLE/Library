@@ -11,8 +11,6 @@ class DetailWindow(QFrame):
         self.setWindowTitle("Details")
         self.setMinimumSize(QSize(1080, 720))
         self.setObjectName("detailsWindow")
-        # self.setFrameShape(QFrame.Shape.NoFrame)
-        # self.setLineWidth(0)
 
         self.header = CustHeader()
         self.details = DetailsView(bookNo)

@@ -70,4 +70,3 @@ if __name__ == '__main__':
     a = DatabaseHandler()
     a.connect()
     print(a.parser("SELECT current_database();"))
-    #print(a.fetch_by_query( "select login('malte@ist.cool','12345678')"))

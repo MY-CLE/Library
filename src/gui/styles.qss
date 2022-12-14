@@ -1,158 +1,163 @@
 QLabel {
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
 }
 QPushButton {
-    font-size: 16px;
-    border-radius : 20; 
-    border: 0px;
-    background-repeat: no-repeat;
-    text-align: center
+  font-size: 16px;
+  border-radius: 20;
+  border: 0px;
+  background-repeat: no-repeat;
+  text-align: center;
 }
 QLineEdit {
- border: 2px solid darkgray;
- border-radius: 10px;
- font-size: 20px;
- background: white;
- color: black;
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  font-size: 20px;
+  background: white;
+  color: black;
 }
 QLineEdit:focus {
- border: 2px solid gray;
- border-radius: 10px;
- font-size: 20px;
- background: white;
- color: black;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-size: 20px;
+  background: white;
+  color: black;
 }
 
 QLineEdit#searchTextInput {
-    border-radius: 30;
+  border-radius: 30;
 }
 
 QFrame#landingWindow {
-    background:  #7EFA4D;
+  background: #7efa4d;
 }
 
 QFrame#detailsWindow {
-    background:  #7EFA4D;
+  background: #7efa4d;
 }
 
 QFrame#loginWindow {
-    background:  #7EFA4D;
+  background: #7efa4d;
 }
 
 QFrame#registerWindow {
-    background:  #7EFA4D;
+  background: #7efa4d;
 }
 
 QWidget#loginContainer {
-    border-top-left-radius:30px;
-    border-bottom-left-radius:30px;
-    border-top-right-radius:30px;
-    border-bottom-right-radius:30px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 QWidget#registerContainer {
-    border-top-left-radius:30px;
-    border-bottom-left-radius:30px;
-    border-top-right-radius:30px;
-    border-bottom-right-radius:30px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 QWidget#iconBarContainer {
-    border-top-left-radius:15;
-    border-bottom-left-radius:15px;
-    border-top-right-radius:15px;
-    border-bottom-right-radius:15px;
-    background-color: white;
+  border-top-left-radius: 15;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: white;
 }
 QWidget#bookViewContainer {
-    border-top-left-radius:15;
-    border-bottom-left-radius:15px;
-    border-top-right-radius:15px;
-    border-bottom-right-radius:15px;
-    background-color: white;
+  border-top-left-radius: 15;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: white;
 }
 
-QPushButton{
-    background-color: pink;
+QPushButton#homeBtn {
+  background-image: url(src/assets/icons/home_small.png);
+  background-position: center;
+}
+QPushButton#profilBtn {
+  background-image: url(src/assets/icons/logout_small.png);
+  background-position: center;
 }
 
 QPushButton#registerBtn {
-    background-color: #00C5F0;
-    border: 2px solid black;
-    color: black;
-    font-weight: bold;
+  background-color: #00c5f0;
+  border: 2px solid black;
+  color: black;
+  font-weight: bold;
 }
 QPushButton#registerBtn:hover {
-    font-size: 17px;
-    background-color: #00C5F0;
-    border: 3px solid black;
-    color: black;
-    font-weight: bold;
+  font-size: 17px;
+  background-color: #00c5f0;
+  border: 3px solid black;
+  color: black;
+  font-weight: bold;
 }
 
 QPushButton#loginBtn {
-    background-color: #00C5F0;
-    border: 2px solid black;
-    color: black;
-    font-weight: bold;
+  background-color: #00c5f0;
+  border: 2px solid black;
+  color: black;
+  font-weight: bold;
 }
 QPushButton#loginBtn:hover {
-    font-size: 17px;
-    background-color: #00C5F0;
-    border: 3px solid black;
-    color: black;
-    font-weight: bold;
+  font-size: 17px;
+  background-color: #00c5f0;
+  border: 3px solid black;
+  color: black;
+  font-weight: bold;
 }
 
 QPushButton#forwardingBtn {
-    font-size: 12px;
-    color:blue;
-    background-color: white;
+  font-size: 12px;
+  color: blue;
+  background-color: white;
 }
 QPushButton#forwardingBtn:hover {
-    font-size: 13px;
-    color:blue;
-    background-color: white;
+  font-size: 13px;
+  color: blue;
+  background-color: white;
 }
 
 QPushButton#filterBtn {
-    border-radius: 12;
-    background-color: white;
-    border: 1px solid grey;
-    color: black;
-    font-weight: semi-bold;
+  border-radius: 12;
+  background-color: white;
+  border: 1px solid grey;
+  color: black;
+  font-weight: semi-bold;
 }
 
 QLabel#bookTitleLable {
-    font-size: 14px;
-    color:black;
-    background-color: white;
-    font-weight: bold;
-} 
+  font-size: 14px;
+  color: black;
+  background-color: white;
+  font-weight: bold;
+}
 
 QLabel#forgottenpwdLable {
-    font-size: 12px;
-    color:blue;
-    background-color: white;
+  font-size: 12px;
+  color: blue;
+  background-color: white;
 }
 
-QLabel#loginTitle { 
-    font-size: 30px;
-    color: black;
-    background-color: white;
+QLabel#loginTitle {
+  font-size: 30px;
+  color: black;
+  background-color: white;
 }
 
-QLabel#registrationTitle { 
-    font-size: 30px;
-    color: black;
-    background-color: white;
+QLabel#registrationTitle {
+  font-size: 30px;
+  color: black;
+  background-color: white;
 }
 
 QLabel#boxDescription {
-    font-size: 24px;
-    color: black;
-    font-weight: bold;
+  font-size: 24px;
+  color: black;
+  font-weight: bold;
 }
-QLabel#details{
-    font-size: 10px;
-    color: black;
+QLabel#details {
+  font-size: 10px;
+  color: black;
 }

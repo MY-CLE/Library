@@ -12,7 +12,7 @@ class LoadBook(QRunnable):
         self.signals = LoadBookSignals()
 
     def run(self):
-        print(f'in Load book {self.bookNo}')
+        #print(f'in Load book {self.bookNo}')
         bookfetcher = fetchCertainBook()
         bookinfo = bookfetcher.fetchCertainBook(self.bookNo)
         self.signals.returnBook.emit(bookinfo)
@@ -28,7 +28,7 @@ class Bookloader(QObject):
     bookloaded = pyqtSignal(dict) 
     
     def loadBook(self, bookNo):
-        print('loadBook started in book loader')
+        #print('loadBook started in book loader')
         worker = LoadBook(bookNo)
         worker.signals.returnBook.connect(self.bookRecived)
         self.threadpool.tryStart(worker)

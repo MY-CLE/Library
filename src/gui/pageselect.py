@@ -38,6 +38,12 @@ class PageSelect(QMainWindow):
         self.registerWindow.newUser.connect(self.newUser)
         #Singal for Book clicked
         self.landingWindow.libraryView.bookView.bookclickedBookView.connect(self.bookclicked)
+        self.landingWindow.borrowedView.bookView.bookclickedBookView.connect(self.bookclicked)
+        #Signals for home button clicked
+        self.detailWindow.header.iconbar.homeBtn.clicked.connect(lambda: self.returnHome())
+        #Signals for logoutbtn clicked
+        self.detailWindow.header.iconbar.profileBtn.clicked.connect(lambda: self.logout())
+        self.landingWindow.header.iconbar.profileBtn.clicked.connect(lambda: self.logout())
 
     
     def registrationPage(self, text):
@@ -48,8 +54,8 @@ class PageSelect(QMainWindow):
         print('Login Window ' + text)
         self.changeStackedWidget(0)
 
-    def setUser(self, user):
-        self.user = user
+    def setUser(self, userid):
+        self.user = userid
         print('main window got signal')
         self.changeStackedWidget(2)
         self.landingWindow.setUserid(self.user.get_email())
@@ -57,6 +63,7 @@ class PageSelect(QMainWindow):
     def newUser(self, user):
         print(f"INSERT VALUES{user.password}")
         print('New User in landingWindow')
+        self.landingWindow.setUserid(user.email)
         self.changeStackedWidget(2)
         
     def changeStackedWidget(self, index):
@@ -64,3 +71,10 @@ class PageSelect(QMainWindow):
     
     def bookclicked(self, index):
         self.changeStackedWidget(3)
+    def returnHome(self):
+        self.changeStackedWidget(2)
+    
+    def logout(self):   
+        self.changeStackedWidget(0)
+        self.landingWindow.userid = None
+
