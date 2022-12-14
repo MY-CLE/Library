@@ -38,6 +38,11 @@ class PageSelect(QMainWindow):
         self.registerWindow.newUser.connect(self.newUser)
         #Singal for Book clicked
         self.landingWindow.libraryView.bookView.bookclickedBookView.connect(self.bookclicked)
+        #Signals for home button clicked
+        self.detailWindow.header.iconbar.homeBtn.clicked.connect(lambda: self.returnHome())
+        #Signals for logoutbtn clicked
+        self.detailWindow.header.iconbar.profileBtn.clicked.connect(lambda: self.logout())
+        self.landingWindow.header.iconbar.profileBtn.clicked.connect(lambda: self.logout())
 
     
     def registrationPage(self, text):
@@ -64,3 +69,8 @@ class PageSelect(QMainWindow):
     
     def bookclicked(self, index):
         self.changeStackedWidget(3)
+    def returnHome(self):
+        self.changeStackedWidget(2)
+    
+    def logout(self):
+        self.changeStackedWidget(0)
