@@ -24,7 +24,7 @@ class LandingWindow(QFrame):
         viewQVlayout.addWidget(self.borrowedView)
         viewQVlayout.addStretch()
         viewQVlayout.setContentsMargins(0, 0, 0, 0)
-
+        
         mainQHlayout = QHBoxLayout()
         mainQHlayout.addLayout(viewQVlayout)
         mainQHlayout.setContentsMargins(0, 0, 0, 0)

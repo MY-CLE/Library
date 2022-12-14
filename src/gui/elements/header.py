@@ -6,11 +6,9 @@ class CustHeader(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
         self.setObjectName('header')
-        #self.setStyleSheet("background-color: yellow;")
         self.setMaximumHeight(200)
         
         self.setFrameShape(QFrame.Shape.NoFrame)
-        #self.widget.setStyleSheet('background-color: #be06ff')
         self.setLineWidth(0)
         
         logoLable = QLabel()
@@ -25,12 +23,12 @@ class CustHeader(QFrame):
         searchTextInput.setMinimumHeight(65)
         searchTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
-        iconbar = IconBar()
+        self.iconbar = IconBar()
         
         horiLayout = QHBoxLayout()
         horiLayout.addWidget(logoLable)
         horiLayout.addWidget(searchTextInput)
-        horiLayout.addWidget(iconbar)
+        horiLayout.addWidget(self.iconbar)
         self.setLayout(horiLayout)
         
         
@@ -47,10 +45,10 @@ class IconBar(QFrame):
         containerLayout = QHBoxLayout()
         containerLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
-        profileBtn = QPushButton()
-        homeBtn = QPushButton()
-        containerLayout.addWidget(profileBtn)
-        containerLayout.addWidget(homeBtn)        
+        self.profileBtn = QPushButton()
+        self.homeBtn = QPushButton()
+        containerLayout.addWidget(self.profileBtn)
+        containerLayout.addWidget(self.homeBtn)        
         container.setLayout(containerLayout)
         
         layout = QHBoxLayout()
