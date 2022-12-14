@@ -49,13 +49,13 @@ class IconBar(QFrame):
         self.profileBtn.setObjectName('profilBtn')
         self.profilIcon = QIcon('src/assets/icon/logout.png')
         self.profileBtn.setIcon(self.profilIcon)
-        self.profileBtn.iconSize(QSize(50,50))
+        #self.profileBtn.iconSize(QSize(50,50))
         
         self.homeBtn = QPushButton()
         self.homeBtn.setObjectName('homeBtn')
         self.homeIcon = QIcon('src/assets/icon/home.png')
         self.homeBtn.setIcon(self.homeIcon)
-        self.homeBtn.iconSize(QSize(50,50))
+        #self.homeBtn.iconSize(QSize(50,50))
         
         containerLayout.addWidget(self.profileBtn)
         containerLayout.addWidget(self.homeBtn)        
