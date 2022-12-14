@@ -109,9 +109,9 @@ class Book(object):
     
 
 
-book = Book(100, "Rs", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), Binary(bytearray(4)))
-book.setBorrowed()
-book.addToDatabase()
+#book = Book(100, "Rs", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), Binary(bytearray(4)))
+#book.setBorrowed()
+#book.addToDatabase()
 
     
 
