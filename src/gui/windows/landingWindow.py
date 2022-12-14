@@ -24,7 +24,7 @@ class LandingWindow(QFrame):
         viewQVlayout.addWidget(self.borrowedView)
         viewQVlayout.addStretch()
         viewQVlayout.setContentsMargins(0, 0, 0, 0)
-        
+
         mainQHlayout = QHBoxLayout()
         mainQHlayout.addLayout(viewQVlayout)
         mainQHlayout.setContentsMargins(0, 0, 0, 0)
@@ -33,5 +33,5 @@ class LandingWindow(QFrame):
 
     def setUserid(self, id):
         self.userid = id
-        print(f'Landing Page User id {self.userid}')
+        #print(f'Landing Page User id {self.userid}')
         self.borrowedView.bookView.updateUser(self.userid)

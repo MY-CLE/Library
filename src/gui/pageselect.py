@@ -72,5 +72,6 @@ class PageSelect(QMainWindow):
     def returnHome(self):
         self.changeStackedWidget(2)
     
-    def logout(self):
+    def logout(self):   
         self.changeStackedWidget(0)
+        self.landingWindow.userid = None
