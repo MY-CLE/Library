@@ -38,6 +38,7 @@ class PageSelect(QMainWindow):
         self.registerWindow.newUser.connect(self.newUser)
         #Singal for Book clicked
         self.landingWindow.libraryView.bookView.bookclickedBookView.connect(self.bookclicked)
+        self.landingWindow.borrowedView.bookView.bookclickedBookView.connect(self.bookclicked)
         #Signals for home button clicked
         self.detailWindow.header.iconbar.homeBtn.clicked.connect(lambda: self.returnHome())
         #Signals for logoutbtn clicked
