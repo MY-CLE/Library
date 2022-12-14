@@ -40,22 +40,20 @@ class IconBar(QFrame):
         
         container = QWidget()
         container.setObjectName("iconBarContainer")
-        container.setFixedSize(100,100)
+        container.setFixedSize(100,50)
 
         containerLayout = QHBoxLayout()
         containerLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
         self.profileBtn = QPushButton()
         self.profileBtn.setObjectName('profilBtn')
-        self.profilIcon = QIcon('src/assets/icon/logout.png')
-        self.profileBtn.setIcon(self.profilIcon)
-        #self.profileBtn.iconSize(QSize(50,50))
+        #self.profileBtn.setIcon(QIcon(QPixmap('src/assets/icons/logout.svg')))
+        self.profileBtn.setMaximumSize(40,40)
         
         self.homeBtn = QPushButton()
         self.homeBtn.setObjectName('homeBtn')
-        self.homeIcon = QIcon('src/assets/icon/home.png')
-        self.homeBtn.setIcon(self.homeIcon)
-        #self.homeBtn.iconSize(QSize(50,50))
+        #self.homeBtn.setIcon(QIcon(QPixmap('src/assets/icons/home.svg')))
+        self.homeBtn.setMaximumSize(40,40)
         
         containerLayout.addWidget(self.profileBtn)
         containerLayout.addWidget(self.homeBtn)        
