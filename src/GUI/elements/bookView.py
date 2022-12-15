@@ -1,4 +1,6 @@
 import sys
+
+from functional.book import Book
 sys.path.insert(0, "src//")
 from PyQt6.QtWidgets import (
     QHBoxLayout, QFrame, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton)
@@ -34,7 +36,7 @@ class BooksFilter(QFrame):
 
 
 class BookView(QFrame):
-    bookclickedBookView = pyqtSignal(int)
+    bookclickedBookView = pyqtSignal(Book)
     def __init__(self, amount):
         self.userid = None
         super(QFrame, self).__init__()
@@ -62,14 +64,13 @@ class BookView(QFrame):
         for i in range(1,amount):
             self.bookLoader.loadBook(i)
             
-    def bookRecived(self, bookinfo):
-        #print('recive books in Libview')
-        self.book = GuiBook(bookinfo)
+    def bookRecived(self, book):
+        self.book = GuiBook(book)
         self.book.sendClicked.connect(self.sendClickedBookview)
         self.containerHoriLayout.addWidget(self.book)
         
-    def sendClickedBookview(self, bookNo):
-        self.bookclickedBookView.emit(bookNo)
+    def sendClickedBookview(self, book):
+        self.bookclickedBookView.emit(book)
     
     def updateUser(self, id):
         self.userid = id

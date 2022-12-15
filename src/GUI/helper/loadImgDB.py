@@ -1,5 +1,7 @@
 
 import sys
+
+from functional.book import Book
 sys.path.insert(0, "src//")
 from database.fetchCertainBook import fetchCertainBook
 import os
@@ -14,18 +16,18 @@ class LoadBook(QRunnable):
     def run(self):
         #print(f'in Load book {self.bookNo}')
         bookfetcher = fetchCertainBook()
-        bookinfo = bookfetcher.fetchCertainBook(self.bookNo)
-        self.signals.returnBook.emit(bookinfo)
+        book = bookfetcher.fetchCertainBook(self.bookNo)
+        self.signals.returnBook.emit(book)
         self.signals.finished.emit()
         
 class  LoadBookSignals(QObject):
-    returnBook = pyqtSignal(dict)
+    returnBook = pyqtSignal(Book)
     finished = pyqtSignal()
     
     
 class Bookloader(QObject):
     threadpool = QThreadPool().globalInstance()
-    bookloaded = pyqtSignal(dict) 
+    bookloaded = pyqtSignal(Book) 
     
     def loadBook(self, bookNo):
         #print('loadBook started in book loader')
@@ -33,9 +35,9 @@ class Bookloader(QObject):
         worker.signals.returnBook.connect(self.bookRecived)
         self.threadpool.tryStart(worker)
     
-    def bookRecived(self, dic):
-        print(dic)
-        self.bookloaded.emit(dic)
+    def bookRecived(self, book):
+        print(book)
+        self.bookloaded.emit(book)
                 
         
         
