@@ -44,7 +44,6 @@ class PageSelect(QMainWindow):
         #Signals for logoutbtn clicked
         self.detailWindow.header.iconbar.profileBtn.clicked.connect(lambda: self.logout())
         self.landingWindow.header.iconbar.profileBtn.clicked.connect(lambda: self.logout())
-
     
     def registrationPage(self, text):
         print('Registration Window '+ text)
