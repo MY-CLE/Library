@@ -7,7 +7,7 @@ class Account(object):
         self.__email = email
         self.__password = password
         self.__cpassword = cpassword
-
+    
     @property
     def firstname(self):
         return self.__firstname
@@ -17,7 +17,7 @@ class Account(object):
         self.__firstname = firstname
 
     @property
-    def lastname(self):
+    def lastname(self):           
         return self.__lastname
 
     @lastname.setter
@@ -67,3 +67,7 @@ class Account(object):
             self.__cpassword = cpassword
         else:
             raise ValueError("Passwords do not match") """
+
+a = Account("Enrico","","","","","")
+a.firstname = "Luis"
+print(a.firstname)

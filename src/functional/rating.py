@@ -1,13 +1,13 @@
 import sys
 sys.path.insert(0, "src//")
-from functional.IllegalRatingError import illegalRatingError
+from functional.illegalRatingError import IllegalRatingError
 
 
-class rating(object):
+class Rating(object):
 
     def __init__(self, value: int) -> None:
         if((value > 5) or (value < 0)):
-            raise illegalRatingError()
+            raise IllegalRatingError()
         else :
             self.__value = value
 
