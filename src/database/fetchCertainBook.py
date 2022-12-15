@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, "src//")
-import database.dbconnect as db
-import functional.Book as book
+from database.dbconnect import DatabaseHandler
+from functional.book import Book
 
 class fetchCertainBook(object):
 
@@ -10,8 +10,8 @@ class fetchCertainBook(object):
         title:str
         author:str
         picture:bytes
-        data = db.DatabaseHandler()
-        self.query = f"SELECT bookid,title,author,genre,publishingyear,borroweddate,publisher,rating,isborrowed,picture FROM books WHERE bookid={signal};"
+        data = DatabaseHandler()
+        self.query = f"SELECT bookid, title, author, genre, publishingyear, borrowedDate, publisher, rating, isBorrowed, picture FROM books WHERE bookid={signal};"
         array = data.parser(self.query)
         bookDict = {"bookid":self.fetchId(array),"title":self.fetchTitle(array),"author":self.fetchAuthor(array),"genre":self.fetchGenre(array),
                     "publishingyear":self.fetchPublishingYear(array), "borroweddate":self.fetchBorrowedDate(array),"publisher":self.fetchPublisher(array),

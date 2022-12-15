@@ -1,16 +1,14 @@
 import os
 from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit)
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtCore import QSize, Qt
 class CustHeader(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
         self.setObjectName('header')
-        #self.setStyleSheet("background-color: yellow;")
         self.setMaximumHeight(200)
         
         self.setFrameShape(QFrame.Shape.NoFrame)
-        #self.widget.setStyleSheet('background-color: #be06ff')
         self.setLineWidth(0)
         
         logoLable = QLabel()
@@ -25,12 +23,12 @@ class CustHeader(QFrame):
         searchTextInput.setMinimumHeight(65)
         searchTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
-        iconbar = IconBar()
+        self.iconbar = IconBar()
         
         horiLayout = QHBoxLayout()
         horiLayout.addWidget(logoLable)
         horiLayout.addWidget(searchTextInput)
-        horiLayout.addWidget(iconbar)
+        horiLayout.addWidget(self.iconbar)
         self.setLayout(horiLayout)
         
         
@@ -42,15 +40,23 @@ class IconBar(QFrame):
         
         container = QWidget()
         container.setObjectName("iconBarContainer")
-        container.setFixedSize(100,65)
+        container.setFixedSize(100,50)
 
         containerLayout = QHBoxLayout()
         containerLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
-        profileBtn = QPushButton()
-        homeBtn = QPushButton()
-        containerLayout.addWidget(profileBtn)
-        containerLayout.addWidget(homeBtn)        
+        self.profileBtn = QPushButton()
+        self.profileBtn.setObjectName('profilBtn')
+        #self.profileBtn.setIcon(QIcon(QPixmap('src/assets/icons/logout.svg')))
+        self.profileBtn.setMaximumSize(40,40)
+        
+        self.homeBtn = QPushButton()
+        self.homeBtn.setObjectName('homeBtn')
+        #self.homeBtn.setIcon(QIcon(QPixmap('src/assets/icons/home.svg')))
+        self.homeBtn.setMaximumSize(40,40)
+        
+        containerLayout.addWidget(self.profileBtn)
+        containerLayout.addWidget(self.homeBtn)        
         container.setLayout(containerLayout)
         
         layout = QHBoxLayout()

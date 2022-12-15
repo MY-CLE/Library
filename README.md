@@ -27,7 +27,7 @@ The [Databasemodel] was created using dbdesigner.net
 
 Figma design can be found [here]
 
-Can be found [here](Documentation)
+Can be found (Documentation)
 
 ## :books: Libraries
 #### GUI Framework:
@@ -42,4 +42,4 @@ Can be found [here](Documentation)
 
 [//]: # 
    [Databasemodel]: <https://sqlspy.io/import_db_designer/newone=>
-   [here]: <https://www.figma.com/file/WDUvHBhv6LMjt7FrcCiUHU/Design-Library?t=hBZbcGuOz585cVKC-1>
+   [here]: <https://www.figma.com/file/WDUvHBhv6LMjt7FrcCiUHU/Design-Library?node-id=0%3A1&t=2f4Rz4Psb6fsJbq2-1>
