@@ -17,7 +17,7 @@ class fetchCertainBook(object):
                     self.fetchPublishingYear(array),self.fetchBorrowedDate(array),self.fetchPublisher(array),
                     self.fetchRating(array),self.fetchIsBorrowed(array),self.fetchPicture(array))
         return certainBook
-    
+
     def fetchId(self, bookArr) -> int:
         return bookArr[0][0]
     

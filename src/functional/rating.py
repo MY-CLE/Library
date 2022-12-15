@@ -16,4 +16,3 @@ class Rating(object):
 
     def __str__(self) -> str:
         return str(self.__value)
-
