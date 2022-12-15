@@ -11,8 +11,9 @@ class fetchCertainBook(object):
         author:str
         picture:bytes
         data = DatabaseHandler()
-        self.query = f"SELECT bookid, title, author, genre, publishingyear, borrowedDate, publisher, rating, isBorrowed, picture FROM books WHERE bookid={signal};"
+        self.query = f"SELECT bookid,title,author,genre,publishingyear,borroweddate,publisher,rating,isborrowed,picture FROM books WHERE bookid={signal};"
         array = data.parser(self.query)
+        print(array[0][0])
         bookDict = {"bookid":self.fetchId(array),"title":self.fetchTitle(array),"author":self.fetchAuthor(array),"genre":self.fetchGenre(array),
                     "publishingyear":self.fetchPublishingYear(array), "borroweddate":self.fetchBorrowedDate(array),"publisher":self.fetchPublisher(array),
                     "rating":self.fetchRating(array),"isborrowed":self.fetchIsBorrowed(array),"picture":self.fetchPicture(array)}
