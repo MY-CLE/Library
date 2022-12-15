@@ -1,4 +1,5 @@
 import os
+import re
 from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
@@ -37,27 +38,27 @@ class LoginWindow(QFrame):
 
         
         #Textinput
-        emailTextInput = QLineEdit()
-        emailTextInput.setPlaceholderText("Email")
-        emailTextInput.setObjectName("emailTextInput")
-        emailTextInput.setMaximumWidth(250)
-        emailTextInput.setMinimumHeight(40)
-        emailTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.emailTextInput = QLineEdit()
+        self.emailTextInput.setPlaceholderText("Email")
+        self.emailTextInput.setObjectName("emailTextInput")
+        self.emailTextInput.setMaximumWidth(250)
+        self.emailTextInput.setMinimumHeight(40)
+        self.emailTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
-        passwordTextInput = QLineEdit()
-        passwordTextInput.setPlaceholderText("Password")
-        passwordTextInput.setObjectName("passwordTextInput")
-        passwordTextInput.setMaximumWidth(250)
-        passwordTextInput.setMinimumHeight(40)
-        passwordTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        passwordTextInput.setEchoMode(QLineEdit.EchoMode.Password)
+        self.passwordTextInput = QLineEdit()
+        self.passwordTextInput.setPlaceholderText("Password")
+        self.passwordTextInput.setObjectName("passwordTextInput")
+        self.passwordTextInput.setMaximumWidth(250)
+        self.passwordTextInput.setMinimumHeight(40)
+        self.passwordTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.passwordTextInput.setEchoMode(QLineEdit.EchoMode.Password)
 
         #Login Button
         loginBtn = QPushButton()
         loginBtn.setFixedSize(250,50)
         loginBtn.setObjectName("loginBtn")
         loginBtn.setText("Login")
-        loginBtn.clicked.connect(lambda: self.loginBtnPressed(emailTextInput.text(), passwordTextInput.text()))
+        loginBtn.clicked.connect(lambda: self.loginBtnPressed(self.emailTextInput.text(), self.passwordTextInput.text()))
         
         #Registration forwarding Button
         registerForwardingBtn = QPushButton()
@@ -78,9 +79,9 @@ class LoginWindow(QFrame):
         
         containerLayout.addWidget(title)
         containerLayout.addSpacing(12)
-        containerLayout.addWidget(emailTextInput)
+        containerLayout.addWidget(self.emailTextInput)
         containerLayout.setSpacing(12)
-        containerLayout.addWidget(passwordTextInput)
+        containerLayout.addWidget(self.passwordTextInput)
         containerLayout.addWidget(forgotenpwd)
         containerLayout.setSpacing(12)
         containerLayout.addWidget(loginBtn)        
@@ -121,15 +122,15 @@ class LoginWindow(QFrame):
     
     #this is a signal fierd by the loginBtnPressed
     def loginBtnPressed(self, email: str, pwd: str):
-        
-        if(email == '' or pwd == ''):
-            print("Please enter values")
-        else:
-            userlogin = Login(email,pwd)
-            newuserid = userlogin.userloginId()
-
-            if newuserid is not None:
-                self.sendUser.emit(userlogin)
+            if self.validateInput(email, pwd):
+                userlogin = Login(email,pwd)
+                newuserid = userlogin.userloginId()[0]
+                print(newuserid)
+                if newuserid >= 0:
+                    
+                    self.sendUser.emit(userlogin)
+                    self.emailTextInput.setText('')
+                    self.passwordTextInput.setText('')
 
     #this is a signal fierd by the registerBtnPressed
     def registerBtnPressed(self):
@@ -137,3 +138,22 @@ class LoginWindow(QFrame):
         print("User Registration")
         self.pageSwap.emit("PageSwap")
     
+    
+    def validateInput (self, email, password):
+        try:
+            if (email == '') or (password == ''):
+                raise ValueError
+        except ValueError as e:
+            print("please put in a Email adress and Password ")
+            return False
+        
+        try:
+            filter_email = re.compile(r"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")
+            if filter_email.findall(email) == []:
+                raise ValueError
+        except ValueError as e:
+            print("Error pls use a valid E-Mailadress")
+            return False
+        
+        return True
+            
