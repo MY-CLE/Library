@@ -3,6 +3,7 @@ sys.path.insert(0, "src//")
 import database.dbconnect as db
 from functional.book import Book
 
+
 class fetchBooks(object):
 
     def fetchAllBooks(self) -> list:
