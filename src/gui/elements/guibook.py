@@ -18,8 +18,8 @@ class GuiBook(QWidget):
             title.setText(bookinfo['title'][:18] + '...')
 
         
-        if bookinfo['picture'] == None:
-            bookinfo['picture'] = os.path.join(os.path.abspath('src/assets/books/'), f"50_shades_of_grey.jpg")
+        #if bookinfo['picture']:
+        bookinfo['picture'] = os.path.join(os.path.abspath('src/assets/books/'), f"50_shades_of_grey.jpg")
         image = QImage(bookinfo['picture'])
         lable = PictureLabel(image,title, bookinfo['bookid'])
         lable.clicked.connect(self.bookClicked)

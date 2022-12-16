@@ -1,0 +1,77 @@
+import sys
+sys.path.insert(0, "src//")
+from PyQt6.QtWidgets import (
+    QHBoxLayout, QFrame, QWidget, QLabel, QLineEdit, QGridLayout ,QVBoxLayout, QPushButton)
+from PyQt6.QtCore import Qt, pyqtSignal
+from gui.elements.guibook import GuiBook
+from gui.helper.loadImgDB import Bookloader
+
+class BooksFilter(QFrame):
+
+    def __init__(self):
+        super(QFrame, self).__init__()
+        self.setMaximumHeight(80)
+
+        self.recentlyAddedBtn = QPushButton()
+        self.recentlyAddedBtn.setText('Recently Added')
+        self.recentlyAddedBtn.setObjectName('recentlyAddedBtn')
+        self.recentlyAddedBtn.setContentsMargins(6,2,6,2)
+        self.recomendationsBtn = QPushButton()
+        self.recomendationsBtn.setText('Recomendations')
+        self.recomendationsBtn.setObjectName('recomendationsBtn')
+        self.genreBtn = QPushButton()
+        self.genreBtn.setText('Genre')
+        self.genreBtn.setObjectName('genreBtn')
+        
+        
+        
+        self.horiLayout = QHBoxLayout()
+        self.horiLayout.addStretch()
+        self.horiLayout.addWidget(self.recentlyAddedBtn)
+        self.horiLayout.addStretch()
+        self.horiLayout.addWidget(self.recomendationsBtn)
+        self.horiLayout.addStretch()
+        self.horiLayout.addWidget(self.genreBtn)
+        self.horiLayout.addStretch()
+
+        self.setLayout(self.horiLayout)
+
+class BookView(QFrame):
+    bookclickedBookView = pyqtSignal(int)
+    def __init__(self, amount):
+        self.bookCount = 0
+        super(QFrame, self).__init__()
+        self.setObjectName('bookView')
+        self.bookLoader = Bookloader()
+        self.bookLoader.bookloaded.connect(self.bookRecived)
+        self.container = QWidget()
+        self.container.setObjectName("bookViewContainer")
+        self.container.setMinimumWidth(500)
+        self.container.setMinimumHeight(400)
+
+        self.containerGridLayout = QGridLayout()
+        self.containerGridLayout.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.container.setLayout(self.containerGridLayout)
+        
+        amount = 10
+        self.loadBooks(amount)
+    
+        layout = QHBoxLayout()
+        layout.addWidget(self.container)
+        self.setLayout(layout)
+
+    def loadBooks(self, amount=15):
+        print('loadbooks in Libview')
+        for i in range(1,amount+1):
+            self.bookLoader.loadBook(i)
+            
+    def bookRecived(self, bookinfo):
+        #print('recive books in Libview')
+        self.book = GuiBook(bookinfo)
+        self.book.sendClicked.connect(self.sendClickedBookview)
+        self.bookCount = self.containerGridLayout.count()
+        print(int(self.bookCount/6), self.bookCount%6)
+        self.containerGridLayout.addWidget(self.book, int(self.bookCount/6), self.bookCount%6);
+        
+    def sendClickedBookview(self, bookNo):
+        self.bookclickedBookView.emit(bookNo)

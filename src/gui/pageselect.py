@@ -1,6 +1,5 @@
-from gui.windows.landingWindow import LandingWindow
-
 from gui.windows.detailsWindow import DetailWindow
+from gui.windows.landingWindow import LandingWindow
 from gui.windows.loginWindow import LoginWindow
 from PyQt6.QtWidgets import (QMainWindow, QStackedWidget)
 
@@ -38,12 +37,9 @@ class PageSelect(QMainWindow):
         self.registerWindow.newUser.connect(self.newUser)
         #Singal for Book clicked
         self.landingWindow.libraryView.bookView.bookclickedBookView.connect(self.bookclicked)
-        self.landingWindow.borrowedView.bookView.bookclickedBookView.connect(self.bookclicked)
+        #self.landingWindow.borrowedView.bookView.bookclickedBookView.connect(self.bookclicked)
         #Signals for home button clicked
-        self.detailWindow.header.iconbar.homeBtn.clicked.connect(lambda: self.returnHome())
         #Signals for logoutbtn clicked
-        self.detailWindow.header.iconbar.profileBtn.clicked.connect(lambda: self.logout())
-        self.landingWindow.header.iconbar.profileBtn.clicked.connect(lambda: self.logout())
 
     
     def registrationPage(self, text):
