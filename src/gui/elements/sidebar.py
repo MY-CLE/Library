@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QFrame, QWidget,QLabel, QPushButton, QSpacerItem )
+from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QFrame, QPushButton, QSpacerItem )
 from PyQt6.QtCore import Qt
 class SideBar(QFrame):
     def __init__(self):

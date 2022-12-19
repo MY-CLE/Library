@@ -1,9 +1,9 @@
 import json
 import os
 from PyQt6.QtWidgets import (
-    QHBoxLayout, QLayout, QVBoxLayout, QFrame, QWidget, QLabel)
+    QHBoxLayout, QVBoxLayout, QFrame, QWidget, QLabel)
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QPixmap, QImage
+from PyQt6.QtGui import QPixmap
 
 
 class DetailsView(QFrame):

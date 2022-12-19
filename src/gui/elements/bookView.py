@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, "src//")
 from PyQt6.QtWidgets import (
-    QHBoxLayout, QFrame, QWidget, QLabel, QLineEdit, QGridLayout ,QVBoxLayout, QPushButton)
+    QHBoxLayout, QFrame, QWidget, QGridLayout ,QVBoxLayout, QPushButton)
 from PyQt6.QtCore import Qt, pyqtSignal
 from gui.elements.guibook import GuiBook
 from gui.helper.loadImgDB import Bookloader
