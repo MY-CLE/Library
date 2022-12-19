@@ -38,7 +38,7 @@ class BooksFilter(QFrame):
 
 class BookView(QFrame):
     bookclickedBookView = pyqtSignal(int)
-    def __init__(self, amount):
+    def __init__(self, amount, filter=True):
         self.bookCount = 0
         super(QFrame, self).__init__()
         self.setObjectName('bookView')
@@ -56,7 +56,10 @@ class BookView(QFrame):
         amount = 10
         self.loadBooks(amount)
     
-        layout = QHBoxLayout()
+        layout = QVBoxLayout()
+        if filter:
+            bookfilter = BooksFilter()
+            layout.addWidget(bookfilter)
         layout.addWidget(self.container)
         self.setLayout(layout)
 
