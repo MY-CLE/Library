@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize
+from gui.elements.bookView import BookView
 from gui.elements.header import Header
 from gui.elements.libaryView import LibraryView
 from gui.elements.sidebar import SideBar
@@ -17,11 +18,11 @@ class LandingWindow(QFrame):
         #self.setContentsMargins(0,0,0,0)
 
         self.header = Header()
-        self.libraryView = LibraryView()
+        self.bookView = BookView(8)
         self.sidebar = SideBar()
         viewQVlayout = QVBoxLayout()
         viewQVlayout.addWidget(self.header)
-        viewQVlayout.addWidget(self.libraryView)
+        viewQVlayout.addWidget(self.bookView)
         viewQVlayout.addStretch()
         viewQVlayout.setContentsMargins(0, 0, 0, 0)
 
