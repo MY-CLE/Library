@@ -3,9 +3,9 @@ import sys
 from time import sleep
 sys.path.insert(0, "src//")
 from database.fetchCertainBook import fetchCertainBook
-import os
 from PyQt6.QtCore import pyqtSignal, QRunnable, QObject, QThreadPool
 from functional.book import Book
+
 class LoadBook(QRunnable):
     def __init__(self, bookNo):
         super().__init__()
@@ -15,16 +15,16 @@ class LoadBook(QRunnable):
     def run(self):
         #print(f'in Load book {self.bookNo}')
         bookfetcher = fetchCertainBook()
-        bookinfo = bookfetcher.fetchCertainBook(self.bookNo)
-        self.signals.returnBook.emit(bookinfo)
+        book = bookfetcher.fetchCertainBook(self.bookNo)
+        self.signals.returnBook.emit(book)
         
 class  LoadBookSignals(QObject):
     returnBook = pyqtSignal(Book)
     
+    
 class Bookloader(QObject):
     threadpool = QThreadPool().globalInstance()
-   # bookloaded = pyqtSignal(dict) 
-    bookloaded = pyqtSignal(Book)
+    bookloaded = pyqtSignal(Book) 
     
     def loadBook(self, bookNo):
         #print('loadBook started in book loader')
@@ -35,9 +35,9 @@ class Bookloader(QObject):
             sleep(0.5)
             savety -=1
     
-    def bookRecived(self, dic):
-        print(dic)
-        self.bookloaded.emit(dic)
+    def bookRecived(self, book):
+        print(book)
+        self.bookloaded.emit(book)
                 
         
         
