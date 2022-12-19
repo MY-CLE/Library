@@ -3,10 +3,10 @@ from gui.elements.header import Header
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize
 
-from gui.elements.sidebar import SideBar
+from gui.elements.generalSidebar import SideBar
 
 
-class DetailWindow(QFrame):
+class BookDetailsWindow(QFrame):
     def __init__(self,bookNo, parent=None):
         super(QFrame, self).__init__()
         self.bookNo = bookNo
