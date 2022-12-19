@@ -2,22 +2,23 @@ import sys
 sys.path.insert(0, "src//")
 from database.dbconnect import DatabaseHandler
 from functional.book import Book
+from datetime import date
 
 class fetchCertainBook(object):
 
-    def fetchCertainBook(self, bookid) -> dict:
-        bookDict:dict
+    def fetchCertainBook(self, bookId) -> Book:
         title:str
         author:str
         picture:bytes
         data = DatabaseHandler()
-        self.query = f"SELECT * FROM books WHERE bookid={bookid};"
+        self.query = f"SELECT bookid, title, author, genre, publishingyear, borrowedDate, publisher, rating, isBorrowed, picturepath FROM books WHERE bookid={bookId};"
         array = data.parser(self.query)[0]
-        bookDict = {"bookid":self.fetchId(array),"title":self.fetchTitle(array),"author":self.fetchAuthor(array),"genre":self.fetchGenre(array),
-                    "publishingyear":self.fetchPublishingYear(array), "borroweddate":self.fetchBorrowedDate(array),"publisher":self.fetchPublisher(array),
-                    "rating":self.fetchRating(array),"isborrowed":self.fetchIsBorrowed(array),"picture":self.fetchPicture(array)}
-        return bookDict
-    
+        certainBook = Book(self.fetchId(array),self.fetchTitle(array),self.fetchAuthor(array),self.fetchGenre(array),
+                    self.fetchPublishingYear(array),self.fetchBorrowedDate(array),self.fetchPublisher(array),
+                    self.fetchRating(array),self.fetchIsBorrowed(array),self.fetchPicture(array))
+        return certainBook
+
+
     def fetchId(self, bookArr) -> int:
         return bookArr[0]
     
@@ -52,7 +53,7 @@ class fetchCertainBook(object):
     
 def main():
     a = fetchCertainBook()
-    print(a.fetchCertainBook(1))
+    a.fetchCertainBook(1).printEverything()
     
         
 if __name__ == '__main__':

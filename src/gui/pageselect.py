@@ -41,9 +41,9 @@ class PageSelect(QMainWindow):
         self.landingWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.detailWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         #Signals for logoutbtn clicked
+
         self.landingWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.detailWindow.sidebar.logoutBtn.clicked.connect(self.logout)
-
     
     def registrationPage(self, text):
         print('Registration Window '+ text)
