@@ -11,14 +11,17 @@ class UserDetailsView(QFrame):
 
         self.container = QWidget()
         self.container.setObjectName('userDetailsViewContainer')
-        self.container.setMinimumSize(1000,600)
+        self.container.setMinimumSize(800, 100)
+        self.container.setMaximumSize(3000, 3000)
+        self.container.setStyleSheet('background-color: white;')
 
         #self.container.setBaseSize(600,600)
 
-        """ self.textContainer = QWidget()
-        self.textContainer.setObjectName('userDetailsViewContainer')
-        self.textContainer.setMinimumWidth(200)
-        self.textContainer.setMaximumHeight(300) """
+        self.labelContainer = QWidget()
+        self.labelContainer.setObjectName('userDetailsViewContainer')
+        self.labelContainer.setMinimumSize(100,100)
+        self.labelContainer.setStyleSheet('background-color: gray;')
+
 
         self.title = QLabel()
         self.title.setText("ACCOUNT")
@@ -73,8 +76,8 @@ class UserDetailsView(QFrame):
         #self.containerVerticalLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
 
-        self.containerVerticalLayout.addWidget(self.title)
-        self.containerVerticalLayout.setSpacing(20)
+        #self.containerVerticalLayout.addWidget(self.title)
+        #self.containerVerticalLayout.stretch(5)
         self.containerVerticalLayout.addWidget(self.firstnameUserDetails)
         self.containerVerticalLayout.addWidget(self.firstnameUserDetailsOutput)
         self.containerVerticalLayout.addWidget(self.lastnameUserDetails)
@@ -86,7 +89,13 @@ class UserDetailsView(QFrame):
         self.containerVerticalLayout.addWidget(self.phonenumberUserDetails)
         self.containerVerticalLayout.addWidget(self.phonenumberUserDetailsOutput)
 
-        self.container.setLayout(self.containerVerticalLayout)
+        self.labelContainer.setLayout(self.containerVerticalLayout)
+
+        self.containerHorizontalLayout = QHBoxLayout()
+        self.containerHorizontalLayout.addWidget(self.labelContainer)
+
+
+        self.container.setLayout(self.containerHorizontalLayout)
 
         verticalLayout = QVBoxLayout()
         verticalLayout.addWidget(self.container, alignment=Qt.AlignmentFlag.AlignLeft)

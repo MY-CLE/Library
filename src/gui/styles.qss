@@ -222,7 +222,14 @@ QLabel#details {
 }
 
 QLabel#transparentUserDetails {
-  font-size: 10px;
+  font-size: 20px;
+  font: bold;
   color: black;
-  background-color: red;
+  background-color: transparent;
+}
+
+QLabel#transparentUserDetailsOutput {
+  font-size: 12px;
+  color: black;
+  background-color: transparent;
 }
