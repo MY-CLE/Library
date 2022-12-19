@@ -208,10 +208,8 @@ QLabel#boxDescription {
 }
 QLabel#details {
   font-size: 20px;
-  border: 2px black solid;
-  border-radius: 3px;
-  background-color: white;
   color: black;
+  font-weight:bold;
 }
 QLabel#titleView {
   font-size: 40px;

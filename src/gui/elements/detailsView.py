@@ -47,7 +47,7 @@ class BookView(QFrame):
 
         self.textContainer = QWidget()
         self.textContainer.setObjectName("bookViewContainer")
-        self.textContainer.setMinimumWidth(200)
+        self.textContainer.setMinimumWidth(300)
         self.textContainer.setMaximumHeight(300)
 
         self.containerHoriLayout = QHBoxLayout()
@@ -63,12 +63,8 @@ class BookView(QFrame):
         bookTitle.setText(book.getTitle())
 
         bookAuthor = QLabel()
-        authorContainer = QWidget()
-        authorContainer.setObjectName("details")
-        authorContainer.setMinimumWidth(30)
-        authorContainer.setMaximumHeight(20)
-        authorContainerHoriLayout = QHBoxLayout()
-        bookAuthor.setText(book.getAuthor())
+        bookAuthor.setText("Author: "+book.getAuthor())
+        bookAuthor.setObjectName("details")
 
         imgpath = os.path.join(os.path.abspath(
             'src/assets/books/'), book.getPicture())
@@ -80,33 +76,52 @@ class BookView(QFrame):
         imageLabel.setPixmap(bookCover)
 
         bookGenre = QLabel()
-        bookGenre.setText(book.getGenre())
+        bookGenre.setText("Genre: "+book.getGenre())
         bookGenre.setObjectName("details")
 
         bookRating = QLabel()
-        bookRating.setNum(book.getAverageRating())
+        bookRating.setText(f"Rating: {book.getAverageRating()}")
+        bookRating.setObjectName("details")
 
         bookisBorrowed = QLabel()
-        bookisBorrowed.setText("Unavailable")
+        bookisBorrowed.setText("Availability: Unavailable")
+        bookisBorrowed.setObjectName("details")
         bookisAvailable = QLabel()
-        bookisAvailable.setText("Available")
+        bookisAvailable.setText("Availability: Available")
+        bookisAvailable.setObjectName("details")
 
         bookBorrowedDate = QLabel()
         bookBorrowedDate.setText(book.getBorrowedDate())
+        bookBorrowedDate.setObjectName("details")
 
         bookYear = QLabel()
         bookYear.setText(book.getPublishingYear())
+        bookYear.setObjectName("details")
 
         bookPublisher = QLabel()
         bookPublisher.setText(book.getPublisher())
+        bookPublisher.setObjectName("details")
 
-        book.printEverything()
+        testLabelDesc = QLabel()
+        testLabelDesc.setObjectName("details")
+        testLabelDesc.setText(
+            "DescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDescDesc")
 
         self.textContainerVertLayout = QVBoxLayout()
-        authorContainerHoriLayout.addWidget(bookAuthor)
-        authorContainer.setLayout(self.textContainerHoriLayout)
-        self.textContainerVertLayout.addWidget(authorContainer)
-        self.textContainer.setLayout(self.textContainerVertLayout)
+        self.textContainerVertLayout.addWidget(bookAuthor)
+        self.textContainerVertLayout.addWidget(bookGenre)
+        self.textContainerVertLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+
+        #self.textContainerVertLayout2 = QVBoxLayout()
+        self.textContainerVertLayout.addWidget(bookRating)
+        self.textContainerVertLayout.addWidget(bookisBorrowed)
+        self.textContainerVertLayout.addWidget(testLabelDesc)
+        # self.textContainerVertLayout2.setAlignment(Qt.AlignmentFlag.AlignTop)
+
+        self.textContainerHoriLayout.addLayout(self.textContainerVertLayout)
+        # self.textContainerHoriLayout.addLayout(self.textContainerVertLayout2)
+        self.textContainerHoriLayout.addStretch
+        self.textContainer.setLayout(self.textContainerHoriLayout)
 
         self.containerVertLayout = QVBoxLayout()
         self.containerHoriLayout.addWidget(imageLabel)
