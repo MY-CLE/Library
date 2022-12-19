@@ -3,7 +3,6 @@ import re
 from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
-from database.login import Login
 from database.dbfunctions import userLogin
 
 # This Class displays a login page from which the user can login to his account
