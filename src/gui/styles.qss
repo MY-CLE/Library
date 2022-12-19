@@ -207,6 +207,14 @@ QLabel#boxDescription {
   font-weight: bold;
 }
 QLabel#details {
-  font-size: 10px;
+  font-size: 20px;
+  border: 2px black solid;
+  border-radius: 3px;
+  background-color: white;
   color: black;
+}
+QLabel#titleView {
+  font-size: 40px;
+  color: black;
+  font-weight: bold;
 }

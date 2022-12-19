@@ -1,13 +1,13 @@
-from gui.elements.detailsView import DetailsView
-from gui.elements.header import Header
+from GUI.elements.detailsView import DetailsView
+from GUI.elements.header import Header
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize
 
-from gui.elements.sidebar import SideBar
+from GUI.elements.sidebar import SideBar
 
 
 class DetailWindow(QFrame):
-    def __init__(self,bookNo, parent=None):
+    def __init__(self, bookNo, parent=None):
         super(QFrame, self).__init__()
         self.bookNo = bookNo
         self.setWindowTitle("Details")

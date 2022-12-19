@@ -1,23 +1,43 @@
 import json
 import os
 from PyQt6.QtWidgets import (
-    QHBoxLayout, QVBoxLayout, QFrame, QWidget, QLabel)
+    QHBoxLayout, QLayout, QVBoxLayout, QFrame, QWidget, QLabel)
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QImage
+
+from database.dbfunctions import fetchBook
 
 
 class DetailsView(QFrame):
-    def __init__(self, bookNo):
+    def __init__(self, bookId):
         super(QFrame, self).__init__()
         self.setObjectName('libraryView')
-        self.bookView = BookView(img = "Dfault", title ="Defautlt")
-        mainHoriLayout = QHBoxLayout()
-        mainHoriLayout.addWidget(self.bookView)
-        self.setLayout(mainHoriLayout)
+        self.bookView = BookView(bookId)
+        self.titleView = TitleView(bookId)
+        mainVertLayout = QVBoxLayout()
+        HoriLayout = QHBoxLayout()
+        HoriLayout.addWidget(self.bookView)
+        mainVertLayout.addWidget(self.titleView)
+        mainVertLayout.addWidget(self.bookView)
+        self.setLayout(mainVertLayout)
+
+
+class TitleView(QFrame):
+    def __init__(self, bookId):
+        super(QFrame, self).__init__()
+
+        book = fetchBook(bookId)
+        title = QLabel()
+        title.setText(book.getTitle())
+        title.setObjectName('titleView')
+
+        HoriLayout = QHBoxLayout()
+        HoriLayout.addWidget(title)
+        self.setLayout(HoriLayout)
 
 
 class BookView(QFrame):
-    def __init__(self, img, title):
+    def __init__(self, bookId):
         super(QFrame, self).__init__()
         self.setObjectName('bookView')
         self.container = QWidget()
@@ -34,37 +54,62 @@ class BookView(QFrame):
         self.containerHoriLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
         self.textContainerHoriLayout = QHBoxLayout()
-        self.textContainerHoriLayout.setAlignment(
-            Qt.AlignmentFlag.AlignHCenter)
+        # self.textContainerHoriLayout.setAlignment(
+        # Qt.AlignmentFlag.AlignHCenter)
 
-        self.label = QLabel()
-        cover = QPixmap(img)
-        cover = cover.scaledToHeight(290)
-        cover = cover.scaledToWidth(200)
-        self.label.setPixmap(cover)
+        book = fetchBook(bookId)
 
-        self.title = QLabel()
-        self.title.setText(title)
+        bookTitle = QLabel()
+        bookTitle.setText(book.getTitle())
 
-        bookData = None
-        with open(os.path.abspath("src/assets/books/books.json")) as json_file:
-            bookData = json.load(json_file)
+        bookAuthor = QLabel()
+        authorContainer = QWidget()
+        authorContainer.setObjectName("details")
+        authorContainer.setMinimumWidth(30)
+        authorContainer.setMaximumHeight(20)
+        authorContainerHoriLayout = QHBoxLayout()
+        bookAuthor.setText(book.getAuthor())
 
-        self.bookDesc = QLabel
-        self.bookAuth = QLabel
-        self.bookDate = QLabel
+        imgpath = os.path.join(os.path.abspath(
+            'src/assets/books/'), book.getPicture())
+        image = QImage(imgpath)
+        bookCover = QPixmap(image)
+        bookCover = bookCover.scaledToHeight(200)
+        bookCover = bookCover.scaledToWidth(200)
+        imageLabel = QLabel()
+        imageLabel.setPixmap(bookCover)
 
-        # alle Daten eines Buchs anzeigen, Hashmap(titel,Book-Object)?
+        bookGenre = QLabel()
+        bookGenre.setText(book.getGenre())
+        bookGenre.setObjectName("details")
+
+        bookRating = QLabel()
+        bookRating.setNum(book.getAverageRating())
+
+        bookisBorrowed = QLabel()
+        bookisBorrowed.setText("Unavailable")
+        bookisAvailable = QLabel()
+        bookisAvailable.setText("Available")
+
+        bookBorrowedDate = QLabel()
+        bookBorrowedDate.setText(book.getBorrowedDate())
+
+        bookYear = QLabel()
+        bookYear.setText(book.getPublishingYear())
+
+        bookPublisher = QLabel()
+        bookPublisher.setText(book.getPublisher())
+
+        book.printEverything()
 
         self.textContainerVertLayout = QVBoxLayout()
-        # self.textContainerVertLayout.addWidget(self.bookAuth)
-        self.textContainerVertLayout.addLayout(self.textContainerHoriLayout)
+        authorContainerHoriLayout.addWidget(bookAuthor)
+        authorContainer.setLayout(self.textContainerHoriLayout)
+        self.textContainerVertLayout.addWidget(authorContainer)
         self.textContainer.setLayout(self.textContainerVertLayout)
 
         self.containerVertLayout = QVBoxLayout()
-        self.containerHoriLayout.addWidget(self.label)
-
-        self.containerVertLayout.addWidget(self.title)
+        self.containerHoriLayout.addWidget(imageLabel)
         self.containerVertLayout.addLayout(self.containerHoriLayout)
         self.container.setLayout(self.containerVertLayout)
 

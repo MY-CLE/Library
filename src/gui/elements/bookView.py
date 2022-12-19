@@ -1,10 +1,11 @@
+from GUI.helper.loadImgDB import Bookloader
+from GUI.elements.guibook import GuiBook
+from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtWidgets import (
+    QHBoxLayout, QFrame, QWidget, QGridLayout, QVBoxLayout, QPushButton)
 import sys
 sys.path.insert(0, "src//")
-from PyQt6.QtWidgets import (
-    QHBoxLayout, QFrame, QWidget, QGridLayout ,QVBoxLayout, QPushButton)
-from PyQt6.QtCore import Qt, pyqtSignal
-from gui.elements.guibook import GuiBook
-from gui.helper.loadImgDB import Bookloader
+
 
 class BooksFilter(QFrame):
 
@@ -15,16 +16,14 @@ class BooksFilter(QFrame):
         self.recentlyAddedBtn = QPushButton()
         self.recentlyAddedBtn.setText('Recently Added')
         self.recentlyAddedBtn.setObjectName('recentlyAddedBtn')
-        self.recentlyAddedBtn.setContentsMargins(6,2,6,2)
+        self.recentlyAddedBtn.setContentsMargins(6, 2, 6, 2)
         self.recomendationsBtn = QPushButton()
         self.recomendationsBtn.setText('Recomendations')
         self.recomendationsBtn.setObjectName('recomendationsBtn')
         self.genreBtn = QPushButton()
         self.genreBtn.setText('Genre')
         self.genreBtn.setObjectName('genreBtn')
-        
-        
-        
+
         self.horiLayout = QHBoxLayout()
         self.horiLayout.addStretch()
         self.horiLayout.addWidget(self.recentlyAddedBtn)
@@ -36,8 +35,10 @@ class BooksFilter(QFrame):
 
         self.setLayout(self.horiLayout)
 
+
 class BookView(QFrame):
     bookclickedBookView = pyqtSignal(int)
+
     def __init__(self, ids, filter=True):
         self.bookCount = 0
         super(QFrame, self).__init__()
@@ -52,12 +53,12 @@ class BookView(QFrame):
         self.containerGridLayout = QGridLayout()
         self.containerGridLayout.setAlignment(Qt.AlignmentFlag.AlignLeft)
         self.container.setLayout(self.containerGridLayout)
-        
+
         if type(ids) is int:
-            ids =  range(1,13)
-            
+            ids = range(1, 13)
+
         self.loadBooks(ids)
-    
+
         layout = QVBoxLayout()
         if filter:
             bookfilter = BooksFilter()
@@ -69,14 +70,15 @@ class BookView(QFrame):
         print('loadbooks in Libview')
         for id in ids:
             self.bookLoader.loadBook(id)
-            
+
     def bookRecived(self, bookinfo):
         #print('recive books in Libview')
         self.book = GuiBook(bookinfo)
         self.book.sendClicked.connect(self.sendClickedBookview)
         self.bookCount = self.containerGridLayout.count()
-        print(int(self.bookCount/6), self.bookCount%6)
-        self.containerGridLayout.addWidget(self.book, int(self.bookCount/6), self.bookCount%6);
-        
+        print(int(self.bookCount/6), self.bookCount % 6)
+        self.containerGridLayout.addWidget(
+            self.book, int(self.bookCount/6), self.bookCount % 6)
+
     def sendClickedBookview(self, bookNo):
         self.bookclickedBookView.emit(bookNo)
