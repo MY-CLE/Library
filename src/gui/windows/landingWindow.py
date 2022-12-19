@@ -1,9 +1,10 @@
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize
-from gui.elements.bookView import BookView
-from gui.elements.header import Header
-from gui.elements.sidebar import SideBar
+from GUI.elements.bookView import BookView
+from GUI.elements.header import Header
+from GUI.elements.sidebar import SideBar
 from database.dbfunctions import fetchAllBookIds
+
 
 class LandingWindow(QFrame):
     def __init__(self, parent=None):

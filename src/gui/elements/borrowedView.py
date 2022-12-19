@@ -1,7 +1,12 @@
-from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QFrame, QWidget,QLabel )
+import json
+import os
+from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame, QWidget, QLabel)
 from PyQt6.QtCore import Qt
-from gui.elements.guibook import GuiBook
-from gui.helper.loadImgDB import Bookloader
+from GUI.elements.oldbookView import BookView
+from GUI.elements.guibook import GuiBook
+from GUI.helper.loadImgDB import Bookloader
+
+
 class BorrowedView(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
@@ -10,7 +15,3 @@ class BorrowedView(QFrame):
         mainHoriLayout = QHBoxLayout()
         mainHoriLayout.addWidget(self.bookView)
         self.setLayout(mainHoriLayout)
-    
-        
-    
-        

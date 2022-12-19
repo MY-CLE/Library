@@ -1,6 +1,6 @@
 import sys
 import os
-from gui.pageselect import PageSelect
+from GUI.pageselect import PageSelect
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QIcon
 
