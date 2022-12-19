@@ -54,10 +54,10 @@ class PageSelect(QMainWindow):
         self.changeStackedWidget(0)
 
     def setUser(self, userid):
-        self.user = userid
+        self.userid = userid
         print('main window got signal')
         self.changeStackedWidget(2)
-        self.landingWindow.setUserid(self.user.get_email())
+        self.landingWindow.setUserid(self.userid)
 
     def newUser(self, user):
         print(f"INSERT VALUES{user.password}")
