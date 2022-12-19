@@ -14,7 +14,7 @@ def main():
 
     with open(stylesheet, "r") as file:
         app.setStyleSheet(file.read())
-
+        
     application = PageSelect()
     app.exec()
 

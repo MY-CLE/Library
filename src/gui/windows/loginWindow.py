@@ -45,6 +45,8 @@ class LoginWindow(QFrame):
         self.emailTextInput.setMinimumHeight(40)
         self.emailTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
+        self.emailTextInput.returnPressed.connect(lambda: self.loginBtnPressed(self.emailTextInput.text(), self.passwordTextInput.text()))
+        
         self.passwordTextInput = QLineEdit()
         self.passwordTextInput.setPlaceholderText("Password")
         self.passwordTextInput.setObjectName("passwordTextInput")
@@ -52,6 +54,8 @@ class LoginWindow(QFrame):
         self.passwordTextInput.setMinimumHeight(40)
         self.passwordTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         self.passwordTextInput.setEchoMode(QLineEdit.EchoMode.Password)
+
+        self.passwordTextInput.returnPressed.connect(lambda: self.loginBtnPressed(self.emailTextInput.text(), self.passwordTextInput.text()))
 
         #Login Button
         loginBtn = QPushButton()
