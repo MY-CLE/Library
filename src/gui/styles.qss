@@ -3,7 +3,7 @@ QLabel {
 }
 QPushButton {
   font-size: 16px;
-  border-radius: 20;
+  border-radius: 5;
   border: 0px;
   background-repeat: no-repeat;
   text-align: center;
@@ -25,22 +25,29 @@ QLineEdit:focus {
 
 QLineEdit#searchTextInput {
   border-radius: 30;
+  background-image: url(src/assets/icons/search.png);
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 QFrame#landingWindow {
-  background: #7efa4d;
+  background: rgba(20, 31, 38, 0.8);
 }
 
 QFrame#detailsWindow {
-  background: #7efa4d;
+  background: rgba(20, 31, 38, 0.8);
 }
 
 QFrame#loginWindow {
-  background: #7efa4d;
+  background: rgba(20, 31, 38, 0.8);
 }
 
 QFrame#registerWindow {
-  background: #7efa4d;
+  background: rgba(20, 31, 38, 0.8);
+}
+
+QFrame#sideBar {
+  background: rgba(57, 83, 89, 1);
 }
 
 QWidget#loginContainer {
@@ -72,12 +79,30 @@ QWidget#bookViewContainer {
 }
 
 QPushButton#homeBtn {
-  background-image: url(src/assets/icons/home_small.png);
+  background-image: url(src/assets/icons/home.png);
   background-position: center;
+  border: 2px solid white;
 }
 QPushButton#profilBtn {
+  background-image: url(src/assets/icons/logout_small.peng);
+  background-position: center;
+  border: 2px solid white;
+}
+QPushButton#addBookBtn {
+  background-image: url(src/assets/icons/save-for-later.png);
+  background-position: center;
+  border: 2px solid white;
+}
+
+QPushButton#logoutBtn {
   background-image: url(src/assets/icons/logout_small.png);
   background-position: center;
+  border: 2px solid white;
+}
+QPushButton#settingsBtn {
+  background-image: url(src/assets/icons/settings.png);
+  background-position: center;
+  border: 2px solid white;
 }
 
 QPushButton#registerBtn {
@@ -118,13 +143,37 @@ QPushButton#forwardingBtn:hover {
   color: blue;
   background-color: white;
 }
-
-QPushButton#filterBtn {
-  border-radius: 12;
-  background-color: white;
-  border: 1px solid grey;
+QPushButton#recentlyAddedBtn {
+  background-color: #aef2f2;
+  border: 1px black solid;
+  border-radius: 3px;
   color: black;
-  font-weight: semi-bold;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+QPushButton#recomendationsBtn {
+  background-color: #aef2f2;
+  border: 1px black solid;
+  border-radius: 3px;
+  color: black;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+QPushButton#genreBtn {
+  background-color: #aef2f2;
+  border: 1px black solid;
+  border-radius: 3px;
+  color: black;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 QLabel#bookTitleLable {

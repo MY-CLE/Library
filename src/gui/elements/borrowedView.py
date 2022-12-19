@@ -2,7 +2,7 @@ import json
 import os
 from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QFrame, QWidget,QLabel )
 from PyQt6.QtCore import Qt
-from gui.elements.bookView import BookView
+from gui.elements.oldbookView import BookView
 from gui.elements.guibook import GuiBook
 from gui.helper.loadImgDB import Bookloader
 class BorrowedView(QFrame):
