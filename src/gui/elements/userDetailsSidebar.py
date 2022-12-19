@@ -7,7 +7,8 @@ class UserDetailsSidebar(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
         self.setObjectName('sideBar')
-        self.setMinimumSize(100, 100)
+        self.setMinimumSize(250, 100)
+        self.setMaximumSize(250, 3000)
         
         self.btnVLayout= QVBoxLayout()
         
@@ -28,7 +29,6 @@ class UserDetailsSidebar(QFrame):
         
         
         btnLs = [self.profileBtn, self.homeBtn, 'Stretch', self.logoutBtn, self.settingsBtn]
-        #self.btnVLayout.addSpacing(30)
         for index, widget in enumerate(btnLs):
             if index == 2:
                 self.btnVLayout.addStretch()

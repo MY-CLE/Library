@@ -50,7 +50,9 @@ class PageSelect(QMainWindow):
         #Signal for User Profile Page
         self.landingWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
         self.bookDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
-        self.userDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+
+        #Signal for filling user Profile Page
+        #self.userDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
 
 
     def registrationPage(self, text):
@@ -62,7 +64,7 @@ class PageSelect(QMainWindow):
         self.changeStackedWidget(0)
 
     def userProfilePage(self, text):
-        print('User Profile Window')
+        print('User Profile Window' + text)
         self.changeStackedWidget(4)
 
     def setUser(self, userid):
