@@ -9,20 +9,33 @@ from psycopg2 import Binary
 
 class Book(object):
 
-    def __init__(self, id: int, title: str, author: str, publishingYear: int, edition: str, 
-    publisher: str, genre: str, borrowedDate: date, picture: bytearray) -> None:
+    def __init__(self, id: int, title: str, author: str, genre: str, publishingYear: int, 
+    borrowedDate: date, publisher: str, ratings: float, isBorrowed:bool, picture: str) -> None:
         self.__id = id
         self.__title = title
         self.__author = author
         self.__publishingYear = publishingYear
-        self.__edition = edition
         self.__publisher = publisher
-        self.__ratings: Rating = []
-        self.__isBorrowed: bool = False
+        self.__currentRatings= ratings
+        self.__ratings: ratings = []
+        self.__isBorrowed= isBorrowed
         self.__genre = genre
         self.__borrowedDate = borrowedDate
         self.__picture = picture
     
+    def printEverything(self):
+        print(self.getID())
+        print(self.getTitle())
+        print(self.getAuthor())
+        print(self.getGenre())
+        print(self.getPublishingYear())
+        print(self.getBorrowedDate())
+        print(self.getPublisher())
+        print(self.getRatingColumnValue())
+        print(self.getIsBorrowed())
+        print(self.getPicture())
+          
+   
     def getID(self) -> id:
         return self.__id
     
@@ -47,17 +60,14 @@ class Book(object):
     def setPublishingYear(self, publishingYear: int) -> None:
         self.__publishingYear = publishingYear
 
-    def getEdition(self) -> str:
-        return self.__edition
-
-    def setEdition(self, edition: str) -> None:
-        self.__edition = edition
-
     def getPublisher(self) -> str:
         return self.__publisher
 
     def setPublisher(self, publisher: str) -> None:
         self.__publisher = publisher
+
+    def getRatingColumnValue(self) -> float:
+        return self.__currentRatings
 
     def getRatings(self) -> list:
         return self.__ratings
@@ -92,27 +102,30 @@ class Book(object):
         self.__genre = genre
 
     def getBorrowedDate(self) -> date:
-        return self.__date
+        return self.__borrowedDate
 
     def setBorrowedDate(self, borrowedDate: date) -> None:
         self.__borrowedDate = borrowedDate
+        
+    def getIsBorrowed(self) -> bool:
+        return self.__isBorrowed
+    
+    def setIsBorrowed(self, isGone: bool):
+        self.__isBorrowed = isGone
 
-    def getPicture(self) -> bytearray:
+    def getPicture(self) -> str:
         return self.__picture
 
-    def setPicture(self, picture: bytearray) -> None:
+    def setPicture(self, picture: str) -> None:
         self.__picture = picture
 
     def addToDatabase(self) -> None:
         databaseHandler = DatabaseHandler()
         databaseHandler.parser(f"INSERT INTO books (bookid, title, author, genre, publishingyear, borroweddate, publisher, rating, isborrowed, picture) VALUES ({self.__id}, '{self.__title}', '{self.__author}', '{self.__genre}', {self.__publishingYear}, '{self.__borrowedDate}', '{self.__publisher}', {self.getAverageRating()}, {self.__isBorrowed}, {(self.__picture)});")
+ 
     
 
 
 #book = Book(100, "Rs", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), Binary(bytearray(4)))
 #book.setBorrowed()
 #book.addToDatabase()
-
-    
-
-
