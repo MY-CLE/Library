@@ -38,7 +38,7 @@ class BooksFilter(QFrame):
 
 class BookView(QFrame):
     bookclickedBookView = pyqtSignal(int)
-    def __init__(self, amount, filter=True):
+    def __init__(self, ids, filter=True):
         self.bookCount = 0
         super(QFrame, self).__init__()
         self.setObjectName('bookView')
@@ -53,8 +53,10 @@ class BookView(QFrame):
         self.containerGridLayout.setAlignment(Qt.AlignmentFlag.AlignLeft)
         self.container.setLayout(self.containerGridLayout)
         
-        amount = 10
-        self.loadBooks(amount)
+        if type(ids) is int:
+            ids =  range(1,13)
+            
+        self.loadBooks(ids)
     
         layout = QVBoxLayout()
         if filter:
@@ -63,10 +65,10 @@ class BookView(QFrame):
         layout.addWidget(self.container)
         self.setLayout(layout)
 
-    def loadBooks(self, amount=15):
+    def loadBooks(self, ids: list):
         print('loadbooks in Libview')
-        for i in range(1,amount+1):
-            self.bookLoader.loadBook(i)
+        for id in ids:
+            self.bookLoader.loadBook(id)
             
     def bookRecived(self, bookinfo):
         #print('recive books in Libview')

@@ -5,11 +5,11 @@ from functional.book import Book
 
 class fetchBooks(object):
 
-    def fetchAllBooks(self) -> list:
+    def fetchAllBooks() -> list:
         bookArray = []
         data = db.DatabaseHandler()
-        self.query = f"SELECT bookid FROM books;"
-        array = data.parser(self.query)
+        query = f"SELECT bookid FROM books;"
+        array = data.parser(query)
         for i in array:
             x= int(i[0])
             bookArray.append(x)
