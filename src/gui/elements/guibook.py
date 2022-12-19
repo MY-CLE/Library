@@ -2,26 +2,27 @@ import os
 from PyQt6.QtWidgets import (QVBoxLayout, QWidget, QLabel)
 from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import pyqtSignal
+from functional.book import Book
 
 from gui.windows.detailsWindow import DetailWindow
 class GuiBook(QWidget):
     sendClicked = pyqtSignal(int)
-    def __init__(self, bookinfo):
+    def __init__(self, book: Book): 
         super(QWidget, self).__init__()
-        self.id = bookinfo['bookid']; 
+        self.id = book.getID(); 
         title = QLabel()
         title.setObjectName('bookTitleLable')
 
-        if len(bookinfo['title']) <= 20:
-            title.setText(bookinfo['title'])
+        if len(book.getTitle()) <= 20:
+            title.setText(book.getTitle())
         else:
-            title.setText(bookinfo['title'][:18] + '...')
+            title.setText(book.getTitle()[:18] + '...')
 
-        
-        #if bookinfo['picture']:
-        bookinfo['picture'] = os.path.join(os.path.abspath('src/assets/books/'), f"50_shades_of_grey.jpg")
-        image = QImage(bookinfo['picture'])
-        lable = PictureLabel(image,title, bookinfo['bookid'])
+        if not book.getPicture():
+            book.setPicture('50_shades_of_grey.jpg')
+        imgpath = os.path.join(os.path.abspath('src/assets/books/'), book.getPicture())
+        image = QImage(imgpath)
+        lable = PictureLabel(image,title, book)
         lable.clicked.connect(self.bookClicked)
         lable.setObjectName('bookCoveLable')
 
@@ -45,10 +46,11 @@ class PictureLabel(QLabel):
 
     imgParam = QLabel
     titleParam = QLabel
-    clicked = pyqtSignal(int)
+    clicked = pyqtSignal(Book)
 
-    def __init__(self, image, title, id, parent=None):
+    def __init__(self, image, title, book: Book, parent=None):
         super(PictureLabel, self).__init__(parent)
+        self.book = book
         self.imgParam = image
         self.titleParam = title
         cover = QPixmap(image)
@@ -56,6 +58,6 @@ class PictureLabel(QLabel):
         self.setPixmap(cover)
 
     def mousePressEvent(self, event):
-        self.clicked.emit(id)
+        self.clicked.emit(self.book)
         #self.stats = DetailWindow(self.imgParam, self.titleParam)
         #self.stats.show()
