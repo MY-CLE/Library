@@ -84,7 +84,7 @@ QPushButton#homeBtn {
   border: 2px solid white;
 }
 QPushButton#profilBtn {
-  background-image: url(src/assets/icons/logout_small.peng);
+  background-image: url(src/assets/icons/profile.png);
   background-position: center;
   border: 2px solid white;
 }

@@ -10,7 +10,7 @@ class Header(QFrame):
         self.setFrameShape(QFrame.Shape.NoFrame)
         
         logoLable = QLabel()
-        logo = QPixmap(os.path.abspath('src/assets/logo/hse-library-logo-smaller-removebg-preview.png'))
+        logo = QPixmap(os.path.abspath('src/assets/logo/hse-library-logo-smaller-removebg.png'))
         logo = logo.scaledToHeight(100)
         logoLable.setPixmap(logo)        
         logoLable.setMinimumHeight(100)
