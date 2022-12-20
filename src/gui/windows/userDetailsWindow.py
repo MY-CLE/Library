@@ -30,14 +30,10 @@ class UserDetailsWindow(QFrame):
         self.userDetails.lastLoginUserDetailsOutput.setText(str(self.lastLogin))
         self.userDetails.phonenumberUserDetailsOutput.setText(str(self.phonenumber))
 
-        viewQVlayout = QVBoxLayout()
-        viewQVlayout.addWidget(self.userDetails)
-        viewQVlayout.setContentsMargins(0, 0, 0, 0)
-
         mainQHlayout = QHBoxLayout()
         mainQHlayout.addWidget(self.sidebar)
         mainQHlayout.addWidget(self.userDetails)
-        mainQHlayout.setContentsMargins(0, 100, 0, 30)
+        mainQHlayout.setContentsMargins(0, 100, 10, 30)
 
         self.setLayout(mainQHlayout)
 
