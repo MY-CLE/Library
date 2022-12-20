@@ -1,7 +1,7 @@
 from gui.windows.detailsWindow import DetailWindow
 from gui.windows.landingWindow import LandingWindow
 from gui.windows.loginWindow import LoginWindow
-from PyQt6.QtWidgets import (QMainWindow, QStackedWidget)
+from PyQt6.QtWidgets import (QMainWindow, QStackedWidget, QFrame)
 
 from gui.windows.registerWindow import RegisterWindow
 from functional.book import Book
@@ -23,11 +23,12 @@ class PageSelect(QMainWindow):
         self.pages.addWidget(self.loginWindow)
         self.pages.addWidget(self.registerWindow)
         self.pages.addWidget(self.landingWindow)
+        self.setCentralWidget(self.pages)
         # self.pages.addWidget(self.detailWindow)
 
         # Display the Loginpage as default
         self.pages.setCurrentIndex(2)
-        self.pages.show()
+        #self.pages.show()
 
         # Signals from children
         self.loginWindow.sendUser.connect(self.setUser)
