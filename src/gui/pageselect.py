@@ -38,6 +38,8 @@ class PageSelect(QMainWindow):
         self.registerWindow.pageSwap.connect(self.loginPage)
         # Signal from registerBtn
         self.registerWindow.newUser.connect(self.newUser)
+        # Signal from profilBtn
+        self.landingWindow.UserEmail.connect(self.setUserProfilePage)
         # Singal for Book clicked
         self.landingWindow.bookView.bookclickedBookView.connect(
             self.bookclicked)
@@ -63,9 +65,11 @@ class PageSelect(QMainWindow):
         print('Login Window ' + text)
         self.changeStackedWidget(0)
 
-    def userProfilePage(self, text):
+    def setUserProfilePage(self, email: str):
+        self.userDetailsWindow.setUser(email)
+
+    def userProfilePage(self):
         print('User Profile Window')
-        self.userDetailsWindow.setUserid('Test')
         self.changeStackedWidget(3)
 
     def setUser(self, userid):
