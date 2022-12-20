@@ -10,6 +10,7 @@ class PageSelect(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
         self.userId = None
+        self.email = None
         # initiation of the Windows
         self.setWindowTitle('Library')
         self.loginWindow = LoginWindow(self)#0
@@ -65,21 +66,23 @@ class PageSelect(QMainWindow):
         print('Login Window ' + text)
         self.changeStackedWidget(0)
 
-    def setUserProfilePage(self, email: str):
-        self.userDetailsWindow.setUser(email)
+    def setUserProfilePage(self):
+        self.userDetailsWindow.setUser(self.email)
 
     def userProfilePage(self):
         print('User Profile Window')
         self.changeStackedWidget(3)
 
-    def setUser(self, userid):
-        self.userid = userid
+    def setUser(self, user):
+        self.user = "1"
+        self.email = user.email
+        print(self.email)
         print('main window got signal')
         self.changeStackedWidget(2)
-        self.landingWindow.setUserid(self.userid)
+        self.landingWindow.setUserid(self.user)
 
     def newUser(self, user):
-        print(f"INSERT VALUES{user.password}")
+        self.email = user.email
         print('New User in landingWindow')
         self.landingWindow.setUserid(user.email)
         self.changeStackedWidget(2)
