@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     with open(stylesheet, "r") as file:
         app.setStyleSheet(file.read())
-
+        
     application = PageSelect()
     application.show()
     app.exec()
