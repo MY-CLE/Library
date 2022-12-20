@@ -83,8 +83,8 @@ class Book(object):
     def setGenre(self, genre: str) -> str:
         self.__genre = genre
 
-    def getBorrowedDate(self) -> date:
-        return self.__borrowedDate
+    def getBorrowedDate(self) -> str:
+        return str(self.__borrowedDate)
 
     def setBorrowedDate(self, borrowedDate: date) -> None:
         self.__borrowedDate = borrowedDate
