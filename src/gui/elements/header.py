@@ -1,7 +1,7 @@
 import os
-from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QPushButton, QFrame, QWidget,QLabel, QLineEdit)
-from PyQt6.QtGui import QPixmap, QIcon
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtWidgets import (QHBoxLayout,QVBoxLayout, QFrame,QLabel, QLineEdit)
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import Qt
 class Header(QFrame):
     def __init__(self):
         super(QFrame, self).__init__()
@@ -10,7 +10,7 @@ class Header(QFrame):
         self.setFrameShape(QFrame.Shape.NoFrame)
         
         logoLable = QLabel()
-        logo = QPixmap(os.path.abspath('src/assets/logo/hse-library-logo-smaller-removebg-preview.png'))
+        logo = QPixmap(os.path.abspath('src/assets/logo/hse-library-logo-smaller-removebg.png'))
         logo = logo.scaledToHeight(100)
         logoLable.setPixmap(logo)        
         logoLable.setMinimumHeight(100)

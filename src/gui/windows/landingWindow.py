@@ -3,7 +3,8 @@ from PyQt6.QtCore import QSize, pyqtSignal
 from gui.elements.bookView import BookView
 from gui.elements.header import Header
 from gui.elements.generalSidebar import SideBar
-from database.fetchAllBookIds import fetchBooks
+from database.dbfunctions import fetchAllBookIds
+
 
 class LandingWindow(QFrame):
     UserProfile = pyqtSignal(str)
@@ -15,12 +16,9 @@ class LandingWindow(QFrame):
         self.setObjectName("landingWindow")
         self.setFrameShape(QFrame.Shape.NoFrame)
         self.setLineWidth(0)
-        #self.setContentsMargins(0,0,0,0)
 
         self.header = Header()
-        fb = fetchBooks
-        
-        self.bookView = BookView(fb.fetchAllBooks())
+        self.bookView = BookView(fetchAllBookIds())
         self.sidebar = SideBar()
         viewQVlayout = QVBoxLayout()
 
