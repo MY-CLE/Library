@@ -10,6 +10,7 @@ class PageSelect(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
         self.userId = None
+        self.email = None
         # initiation of the Windows
         self.setWindowTitle('Library')
         self.loginWindow = LoginWindow(self)#0
@@ -38,6 +39,8 @@ class PageSelect(QMainWindow):
         self.registerWindow.pageSwap.connect(self.loginPage)
         # Signal from registerBtn
         self.registerWindow.newUser.connect(self.newUser)
+        # Signal from profilBtn
+        self.landingWindow.UserEmail.connect(self.userProfilePage)
         # Singal for Book clicked
         self.landingWindow.bookView.bookclickedBookView.connect(
             self.bookclicked)
@@ -63,19 +66,21 @@ class PageSelect(QMainWindow):
         print('Login Window ' + text)
         self.changeStackedWidget(0)
 
-    def userProfilePage(self, text):
+    def userProfilePage(self):
         print('User Profile Window')
-        self.userDetailsWindow.setUserid('Test')
+        self.userDetailsWindow.setUser(self.email)
         self.changeStackedWidget(3)
 
-    def setUser(self, userid):
-        self.userid = userid
+    def setUser(self, user):
+        self.user = "1"
+        self.email = user.email
+        print(self.email)
         print('main window got signal')
         self.changeStackedWidget(2)
-        self.landingWindow.setUserid(self.userid)
+        self.landingWindow.setUserid(self.user)
 
     def newUser(self, user):
-        print(f"INSERT VALUES{user.password}")
+        self.email = user.email
         print('New User in landingWindow')
         self.landingWindow.setUserid(user.email)
         self.changeStackedWidget(2)
@@ -84,11 +89,13 @@ class PageSelect(QMainWindow):
         self.pages.setCurrentIndex(index)
 
     def bookclicked(self, book: Book):
-        self.detailWindow = BookDetailsWindow(book)#4
-        self.pages.addWidget(self.detailWindow)
-        self.detailWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
-        self.detailWindow.sidebar.logoutBtn.clicked.connect(self.logout)
-        self.detailWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+        self.bookDetailsWindow = BookDetailsWindow(book)#4
+
+        self.pages.addWidget(self.bookDetailsWindow)
+        self.bookDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
+        self.bookDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
+        self.bookDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+
         self.changeStackedWidget(4)
 
     def returnHome(self):

@@ -4,7 +4,7 @@ from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
 from database.dbfunctions import userLogin
-
+from functional.account import Account
 # This Class displays a login page from which the user can login to his account
 # It contains 2 Text Inputs and one login button, the forgotten password lable is purly for visual
 # after the LoginBtn is pressed a function is  called which comunicates with the DB and returns a value
@@ -12,7 +12,7 @@ from database.dbfunctions import userLogin
 
 class LoginWindow(QFrame):
     
-    sendUser = pyqtSignal(int)
+    sendUser = pyqtSignal(Account)
     pageSwap = pyqtSignal(str)
 
     def __init__(self, parent=None):
@@ -127,10 +127,11 @@ class LoginWindow(QFrame):
     #this is a signal fierd by the loginBtnPressed
     def loginBtnPressed(self, email: str, pwd: str):
             if self.validateInput(email, pwd):
-                newuserid = userLogin(email, pwd)
+                newUser = Account('','','',email, pwd, pwd)
+                newuserid = userLogin(newUser)
                 print(newuserid)
                 if newuserid >= 0:
-                    self.sendUser.emit(newuserid)
+                    self.sendUser.emit(newUser)
                     self.emailTextInput.setText('')
                     self.passwordTextInput.setText('')
 
