@@ -7,9 +7,8 @@ from functional.account import Account
 def userLogin(user) -> bool:
     return DatabaseHandler().parser(f"SELECT login('{user.email}','{user.password}')")[0][0]
    
-def registerUser(email, pwd, firstname, lastname, phonenumber):
-    #TODO
-    print(email, pwd, firstname, lastname, phonenumber)
+def registerUser(user):
+    DatabaseHandler().insert(f"INSERT INTO credentials (firstname, lastname, phonenumber, email, password) VALUES ('{user.firstname}','{user.lastname}','{user.phonenumber}','{user.email}','{user.password}');")
 
 def getUser(email: str):
     try:
@@ -27,7 +26,7 @@ def fetchAllBookIds() -> list:
     return DatabaseHandler().parser(f"SELECT bookid FROM books;")[0][0]
            
 def addToDatabase(book:Book) -> None:
-    DatabaseHandler().parser(f"INSERT INTO books (bookid, title, author, genre, publishingyear, borroweddate, publisher, rating, isborrowed, picture) VALUES ({book.getID()}, '{book.getTitle()}', '{book.getAuthor()}', '{book.getGenre()}', {book.getPublishingYear()}, '{book.getBorrowedDate()}', '{book.getPublisher()}', {book.getAverageRating()}, {book.getIsBorrowed()}, '{book.getPicture()}');")
+    DatabaseHandler().insert(f"INSERT INTO books (bookid, title, author, genre, publishingyear, borroweddate, publisher, rating, isborrowed, picture) VALUES ({book.getID()}, '{book.getTitle()}', '{book.getAuthor()}', '{book.getGenre()}', {book.getPublishingYear()}, '{book.getBorrowedDate()}', '{book.getPublisher()}', {book.getAverageRating()}, {book.getIsBorrowed()}, '{book.getPicture()}');")
  
 def updateBorrowedTable(borrowedId:int, userId:int, book:Book) -> None:
     query = f"INSERT INTO isborrowed (borrowedid, bookid, userid, booktitle) VALUES ({borrowedId}, {book.getID()}, {userId}, '{book.getTitle()}');"
