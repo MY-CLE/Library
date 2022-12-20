@@ -45,5 +45,4 @@ class UserDetailsSidebar(QFrame):
         
         mainHoriLayout = QHBoxLayout()
         mainHoriLayout.addLayout(self.btnVLayout)
-        mainHoriLayout.setContentsMargins(0,0,0,0)
         self.setLayout(mainHoriLayout)
