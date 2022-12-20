@@ -12,11 +12,10 @@ class PageSelect(QMainWindow):
         self.userId = None
         # initiation of the Windows
         self.setWindowTitle('Library')
-        self.loginWindow = LoginWindow(self)
-        self.registerWindow = RegisterWindow(self)
-        self.landingWindow = LandingWindow(self)
-        #self.bookDetailsWindow = BookDetailsWindow(self)
-        self.userDetailsWindow = UserDetailsWindow(self)
+        self.loginWindow = LoginWindow(self)#0
+        self.registerWindow = RegisterWindow(self)#1
+        self.landingWindow = LandingWindow(self)#2
+        self.userDetailsWindow = UserDetailsWindow(self)#3
 
         # Add them to custom Stacked Widget
         self.pages = QStackedWidget()
@@ -44,15 +43,13 @@ class PageSelect(QMainWindow):
             self.bookclicked)
         # Signals for home button clicked
         self.landingWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
-        self.bookDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.userDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         #Signals for logoutbtn clicked
         self.landingWindow.sidebar.logoutBtn.clicked.connect(self.logout)
-        self.bookDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.userDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         #Signal for User Profile Page
         self.landingWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
-        self.bookDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+
 
         #Signal for filling user Profile Page
         #self.userDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
@@ -69,7 +66,7 @@ class PageSelect(QMainWindow):
     def userProfilePage(self, text):
         print('User Profile Window')
         self.userDetailsWindow.setUserid('Test')
-        self.changeStackedWidget(4)
+        self.changeStackedWidget(3)
 
     def setUser(self, userid):
         self.userid = userid
@@ -87,11 +84,12 @@ class PageSelect(QMainWindow):
         self.pages.setCurrentIndex(index)
 
     def bookclicked(self, book: Book):
-        self.detailWindow = DetailWindow(book)
+        self.detailWindow = BookDetailsWindow(book)#4
         self.pages.addWidget(self.detailWindow)
         self.detailWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.detailWindow.sidebar.logoutBtn.clicked.connect(self.logout)
-        self.changeStackedWidget(3)
+        self.detailWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+        self.changeStackedWidget(4)
 
     def returnHome(self):
         self.changeStackedWidget(2)
