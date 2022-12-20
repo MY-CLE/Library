@@ -6,14 +6,15 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QImage
 
 from database.dbfunctions import fetchBook
+from functional.book import Book
 
 
 class DetailsView(QFrame):
-    def __init__(self, bookId):
+    def __init__(self, book):
         super(QFrame, self).__init__()
         self.setObjectName('libraryView')
-        self.bookView = BookView(bookId)
-        self.titleView = TitleView(bookId)
+        self.bookView = BookView(book)
+        self.titleView = TitleView(book)
         mainVertLayout = QVBoxLayout()
         HoriLayout = QHBoxLayout()
         HoriLayout.addWidget(self.bookView)
@@ -23,10 +24,8 @@ class DetailsView(QFrame):
 
 
 class TitleView(QFrame):
-    def __init__(self, bookId):
+    def __init__(self, book: Book):
         super(QFrame, self).__init__()
-
-        book = fetchBook(bookId)
         title = QLabel()
         title.setText(book.getTitle())
         title.setObjectName('titleView')
@@ -37,7 +36,7 @@ class TitleView(QFrame):
 
 
 class BookView(QFrame):
-    def __init__(self, bookId):
+    def __init__(self, book: Book):
         super(QFrame, self).__init__()
         self.setObjectName('bookView')
         self.container = QWidget()
@@ -56,8 +55,6 @@ class BookView(QFrame):
         self.textContainerHoriLayout = QHBoxLayout()
         # self.textContainerHoriLayout.setAlignment(
         # Qt.AlignmentFlag.AlignHCenter)
-
-        book = fetchBook(bookId)
 
         bookTitle = QLabel()
         bookTitle.setText(book.getTitle())

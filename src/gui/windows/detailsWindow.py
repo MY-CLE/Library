@@ -7,16 +7,16 @@ from gui.elements.sidebar import SideBar
 
 
 class DetailWindow(QFrame):
-    def __init__(self, bookNo, parent=None):
+    def __init__(self, book, parent=None):
         super(QFrame, self).__init__()
-        self.bookNo = bookNo
+        self.book = book
         self.setWindowTitle("Details")
         self.setMinimumSize(QSize(1080, 720))
         self.setObjectName("detailsWindow")
 
         self.sidebar = SideBar()
         self.header = Header()
-        self.details = DetailsView(bookNo)
+        self.details = DetailsView(book)
         viewQVlayout = QVBoxLayout()
         viewQVlayout.addWidget(self.header)
         viewQVlayout.addWidget(self.details)
