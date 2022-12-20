@@ -8,7 +8,7 @@ from gui.windows.detailsWindow import DetailWindow
 
 
 class GuiBook(QWidget):
-    sendClicked = pyqtSignal(int)
+    sendClicked = pyqtSignal(Book)
 
     def __init__(self, book: Book):
         super(QWidget, self).__init__()
@@ -47,16 +47,16 @@ class GuiBook(QWidget):
 
 class PictureLabel(QLabel):
 
-    clicked = pyqtSignal(int)
+    clicked = pyqtSignal(Book)
 
     def __init__(self, image, book: Book, parent=None):
         super(PictureLabel, self).__init__(parent)
-        self.bookID = book.getID()
+        self.book = book
         cover = QPixmap(image)
         cover = cover.scaledToHeight(200)
         self.setPixmap(cover)
 
     def mousePressEvent(self, event):
-        self.clicked.emit(self.bookID)
+        self.clicked.emit(self.book)
         #self.stats = DetailWindow(self.imgParam, self.titleParam)
         # self.stats.show()

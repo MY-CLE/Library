@@ -1,6 +1,7 @@
 from gui.helper.loadImgDB import Bookloader
 from gui.elements.guibook import GuiBook
 from PyQt6.QtCore import Qt, pyqtSignal
+from functional.book import Book
 from PyQt6.QtWidgets import (
     QHBoxLayout, QFrame, QWidget, QGridLayout, QVBoxLayout, QPushButton)
 import sys
@@ -37,7 +38,7 @@ class BooksFilter(QFrame):
 
 
 class BookView(QFrame):
-    bookclickedBookView = pyqtSignal(int)
+    bookclickedBookView = pyqtSignal(Book)
 
     def __init__(self, ids, filter=True):
         self.bookCount = 0
@@ -71,14 +72,14 @@ class BookView(QFrame):
         for id in ids:
             self.bookLoader.loadBook(id)
 
-    def bookRecived(self, bookinfo):
+    def bookRecived(self, book):
         #print('recive books in Libview')
-        self.book = GuiBook(bookinfo)
+        self.book = GuiBook(book)
         self.book.sendClicked.connect(self.sendClickedBookview)
         self.bookCount = self.containerGridLayout.count()
         print(int(self.bookCount/6), self.bookCount % 6)
         self.containerGridLayout.addWidget(
             self.book, int(self.bookCount/6), self.bookCount % 6)
 
-    def sendClickedBookview(self, bookNo):
-        self.bookclickedBookView.emit(bookNo)
+    def sendClickedBookview(self, book: Book):
+        self.bookclickedBookView.emit(book)

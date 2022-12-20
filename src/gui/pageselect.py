@@ -4,6 +4,7 @@ from gui.windows.loginWindow import LoginWindow
 from PyQt6.QtWidgets import (QMainWindow, QStackedWidget)
 
 from gui.windows.registerWindow import RegisterWindow
+from functional.book import Book
 
 
 class PageSelect(QMainWindow):
@@ -70,8 +71,8 @@ class PageSelect(QMainWindow):
     def changeStackedWidget(self, index):
         self.pages.setCurrentIndex(index)
 
-    def bookclicked(self, index):
-        self.detailWindow = DetailWindow(index)
+    def bookclicked(self, book: Book):
+        self.detailWindow = DetailWindow(book)
         self.pages.addWidget(self.detailWindow)
         self.changeStackedWidget(3)
 
