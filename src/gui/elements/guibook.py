@@ -4,7 +4,7 @@ from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import pyqtSignal
 from functional.book import Book
 
-from GUI.windows.detailsWindow import DetailWindow
+from gui.windows.detailsWindow import DetailWindow
 
 
 class GuiBook(QWidget):
