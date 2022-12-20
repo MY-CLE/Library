@@ -4,8 +4,8 @@ from database.dbconnect import DatabaseHandler
 from functional.book import Book
 from functional.account import Account
 
-def userLogin(email, pwd) -> bool:
-    return DatabaseHandler().parser(f"SELECT login('{email}','{pwd}')")[0][0]
+def userLogin(user) -> bool:
+    return DatabaseHandler().parser(f"SELECT login('{user.email}','{user.password}')")[0][0]
    
 def registerUser(email, pwd, firstname, lastname, phonenumber):
     #TODO

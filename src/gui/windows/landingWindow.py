@@ -27,7 +27,7 @@ class LandingWindow(QFrame):
         viewQVlayout.addStretch()
         viewQVlayout.setContentsMargins(0, 0, 0, 0)
 
-        self.sidebar.profileBtn.clicked.connect(lambda: self.userProfileSwap("f@p.de"))
+        self.sidebar.profileBtn.clicked.connect(lambda: self.userProfileSwap("swap"))
 
         mainQHlayout = QHBoxLayout()
         mainQHlayout.addWidget(self.sidebar)
