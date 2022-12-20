@@ -1,6 +1,6 @@
 
 class Account(object):
-    def __init__(self, firstname: str, lastname: str, phonenumber: int , email:str, password: str, cpassword: str):
+    def __init__(self, firstname: str, lastname: str, phonenumber: int , email:str, password: str = '123', cpassword: str = '123'):
         self.__firstname = firstname
         self.__lastname = lastname
         self.__phonenumber = phonenumber
@@ -59,15 +59,3 @@ class Account(object):
     @property
     def password_match(self) -> bool:
         return self.__password == self.__cpassword
-
-    """ @password_match.setter
-    def password_match(self, password: str, cpassword: str):
-        if password == cpassword:
-            self.__password = password
-            self.__cpassword = cpassword
-        else:
-            raise ValueError("Passwords do not match") """
-
-a = Account("Enrico","","","","","")
-a.firstname = "Luis"
-print(a.firstname)

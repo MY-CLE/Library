@@ -7,11 +7,12 @@ from gui.elements.userDetailsHeader import UserDetailsHeader
 from gui.elements.userDetailsSidebar import UserDetailsSidebar
 from gui.elements.userDetailsView import UserDetailsView
 
+from database.dbfunctions import getUser
 class UserDetailsWindow(QFrame):
 
     def __init__(self, parent=None):
         super(QFrame, self).__init__(parent)
-        self.firstanme = None
+        self.firstname = None
         self.lastname = None
         self.email = None
         self.lastLogin = None
@@ -25,11 +26,6 @@ class UserDetailsWindow(QFrame):
         self.sidebar = UserDetailsSidebar()
         self.userDetails = UserDetailsView()
 
-        #self.userDetails.firstnameUserDetailsOutput.setText(str(self.firstanme))
-        self.userDetails.lastnameUserDetailsOutput.setText(str(self.lastname))
-        self.userDetails.emailUserDetailsOutput.setText(str(self.email))
-        self.userDetails.lastLoginUserDetailsOutput.setText(str(self.lastLogin))
-        self.userDetails.phonenumberUserDetailsOutput.setText(str(self.phonenumber))
 
 
         mainQHlayout = QHBoxLayout()
@@ -45,6 +41,19 @@ class UserDetailsWindow(QFrame):
 
         self.setLayout(viewQVlayout)
 
-    def setUserid(self, id):
-        self.firstname = id
-        self.userDetails.firstnameUserDetailsOutput.setText(str(self.firstanme))
+    def setUser(self, email: str):
+        currentUser = getUser(email)
+        if (currentUser):
+            self.firstname = currentUser.firstname
+            self.lastname = currentUser.lastname
+            self.email = currentUser.email
+            self.phonenumber = currentUser.phonenumber
+            
+            self.setDetails()
+
+    def setDetails(self):
+        self.userDetails.firstnameUserDetailsOutput.setText(str(self.firstname))
+        self.userDetails.lastnameUserDetailsOutput.setText(str(self.lastname))
+        self.userDetails.emailUserDetailsOutput.setText(str(self.email))
+        self.userDetails.lastLoginUserDetailsOutput.setText(str(self.lastLogin))
+        self.userDetails.phonenumberUserDetailsOutput.setText(str(self.phonenumber))

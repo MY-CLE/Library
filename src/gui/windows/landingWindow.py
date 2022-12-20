@@ -7,7 +7,7 @@ from database.dbfunctions import fetchAllBookIds
 
 
 class LandingWindow(QFrame):
-    UserProfile = pyqtSignal(str)
+    UserEmail = pyqtSignal(str)
     def __init__(self, parent=None):
         super(QFrame, self).__init__()
         self.userid = None
@@ -27,7 +27,7 @@ class LandingWindow(QFrame):
         viewQVlayout.addStretch()
         viewQVlayout.setContentsMargins(0, 0, 0, 0)
 
-        self.sidebar.profileBtn.clicked.connect(lambda: self.userProfileSwap("1"))
+        self.sidebar.profileBtn.clicked.connect(lambda: self.userProfileSwap("swap"))
 
         mainQHlayout = QHBoxLayout()
         mainQHlayout.addWidget(self.sidebar)
@@ -39,5 +39,5 @@ class LandingWindow(QFrame):
     def setUserid(self, id):
         self.userid = id
     
-    def userProfileSwap(self,text):
-        self.UserProfile.emit(text)
+    def userProfileSwap(self, email: str):
+        self.UserEmail.emit(email)
