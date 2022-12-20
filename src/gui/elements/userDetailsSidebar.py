@@ -28,21 +28,22 @@ class UserDetailsSidebar(QFrame):
         self.logoutBtn.setObjectName('logoutBtn')
         
         
-        btnLs = [self.profileBtn, self.homeBtn, 'Stretch', self.logoutBtn, self.settingsBtn]
-        for index, widget in enumerate(btnLs):
-            if index == 2:
-                self.btnVLayout.addStretch()
-                continue
-            widget.setFixedSize(60,60)
-            self.btnVLayout.addWidget(widget)
-            if index == len(btnLs)-1:
-                continue
-            self.btnVLayout.addSpacing(30)
-            
+        self.btnVLayout.addWidget(self.profileBtn)
+        self.btnVLayout.addWidget(self.homeBtn)
+        self.btnVLayout.addStretch()
+        self.btnVLayout.addWidget(self.logoutBtn)
+        self.btnVLayout.addWidget(self.settingsBtn)
+        self.btnVLayout.addSpacing(30)
 
+        btnLs = [self.profileBtn, self.homeBtn, self.logoutBtn, self.settingsBtn]
+
+        for index, widget in enumerate(btnLs):
+            widget.setFixedSize(60,60)
+            
         
         #self.btnVLayout.addWidget(self.settingsBtn)
         
         mainHoriLayout = QHBoxLayout()
         mainHoriLayout.addLayout(self.btnVLayout)
+        mainHoriLayout.setContentsMargins(0,0,0,0)
         self.setLayout(mainHoriLayout)
