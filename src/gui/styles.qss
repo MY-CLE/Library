@@ -96,6 +96,11 @@ QPushButton#homeBtn {
   background-position: center;
   border: 2px solid white;
 }
+QPushButton#profilBtn {
+  background-image: url(src/assets/icons/profile.png);
+  background-position: center;
+  border: 2px solid white;
+}
 QPushButton#addBookBtn {
   background-image: url(src/assets/icons/save-for-later.png);
   background-position: center;
@@ -223,8 +228,14 @@ QLabel#boxDescription {
   font-weight: bold;
 }
 QLabel#details {
-  font-size: 10px;
+  font-size: 20px;
   color: black;
+  font-weight: bold;
+}
+QLabel#titleView {
+  font-size: 40px;
+  color: black;
+  font-weight: bold;
 }
 
 QLabel#transparentUserDetails {

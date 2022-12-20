@@ -2,9 +2,9 @@
 import sys
 from time import sleep
 sys.path.insert(0, "src//")
-from database.fetchCertainBook import fetchCertainBook
 from PyQt6.QtCore import pyqtSignal, QRunnable, QObject, QThreadPool
 from functional.book import Book
+from database.dbfunctions import fetchBook
 
 class LoadBook(QRunnable):
     def __init__(self, bookNo):
@@ -13,9 +13,7 @@ class LoadBook(QRunnable):
         self.signals = LoadBookSignals()
 
     def run(self):
-        #print(f'in Load book {self.bookNo}')
-        bookfetcher = fetchCertainBook()
-        book = bookfetcher.fetchCertainBook(self.bookNo)
+        book = fetchBook(self.bookNo)
         self.signals.returnBook.emit(book)
         
 class  LoadBookSignals(QObject):
