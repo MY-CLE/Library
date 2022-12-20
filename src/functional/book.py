@@ -22,20 +22,8 @@ class Book(object):
         self.__genre = genre
         self.__borrowedDate = borrowedDate
         self.__picture = picture
-    
-    def printEverything(self):
-        print(self.getID())
-        print(self.getTitle())
-        print(self.getAuthor())
-        print(self.getGenre())
-        print(self.getPublishingYear())
-        print(self.getBorrowedDate())
-        print(self.getPublisher())
-        print(self.getRatingColumnValue())
-        print(self.getIsBorrowed())
-        print(self.getPicture())
+        
           
-   
     def getID(self) -> id:
         return self.__id
     
@@ -88,12 +76,6 @@ class Book(object):
 
     def isBorrowed(self) -> bool:
         return self.__isBorrowed
-    
-    def setBorrowed(self) -> None:
-        self.__isBorrowed = True
-    
-    def setUnBorrowed(self) -> None:
-        self.__isBorrowed = False
 
     def getGenre(self) -> str:
         return self.__genre
@@ -110,8 +92,8 @@ class Book(object):
     def getIsBorrowed(self) -> bool:
         return self.__isBorrowed
     
-    def setIsBorrowed(self, isGone: bool):
-        self.__isBorrowed = isGone
+    def seBorrowedStatus(self, newBorrowedStatus: bool):
+        self.__isBorrowed = newBorrowedStatus
 
     def getPicture(self) -> str:
         return self.__picture
@@ -122,6 +104,9 @@ class Book(object):
     def addToDatabase(self) -> None:
         databaseHandler = DatabaseHandler()
         databaseHandler.parser(f"INSERT INTO books (bookid, title, author, genre, publishingyear, borroweddate, publisher, rating, isborrowed, picture) VALUES ({self.__id}, '{self.__title}', '{self.__author}', '{self.__genre}', {self.__publishingYear}, '{self.__borrowedDate}', '{self.__publisher}', {self.getAverageRating()}, {self.__isBorrowed}, {(self.__picture)});")
+
+    def __str__(self) -> str:
+        return str(self.getID()) + " " + str(self.getTitle()) + " " + str(self.getAuthor()) + " " +str(self.getGenre()) + " " +str(self.getPublishingYear()) + " " +str(self.getBorrowedDate()) + " " +str(self.getRatingColumnValue()) + " " +str(self.getIsBorrowed()) +" " + str(self.getPicture())
  
     
 
@@ -129,3 +114,4 @@ class Book(object):
 #book = Book(100, "Rs", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), Binary(bytearray(4)))
 #book.setBorrowed()
 #book.addToDatabase()
+print(str(date(2022, 12, 13)))
