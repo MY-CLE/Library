@@ -1,5 +1,8 @@
-from .dbconnect import DatabaseHandler
+import sys
+sys.path.insert(0, "src//")
+from dbconnect import DatabaseHandler
 from functional.book import Book
+from datetime import datetime
 
 def userLogin(email, pwd) -> bool:
     return DatabaseHandler().parser(f"SELECT login('{email}','{pwd}')")[0][0]
@@ -20,6 +23,15 @@ def addToDatabase(book:Book) -> None:
 def updateBorrowedTable(borrowedId:int, userId:int, book:Book) -> None:
     query = f"INSERT INTO isborrowed (borrowedid, bookid, userid, booktitle) VALUES ({borrowedId}, {book.getID()}, {userId}, '{book.getTitle()}');"
     DatabaseHandler().insert(query)
+
+#add opposite borrowed status of book and current timestamp as borrowed date to db.
+def changeBorrowedStatus(book: Book) -> None:
+    update = f"UPDATE books SET isborrowed={not book.getIsBorrowed()},borroweddate=current_timestamp WHERE bookid={book.getID()}"
+    DatabaseHandler().insert(update)
     
 def updateBooksTable() -> None:
     DatabaseHandler()
+
+
+test = fetchBook(1)
+changeBorrowedStatus(test)
