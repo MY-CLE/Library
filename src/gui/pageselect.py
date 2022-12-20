@@ -64,7 +64,8 @@ class PageSelect(QMainWindow):
         self.changeStackedWidget(0)
 
     def userProfilePage(self, text):
-        print('User Profile Window' + text)
+        print('User Profile Window')
+        self.userDetailsWindow.setUserid('Test')
         self.changeStackedWidget(4)
 
     def setUser(self, userid):

@@ -8,8 +8,6 @@ from gui.elements.userDetailsView import UserDetailsView
 
 class UserDetailsWindow(QFrame):
 
-    userDetails = pyqtSignal(str)
-
     def __init__(self, parent=None):
         super(QFrame, self).__init__(parent)
         self.firstanme = None
@@ -26,9 +24,9 @@ class UserDetailsWindow(QFrame):
         self.sidebar = UserDetailsSidebar()
         self.userDetails = UserDetailsView()
 
-        self.userDetails.firstnameUserDetailsOutput.setText(self.firstanme)
-        self.userDetails.lastnameUserDetailsOutput.setText(self.lastname)
-        self.userDetails.emailUserDetailsOutput.setText(self.email)
+        #self.userDetails.firstnameUserDetailsOutput.setText(str(self.firstanme))
+        self.userDetails.lastnameUserDetailsOutput.setText(str(self.lastname))
+        self.userDetails.emailUserDetailsOutput.setText(str(self.email))
         self.userDetails.lastLoginUserDetailsOutput.setText(str(self.lastLogin))
         self.userDetails.phonenumberUserDetailsOutput.setText(str(self.phonenumber))
 
@@ -41,4 +39,8 @@ class UserDetailsWindow(QFrame):
         mainQHlayout.addWidget(self.userDetails)
         mainQHlayout.setContentsMargins(0, 100, 0, 30)
 
-        self.setLayout(mainQHlayout) 
+        self.setLayout(mainQHlayout)
+
+    def setUserid(self, id):
+        self.firstname = id
+        self.userDetails.firstnameUserDetailsOutput.setText(str(self.firstanme))
