@@ -38,6 +38,10 @@ QFrame#detailsWindow {
   background: rgba(20, 31, 38, 0.8);
 }
 
+QFrame#userDetailsWindow {
+  background: rgba(20, 31, 38, 0.8);
+}
+
 QFrame#loginWindow {
   background: rgba(20, 31, 38, 0.8);
 }
@@ -75,6 +79,15 @@ QWidget#bookViewContainer {
   border-bottom-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  background-color: white;
+}
+QWidget#userDetailsViewContainer {
+  /* border: 2px solid black; */
+  background-color: white;
+}
+QWidget#userDetailsViewContainerInner {
+  /* border: 2px solid black; */
+  border-radius: 10px;
   background-color: white;
 }
 
@@ -176,6 +189,14 @@ QPushButton#genreBtn {
   padding-bottom: 5px;
 }
 
+QPushButton#profileLabelBtn {
+  /* border-image: url(src/assets/icons/no_profile_pic.png); */
+  background-position: left;
+  background: #1b3c44;
+  border: 2px solid white;
+  border-radius: 30px;
+}
+
 QLabel#bookTitleLable {
   font-size: 14px;
   color: black;
@@ -209,10 +230,30 @@ QLabel#boxDescription {
 QLabel#details {
   font-size: 20px;
   color: black;
-  font-weight:bold;
+  font-weight: bold;
 }
 QLabel#titleView {
   font-size: 40px;
   color: black;
   font-weight: bold;
+}
+
+QLabel#transparentUserDetails {
+  font-size: 20px;
+  font: bold;
+  color: black;
+  background-color: transparent;
+}
+
+QLabel#transparentUserDetailsOutput {
+  font-size: 12px;
+  color: black;
+  background-color: transparent;
+}
+
+QLabel#userDetailsTitle {
+  font-size: 20px;
+  font: bold;
+  color: white;
+  background-color: transparent;
 }

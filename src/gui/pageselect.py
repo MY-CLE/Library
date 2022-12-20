@@ -1,33 +1,33 @@
-from gui.windows.detailsWindow import DetailWindow
+from gui.windows.bookDetailsWindow import BookDetailsWindow
 from gui.windows.landingWindow import LandingWindow
 from gui.windows.loginWindow import LoginWindow
 from PyQt6.QtWidgets import (QMainWindow, QStackedWidget, QFrame)
 
 from gui.windows.registerWindow import RegisterWindow
 from functional.book import Book
-
-
+from gui.windows.userDetailsWindow import UserDetailsWindow
 class PageSelect(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
         self.userId = None
-        # initiation of Widows
-        self.setWindowTitle('Liberary')
-        self.loginWindow = LoginWindow(self)
-        self.registerWindow = RegisterWindow(self)
-        self.landingWindow = LandingWindow(self)
-        #self.detailWindow = DetailWindow(self)
+        # initiation of the Windows
+        self.setWindowTitle('Library')
+        self.loginWindow = LoginWindow(self)#0
+        self.registerWindow = RegisterWindow(self)#1
+        self.landingWindow = LandingWindow(self)#2
+        self.userDetailsWindow = UserDetailsWindow(self)#3
 
-        # Add them to ustom Stacked Widget
+        # Add them to custom Stacked Widget
         self.pages = QStackedWidget()
         self.pages.addWidget(self.loginWindow)
         self.pages.addWidget(self.registerWindow)
         self.pages.addWidget(self.landingWindow)
+        self.pages.addWidget(self.userDetailsWindow)
         self.setCentralWidget(self.pages)
-        # self.pages.addWidget(self.detailWindow)
+        # self.pages.addWidget(self.bookDetailsWindow)
 
         # Display the Loginpage as default
-        self.pages.setCurrentIndex(2)
+        self.pages.setCurrentIndex(0)
         #self.pages.show()
 
         # Signals from children
@@ -43,11 +43,17 @@ class PageSelect(QMainWindow):
             self.bookclicked)
         # Signals for home button clicked
         self.landingWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
-        # self.detailWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
-        # Signals for logoutbtn clicked
-
+        self.userDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
+        #Signals for logoutbtn clicked
         self.landingWindow.sidebar.logoutBtn.clicked.connect(self.logout)
-        # self.detailWindow.sidebar.logoutBtn.clicked.connect(self.logout)
+        self.userDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
+        #Signal for User Profile Page
+        self.landingWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+
+
+        #Signal for filling user Profile Page
+        #self.userDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+
 
     def registrationPage(self, text):
         print('Registration Window ' + text)
@@ -56,6 +62,11 @@ class PageSelect(QMainWindow):
     def loginPage(self, text):
         print('Login Window ' + text)
         self.changeStackedWidget(0)
+
+    def userProfilePage(self, text):
+        print('User Profile Window')
+        self.userDetailsWindow.setUserid('Test')
+        self.changeStackedWidget(3)
 
     def setUser(self, userid):
         self.userid = userid
@@ -73,11 +84,12 @@ class PageSelect(QMainWindow):
         self.pages.setCurrentIndex(index)
 
     def bookclicked(self, book: Book):
-        self.detailWindow = DetailWindow(book)
+        self.detailWindow = BookDetailsWindow(book)#4
         self.pages.addWidget(self.detailWindow)
         self.detailWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.detailWindow.sidebar.logoutBtn.clicked.connect(self.logout)
-        self.changeStackedWidget(3)
+        self.detailWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+        self.changeStackedWidget(4)
 
     def returnHome(self):
         self.changeStackedWidget(2)

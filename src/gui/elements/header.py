@@ -19,6 +19,7 @@ class Header(QFrame):
         logoLayout.addStretch()
         logoLayout.addWidget(logoLable)
         logoLayout.addStretch()
+
         
         searchTextInput = QLineEdit()
         searchTextInput.setPlaceholderText("Search")
@@ -28,6 +29,7 @@ class Header(QFrame):
         searchTextInput.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         
         vertLayout = QVBoxLayout()
+        """ vertLayout.addLayout(containerLayout) """
         vertLayout.addLayout(logoLayout)
         vertLayout.addWidget(searchTextInput)
         self.setLayout(vertLayout)
