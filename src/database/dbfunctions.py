@@ -1,5 +1,6 @@
-from .dbconnect import DatabaseHandler
+from dbconnect import DatabaseHandler
 from functional.book import Book
+from datetime import date
 
 def userLogin(email, pwd) -> bool:
     return DatabaseHandler().parser(f"SELECT login('{email}','{pwd}')")[0][0]
@@ -29,4 +30,6 @@ def updateBooksTable() -> None:
     DatabaseHandler()
 
 
-book = Book(6, "Faust", "Goethe", "Tragödie", 1999, )
+book = Book(3, "Faust", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), False , "mein/path/stinkt")
+#insertBorrowedTable(1, 1, book)
+removeBorrowedTable(1)
