@@ -35,3 +35,4 @@ def updateBooksTable() -> None:
 
 test = fetchBook(1)
 changeBorrowedStatus(test)
+print(test)
