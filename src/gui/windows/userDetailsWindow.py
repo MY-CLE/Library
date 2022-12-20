@@ -36,7 +36,7 @@ class UserDetailsWindow(QFrame):
         mainQHlayout.addWidget(self.sidebar)
         mainQHlayout.addWidget(self.userDetails)
         mainQHlayout.setSpacing(0)
-        mainQHlayout.setContentsMargins(0, 20, 0, 30)
+        mainQHlayout.setContentsMargins(0, 20, 0, 0)
 
         viewQVlayout = QVBoxLayout()
         viewQVlayout.addWidget(self.header)
