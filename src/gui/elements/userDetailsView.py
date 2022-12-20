@@ -18,58 +18,55 @@ class UserDetailsView(QFrame):
         #self.container.setBaseSize(600,600)
 
         self.labelContainer = QWidget()
-        self.labelContainer.setObjectName('userDetailsViewContainer')
-        self.labelContainer.setMinimumSize(100,100)
+        self.labelContainer.setObjectName('userDetailsViewContainerInner')
+        #self.labelContainer.setMinimumSize(800,550)
+        #self.labelContainer.setMaximumSize(3000,3000)
         self.labelContainer.setStyleSheet('background-color: gray;')
-
-
-        self.title = QLabel()
-        self.title.setText("ACCOUNT")
 
         #Firstname
         self.firstnameUserDetails = QLabel()
         self.firstnameUserDetails.setObjectName('transparentUserDetails')
-        self.firstnameUserDetails.setText("Firstname")
+        self.firstnameUserDetails.setText('Firstname')
 
         self.firstnameUserDetailsOutput = QLabel()
         self.firstnameUserDetailsOutput.setObjectName('transparentUserDetailsOutput')
-        self.firstnameUserDetailsOutput.setText("-")
+        self.firstnameUserDetailsOutput.setText('-')
 
         #Lastname
         self.lastnameUserDetails = QLabel()
         self.lastnameUserDetails.setObjectName('transparentUserDetails')
-        self.lastnameUserDetails.setText("Lastname")
+        self.lastnameUserDetails.setText('Lastname')
 
         self.lastnameUserDetailsOutput = QLabel()
         self.lastnameUserDetailsOutput.setObjectName('transparentUserDetailsOutput')
-        self.lastnameUserDetailsOutput.setText("-")
+        self.lastnameUserDetailsOutput.setText('-')
 
         #Email Address
         self.emailUserDetails = QLabel()
         self.emailUserDetails.setObjectName('transparentUserDetails')
-        self.emailUserDetails.setText("Email")
+        self.emailUserDetails.setText('Email')
 
         self.emailUserDetailsOutput = QLabel()
         self.emailUserDetailsOutput.setObjectName('transparentUserDetailsOutput')
-        self.emailUserDetailsOutput.setText("-")
+        self.emailUserDetailsOutput.setText('-')
 
         #Last Login Date
         self.lastLoginUserDetails = QLabel()
         self.lastLoginUserDetails.setObjectName('transparentUserDetails')
-        self.lastLoginUserDetails.setText("Last Login")
+        self.lastLoginUserDetails.setText('Last Login')
 
         self.lastLoginUserDetailsOutput = QLabel()
         self.lastLoginUserDetailsOutput.setObjectName('transparentUserDetailsOutput')
-        self.lastLoginUserDetailsOutput.setText("-")
+        self.lastLoginUserDetailsOutput.setText('-')
 
         #Phone Number
         self.phonenumberUserDetails = QLabel()
         self.phonenumberUserDetails.setObjectName('transparentUserDetails')
-        self.phonenumberUserDetails.setText("Phone Number")
+        self.phonenumberUserDetails.setText('Phone Number')
 
         self.phonenumberUserDetailsOutput = QLabel()
         self.phonenumberUserDetailsOutput.setObjectName('transparentUserDetailsOutput')
-        self.phonenumberUserDetailsOutput.setText("-")
+        self.phonenumberUserDetailsOutput.setText('-')
 
 
         self.containerVerticalLayout = QVBoxLayout()
@@ -94,9 +91,9 @@ class UserDetailsView(QFrame):
         self.containerHorizontalLayout = QHBoxLayout()
         self.containerHorizontalLayout.addWidget(self.labelContainer)
 
-
         self.container.setLayout(self.containerHorizontalLayout)
 
         verticalLayout = QVBoxLayout()
-        verticalLayout.addWidget(self.container, alignment=Qt.AlignmentFlag.AlignLeft)
+        verticalLayout.addWidget(self.container)
+        verticalLayout.setContentsMargins(0,0,0,0)
         self.setLayout(verticalLayout)

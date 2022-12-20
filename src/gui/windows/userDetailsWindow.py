@@ -3,6 +3,7 @@ from gui.elements.header import Header
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
 
+from gui.elements.userDetailsHeader import UserDetailsHeader
 from gui.elements.userDetailsSidebar import UserDetailsSidebar
 from gui.elements.userDetailsView import UserDetailsView
 
@@ -20,7 +21,7 @@ class UserDetailsWindow(QFrame):
         self.setMinimumSize(QSize(1080, 720))
         self.setObjectName("userDetailsWindow")
 
-
+        self.header = UserDetailsHeader()
         self.sidebar = UserDetailsSidebar()
         self.userDetails = UserDetailsView()
 
@@ -30,12 +31,19 @@ class UserDetailsWindow(QFrame):
         self.userDetails.lastLoginUserDetailsOutput.setText(str(self.lastLogin))
         self.userDetails.phonenumberUserDetailsOutput.setText(str(self.phonenumber))
 
+
         mainQHlayout = QHBoxLayout()
         mainQHlayout.addWidget(self.sidebar)
         mainQHlayout.addWidget(self.userDetails)
-        mainQHlayout.setContentsMargins(0, 100, 10, 30)
+        mainQHlayout.setSpacing(0)
+        mainQHlayout.setContentsMargins(0, 20, 0, 30)
 
-        self.setLayout(mainQHlayout)
+        viewQVlayout = QVBoxLayout()
+        viewQVlayout.addWidget(self.header)
+        viewQVlayout.addLayout(mainQHlayout)
+        viewQVlayout.setContentsMargins(0, 0, 0, 0)
+
+        self.setLayout(viewQVlayout)
 
     def setUserid(self, id):
         self.firstname = id
