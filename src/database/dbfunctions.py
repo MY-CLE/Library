@@ -1,12 +1,24 @@
-from .dbconnect import DatabaseHandler
+import sys
+sys.path.insert(0, "src//")
+from database.dbconnect import DatabaseHandler
 from functional.book import Book
+from functional.account import Account
 
 def userLogin(email, pwd) -> bool:
     return DatabaseHandler().parser(f"SELECT login('{email}','{pwd}')")[0][0]
    
-def registerUser(emai, pwd, firstname, lastname, phonenumber):
+def registerUser(email, pwd, firstname, lastname, phonenumber):
     #TODO
-    print(emai, pwd, firstname, lastname, phonenumber)
+    print(email, pwd, firstname, lastname, phonenumber)
+
+def getUser(email: str):
+    try:
+        if(email):
+            return Account(*DatabaseHandler().parser(f"SELECT firstname, lastname, phonenumber, email FROM public.user WHERE email='{email}';")[0])
+        else:
+            raise AttributeError
+    except (IndexError, AttributeError):
+        print("Email nicht in der DB vorhanden")
     
 def fetchBook(bookId) -> Book:
     return Book(*DatabaseHandler().parser(f"SELECT * FROM books WHERE bookid={bookId};")[0])
