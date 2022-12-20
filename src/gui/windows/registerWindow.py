@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLi
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
 
 from functional.account import Account
+from database.dbfunctions import registerUser
 class RegisterWindow(QFrame):
     
     newUser = pyqtSignal(Account)
@@ -155,6 +156,7 @@ class RegisterWindow(QFrame):
         match = newUser.password_match
         try:
             if(match):
+                registerUser(newUser)
                 self.newUser.emit(newUser)
                 self.passwordConfirmTextInput.setText('')
                 self.passwordTextInput.setText('')
