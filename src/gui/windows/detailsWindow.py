@@ -1,9 +1,9 @@
-from GUI.elements.detailsView import DetailsView
-from GUI.elements.header import Header
+from gui.elements.detailsView import DetailsView
+from gui.elements.header import Header
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
 from PyQt6.QtCore import QSize
 
-from GUI.elements.sidebar import SideBar
+from gui.elements.sidebar import SideBar
 
 
 class DetailWindow(QFrame):

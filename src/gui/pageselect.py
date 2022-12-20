@@ -1,9 +1,9 @@
-from GUI.windows.detailsWindow import DetailWindow
-from GUI.windows.landingWindow import LandingWindow
-from GUI.windows.loginWindow import LoginWindow
+from gui.windows.detailsWindow import DetailWindow
+from gui.windows.landingWindow import LandingWindow
+from gui.windows.loginWindow import LoginWindow
 from PyQt6.QtWidgets import (QMainWindow, QStackedWidget)
 
-from GUI.windows.registerWindow import RegisterWindow
+from gui.windows.registerWindow import RegisterWindow
 
 
 class PageSelect(QMainWindow):

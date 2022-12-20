@@ -1,5 +1,5 @@
-from GUI.helper.loadImgDB import Bookloader
-from GUI.elements.guibook import GuiBook
+from gui.helper.loadImgDB import Bookloader
+from gui.elements.guibook import GuiBook
 from PyQt6.QtCore import Qt, pyqtSignal
 from PyQt6.QtWidgets import (
     QHBoxLayout, QFrame, QWidget, QGridLayout, QVBoxLayout, QPushButton)
