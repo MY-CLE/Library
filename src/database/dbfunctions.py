@@ -15,8 +15,11 @@ def fetchAllBookIds() -> list:
     return DatabaseHandler().parser(f"SELECT bookid FROM books;")[0][0]
            
 def addToDatabase(book:Book) -> None:
-        databaseHandler = DatabaseHandler()
-        databaseHandler.parser(f"INSERT INTO books (bookid, title, author, genre, publishingyear, borroweddate, publisher, rating, isborrowed, picture) VALUES ({book.getID()}, '{book.getTitle()}', '{book.getAuthor()}', '{book.getGenre()}', {book.getPublishingYear()}, '{book.getBorrowedDate()}', '{book.getPublisher()}', {book.getAverageRating()}, {book.getIsBorrowed()}, '{book.getPicture()}');")
+    DatabaseHandler().parser(f"INSERT INTO books (bookid, title, author, genre, publishingyear, borroweddate, publisher, rating, isborrowed, picture) VALUES ({book.getID()}, '{book.getTitle()}', '{book.getAuthor()}', '{book.getGenre()}', {book.getPublishingYear()}, '{book.getBorrowedDate()}', '{book.getPublisher()}', {book.getAverageRating()}, {book.getIsBorrowed()}, '{book.getPicture()}');")
  
+def updateBorrowedTable(borrowedId:int, userId:int, book:Book) -> None:
+    query = f"INSERT INTO isborrowed (borrowedid, bookid, userid, booktitle) VALUES ({borrowedId}, {book.getID()}, {userId}, '{book.getTitle()}');"
+    DatabaseHandler().insert(query)
     
-    
+def updateBooksTable() -> None:
+    DatabaseHandler()
