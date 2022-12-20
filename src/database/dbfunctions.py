@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, "src//")
 from dbconnect import DatabaseHandler
 from functional.book import Book
 from datetime import date
@@ -30,6 +32,6 @@ def updateBooksTable() -> None:
     DatabaseHandler()
 
 
-book = Book(3, "Faust", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), False , "mein/path/stinkt")
+#book = Book(3, "Faust", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), False , "mein/path/stinkt")
 #insertBorrowedTable(1, 1, book)
-removeBorrowedTable(1)
+#removeBorrowedTable(1)
