@@ -5,6 +5,7 @@ from gui.elements.header import Header
 from gui.elements.sidebar import SideBar
 from database.dbfunctions import fetchAllBookIds
 
+
 class LandingWindow(QFrame):
     def __init__(self, parent=None):
         super(QFrame, self).__init__()
