@@ -28,8 +28,6 @@ def removeBorrowedTable(borrowedId:int) -> None:
     query = f"DELETE FROM isborrowed WHERE borrowedid = {borrowedId};"
     DatabaseHandler().insert(query)
 
-def updateBooksTable() -> None:
-    DatabaseHandler()
 
 
 #book = Book(3, "Faust", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), False , "mein/path/stinkt")
