@@ -17,9 +17,16 @@ def fetchAllBookIds() -> list:
 def addToDatabase(book:Book) -> None:
     DatabaseHandler().parser(f"INSERT INTO books (bookid, title, author, genre, publishingyear, borroweddate, publisher, rating, isborrowed, picture) VALUES ({book.getID()}, '{book.getTitle()}', '{book.getAuthor()}', '{book.getGenre()}', {book.getPublishingYear()}, '{book.getBorrowedDate()}', '{book.getPublisher()}', {book.getAverageRating()}, {book.getIsBorrowed()}, '{book.getPicture()}');")
  
-def updateBorrowedTable(borrowedId:int, userId:int, book:Book) -> None:
+def insertBorrowedTable(borrowedId:int, userId:int, book:Book) -> None:
     query = f"INSERT INTO isborrowed (borrowedid, bookid, userid, booktitle) VALUES ({borrowedId}, {book.getID()}, {userId}, '{book.getTitle()}');"
     DatabaseHandler().insert(query)
-    
+
+def removeBorrowedTable(borrowedId:int) -> None:
+    query = f"DELETE FROM isborrowed WHERE borrowedid = {borrowedId};"
+    DatabaseHandler().insert(query)
+
 def updateBooksTable() -> None:
     DatabaseHandler()
+
+
+book = Book(6, "Faust", "Goethe", "Tragödie", 1999, )
