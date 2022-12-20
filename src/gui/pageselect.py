@@ -74,6 +74,8 @@ class PageSelect(QMainWindow):
     def bookclicked(self, book: Book):
         self.detailWindow = DetailWindow(book)
         self.pages.addWidget(self.detailWindow)
+        self.detailWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
+        self.detailWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.changeStackedWidget(3)
 
     def returnHome(self):
