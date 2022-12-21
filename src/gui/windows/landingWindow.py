@@ -18,7 +18,7 @@ class LandingWindow(QFrame):
         self.setLineWidth(0)
 
         self.header = Header()
-        self.bookView = BookView(fetchAllBookIds())
+        self.bookView = BookView([1,2,3,4,5,6,7,8])
         self.sidebar = SideBar()
         viewQVlayout = QVBoxLayout()
 

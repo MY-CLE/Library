@@ -1,11 +1,8 @@
-import json
 import os
 from PyQt6.QtWidgets import (
     QHBoxLayout, QLayout, QVBoxLayout, QFrame, QWidget, QLabel)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QImage
-
-#from database.dbfunctions import fetchBook
 from functional.book import Book
 
 
@@ -67,7 +64,7 @@ class BookView(QFrame):
             'src/assets/books/'), book.getPicture())
         image = QImage(imgpath)
         bookCover = QPixmap(image)
-        bookCover = bookCover.scaledToHeight(200)
+        #bookCover = bookCover.scaledToHeight(200)
         bookCover = bookCover.scaledToWidth(200)
         imageLabel = QLabel()
         imageLabel.setPixmap(bookCover)
@@ -119,7 +116,7 @@ class BookView(QFrame):
         # self.textContainerHoriLayout.addLayout(self.textContainerVertLayout2)
         self.textContainerHoriLayout.addStretch
         self.textContainer.setLayout(self.textContainerHoriLayout)
-
+        
         self.containerVertLayout = QVBoxLayout()
         self.containerHoriLayout.addWidget(imageLabel)
         self.containerVertLayout.addLayout(self.containerHoriLayout)
