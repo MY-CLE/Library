@@ -28,11 +28,8 @@ class Bookloader(QObject):
         #print('loadBook started in book loader')
         worker = LoadBook(bookNo)
         worker.signals.returnBook.connect(self.bookRecived)
-        savety = 50
-        while not self.threadpool.tryStart(worker) and savety :
-            sleep(0.5)
-            savety -=1
-    
+        self.threadpool.start(worker)
+        
     def bookRecived(self, book):
         print(book)
         self.bookloaded.emit(book)
