@@ -3,7 +3,7 @@ import re
 from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
-from database.dbfunctions import userLogin
+from database.dbfunctions import userLogin, getUser
 from functional.account import Account
 # This Class displays a login page from which the user can login to his account
 # It contains 2 Text Inputs and one login button, the forgotten password lable is purly for visual
@@ -127,11 +127,10 @@ class LoginWindow(QFrame):
     #this is a signal fierd by the loginBtnPressed
     def loginBtnPressed(self, email: str, pwd: str):
             if self.validateInput(email, pwd):
-
-                userid = userLogin(email, pwd)[0][0]
-                print(userid)
-                if userid> 0:
-                    user = getUser(userid)
+                userls = userLogin(email, pwd)
+                print(userls)
+                if user[0]> 0:
+                    user = Account(*userls)
                     self.sendUser.emit(user)
                     self.emailTextInput.setText('')
                     self.passwordTextInput.setText('')
