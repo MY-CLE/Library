@@ -3,7 +3,7 @@ from PyQt6.QtCore import QSize, pyqtSignal
 from gui.elements.bookView import BookView
 from gui.elements.header import Header
 from gui.elements.generalSidebar import SideBar
-from database.dbfunctions import fetchAllBookIds
+from database.dbfunctions import fetchBookCount
 
 
 class LandingWindow(QFrame):
@@ -18,26 +18,30 @@ class LandingWindow(QFrame):
         self.setLineWidth(0)
 
         self.header = Header()
-        self.bookView = BookView([1,2,3,4,5,6,7,8])
         self.sidebar = SideBar()
-        viewQVlayout = QVBoxLayout()
+        self.viewQVlayout = QVBoxLayout()
 
-        viewQVlayout.addWidget(self.header)
-        viewQVlayout.addWidget(self.bookView)
-        viewQVlayout.addStretch()
-        viewQVlayout.setContentsMargins(0, 0, 0, 0)
+        self.viewQVlayout.addWidget(self.header)
+        #self.viewQVlayout.addWidget(self.bookView)
+        self.viewQVlayout.addStretch()
+        self.viewQVlayout.setContentsMargins(0, 0, 0, 0)
 
         self.sidebar.profileBtn.clicked.connect(lambda: self.userProfileSwap("swap"))
 
         mainQHlayout = QHBoxLayout()
         mainQHlayout.addWidget(self.sidebar)
-        mainQHlayout.addLayout(viewQVlayout)
+        mainQHlayout.addLayout(self.viewQVlayout)
         mainQHlayout.setContentsMargins(0, 0, 0, 0)
 
         self.setLayout(mainQHlayout)
+        self.createBookView()
 
     def setUser(self, user):
         self.user = user
     
     def userProfileSwap(self, email: str):
         self.UserEmail.emit(email)
+        
+    def createBookView(self):
+        self.bookView = BookView(range(1,fetchBookCount()+1))
+        self.viewQVlayout.addWidget(self.bookView)
