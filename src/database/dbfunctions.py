@@ -7,8 +7,7 @@ from functional.account import Account
 from datetime import datetime
 
 def userLogin(email:str, pwd: str) -> bool:
-    res =  DatabaseHandler().parser(f"SELECT login('{email}','{pwd}')")[0]
-    res
+    return DatabaseHandler().parser(f"SELECT login('{email}','{pwd}')")
    
 def registerUser(user: Account):
     DatabaseHandler().insert(f"INSERT INTO credentials (firstname, lastname, phonenumber, email, password) VALUES ('{user.firstname}','{user.lastname}','{user.phonenumber}','{user.email}','{user.password}');")
