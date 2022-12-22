@@ -127,11 +127,12 @@ class LoginWindow(QFrame):
     #this is a signal fierd by the loginBtnPressed
     def loginBtnPressed(self, email: str, pwd: str):
             if self.validateInput(email, pwd):
-                newUser = Account('','','',email, pwd, pwd)
-                newuserid = userLogin(newUser)
-                print(newuserid)
-                if newuserid >= 0:
-                    self.sendUser.emit(newUser)
+
+                userid = userLogin(email, pwd)[0][0]
+                print(userid)
+                if userid> 0:
+                    user = getUser(userid)
+                    self.sendUser.emit(user)
                     self.emailTextInput.setText('')
                     self.passwordTextInput.setText('')
 
