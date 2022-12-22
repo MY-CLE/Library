@@ -81,14 +81,6 @@ QWidget#bookViewContainer {
   border-bottom-right-radius: 15px;
   background-color: white;
 }
-QWidget#bookViewTextContainer {
-  border-top-left-radius: 15;
-  border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: white;
-}
-
 QWidget#userDetailsViewContainer {
   /* border: 2px solid black; */
   background-color: white;
@@ -203,12 +195,6 @@ QPushButton#profileLabelBtn {
   background: #1b3c44;
   border: 2px solid white;
   border-radius: 30px;
-}
-
-QPushButton#isBorrowBtn {
-  background: green;
-  border: 2px solid Black;
-  border-radius: 20;
 }
 
 QLabel#bookTitleLable {
