@@ -1,53 +1,74 @@
 from gui.windows.bookDetailsWindow import BookDetailsWindow
 from gui.windows.landingWindow import LandingWindow
 from gui.windows.loginWindow import LoginWindow
-from gui.windows.registerWindow import RegisterWindow
-from gui.windows.userDetailsWindow import UserDetailsWindow
 from PyQt6.QtWidgets import (QMainWindow, QStackedWidget, QFrame)
 
+from gui.windows.registerWindow import RegisterWindow
 from functional.book import Book
-from functional.account import Account
+from gui.windows.userDetailsWindow import UserDetailsWindow
 class PageSelect(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
+        self.userId = None
+        self.email = None
+        # initiation of the Windows
         self.setWindowTitle('Library')
-        self.routes = {'LoginWindow': 0, 'RegisterWindow': 1}
-        
-        self.loginWindow = LoginWindow(self)
-        self.loginWindow.sendUser.connect(self.setUser)
-        self.loginWindow.pageSwap.connect(self.registrationPage)
-        
-        self.registerWindow = RegisterWindow(self)
-        self.registerWindow.pageSwap.connect(self.loginPage)
-        self.registerWindow.newUser.connect(self.setUser)
+        self.loginWindow = LoginWindow(self)#0
+        self.registerWindow = RegisterWindow(self)#1
+        #self.landingWindow = LandingWindow(self)#2
+        self.userDetailsWindow = UserDetailsWindow(self)#2
+
         # Add them to custom Stacked Widget
         self.pages = QStackedWidget()
         self.pages.addWidget(self.loginWindow)
         self.pages.addWidget(self.registerWindow)
+        #self.pages.addWidget(self.landingWindow)
+        self.pages.addWidget(self.userDetailsWindow)
         self.setCentralWidget(self.pages)
-        self.changeWindowTo('LoginWindow')
+        # self.pages.addWidget(self.bookDetailsWindow)
 
-    def changeWindowTo(self, pageName: str):
-        index = self.routes[pageName]
-        self.pages.setCurrentIndex(index)
+        # Display the Loginpage as default
+        self.pages.setCurrentIndex(0)
+        #self.pages.show()
+
+        # Signals from children
+        self.loginWindow.sendUser.connect(self.setUser)
+        # Signal from registrationForwardBtn
+        self.loginWindow.pageSwap.connect(self.registrationPage)
+        # Signal from loginBtn
+        self.registerWindow.pageSwap.connect(self.loginPage)
+        # Signal from registerBtn
+        self.registerWindow.newUser.connect(self.newUser)
+        # Signal from profilBtn
+        #self.landingWindow.UserEmail.connect(self.userProfilePage)
+        # Singal for Book clicked
+        #
+        # Signals for home button clicked
+        #
+        self.userDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
+        #Signals for logoutbtn clicked
+        #self.landingWindow.sidebar.logoutBtn.clicked.connect(self.logout)
+        self.userDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
+        #Signal for User Profile Page
+        #
+
+
+        #Signal for filling user Profile Page
+        #self.userDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+
 
     def registrationPage(self, text):
         print('Registration Window ' + text)
-        self.changeWindowTo('RegisterWindow')
+        self.changeStackedWidget(1)
 
     def loginPage(self, text):
         print('Login Window ' + text)
-        self.changeWindowTo('LoginWindow')
+        self.changeStackedWidget(0)
 
     def userProfilePage(self):
         print('User Profile Window')
-        self.userDetailsWindow = UserDetailsWindow(self)
-        self.pages.addWidget(self.userDetailsWindow)
-        self.userDetailsWindow.setUser(self.user)
-        self.userDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
-        self.userDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
-        self.routes['UserDetailsWindow'] = len(self.routes)
-        self.changeWindowTo('UserDetailsWindow')
+        self.userDetailsWindow.setUser(self.email)
+        self.changeStackedWidget(2)
         
     def initLandingpage(self):
         self.landingWindow = LandingWindow(self)
@@ -57,39 +78,39 @@ class PageSelect(QMainWindow):
         self.landingWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.landingWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
         self.pages.addWidget(self.landingWindow)
-        self.routes['LandingWindow'] = len(self.routes)
 
-    def setUser(self, user: Account):
-        self.user = user
-        print(user.email)
+    def setUser(self, user):
+        self.user = "1"
+        self.email = user.email
+        print(self.email)
         print('main window got signal')
-        if not 'LandingWindow' in self.routes:
-            self.initLandingpage()
-        self.landingWindow.setUser(self.user)
-        self.changeWindowTo('LandingWindow')
+        self.initLandingpage()
+        self.changeStackedWidget(3)
+        self.landingWindow.setUserid(self.user)
 
+    def newUser(self, user):
+        self.email = user.email
+        print('New User in landingWindow')
+        self.initLandingpage()
+        self.landingWindow.setUserid(user.email)
+        self.changeStackedWidget(3)
+
+    def changeStackedWidget(self, index):
+        self.pages.setCurrentIndex(index)
 
     def bookclicked(self, book: Book):
-        self.bookDetailsWindow = BookDetailsWindow(book, self.user)
+        self.bookDetailsWindow = BookDetailsWindow(book)#4
+
         self.pages.addWidget(self.bookDetailsWindow)
         self.bookDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.bookDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.bookDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
-        self.routes['BookDetailsWindow'] = len(self.routes)
-        self.changeWindowTo('BookDetailsWindow')
+
+        self.changeStackedWidget(4)
 
     def returnHome(self):
-        self.changeWindowTo('LandingWindow')
-        if 'BookDetailsWindow' in self.routes:
-            self.pages.removeWidget(self.pages.widget(self.routes.pop('BookDetailsWindow')))
-        if 'UserDetailsWindow' in self.routes:
-            self.pages.removeWidget(self.pages.widget(self.routes.pop('UserDetailsWindow')))
+        self.changeStackedWidget(3)
 
     def logout(self):
-        self.changeWindowTo('LoginWindow')
-        if 'BookDetailsWindow' in self.routes:
-            self.pages.removeWidget(self.pages.widget(self.routes.pop('BookDetailsWindow')))
-        if 'UserDetailsWindow' in self.routes:
-            self.pages.removeWidget(self.pages.widget(self.routes.pop('UserDetailsWindow')))
-        if 'LandingWindow' in self.routes:
-            self.pages.removeWidget(self.pages.widget(self.routes.pop('LandingWindow')))
+        self.changeStackedWidget(0)
+        self.landingWindow.userid = None

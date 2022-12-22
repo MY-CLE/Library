@@ -27,17 +27,17 @@ class DatabaseHandler(object):
         try:
             # read connection parameters
             # connect to the PostgreSQL server
-            #print('Connecting to the PostgreSQL database...')
+            print('Connecting to the PostgreSQL database...')
             self.conn = psycopg2.connect(**self._config)
             # create a cursor
             self.cursor = self.conn.cursor()
         # execute a statement
-            #print('PostgreSQL database version:')
+            print('PostgreSQL database version:')
             self.cursor.execute('SELECT version()')
             
             # display the PostgreSQL database server version
-            #db_version = self.cursor.fetchone()
-            #print(db_version)
+            db_version = self.cursor.fetchone()
+            print(db_version)
         
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
