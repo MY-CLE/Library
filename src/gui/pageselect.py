@@ -49,11 +49,11 @@ class PageSelect(QMainWindow):
     def initLandingpage(self):
         self.landingWindow = LandingWindow(self)
         self.landingWindow.UserEmail.connect(self.userProfilePage)
-        self.landingWindow.bookView.bookclickedBookView.connect(self.bookclicked)
         self.landingWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.landingWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.landingWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
         self.routes['LandingWindow'] = self.pages.addWidget(self.landingWindow)
+        self.landingWindow.bookView.bookclickedBookView.connect(self.bookclicked)
         
 
     def setUser(self, user: Account):

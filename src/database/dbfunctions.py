@@ -25,6 +25,8 @@ def fetchBook(bookId) -> Book:
 
 def fetchAllBookIds() -> list:
     return DatabaseHandler().parser(f"SELECT bookid FROM books;")[0][0]
+def fetchBookCount()-> int:
+    return DatabaseHandler().parser(f"SELECT Count(*) FROM books;")[0][0]
            
 def addToDatabase(book:Book) -> None:
     DatabaseHandler().insert(f"INSERT INTO books (bookid, title, author, genre, publishingyear, borroweddate, publisher, rating, isborrowed, picture) VALUES ({book.getID()}, '{book.getTitle()}', '{book.getAuthor()}', '{book.getGenre()}', {book.getPublishingYear()}, '{book.getBorrowedDate()}', '{book.getPublisher()}', {book.getAverageRating()}, {book.getIsBorrowed()}, '{book.getPicture()}');")
@@ -53,6 +55,3 @@ def removeBorrowedTable(book:Book) -> None:
 test = fetchBook(1)
 changeBorrowedStatus(test)
 print(test)
-#book = Book(3, "Faust", "TEST", 2001, "TESTEDITION", "PETERRIECHT", "GERUCH", str(date(2022, 12, 13)), False , "mein/path/stinkt")
-#insertBorrowedTable(1, 1, book)
-#removeBorrowedTable(1)
