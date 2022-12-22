@@ -41,8 +41,8 @@ class UserDetailsWindow(QFrame):
 
         self.setLayout(viewQVlayout)
 
-    def setUser(self, email: str):
-        currentUser = getUser(email)
+    def setUser(self, user):
+        currentUser = user
         if (currentUser):
             self.firstname = currentUser.firstname
             self.lastname = currentUser.lastname
