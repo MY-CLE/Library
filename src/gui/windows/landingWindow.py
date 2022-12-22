@@ -10,7 +10,7 @@ class LandingWindow(QFrame):
     UserEmail = pyqtSignal(str)
     def __init__(self, parent=None):
         super(QFrame, self).__init__()
-        self.userid = None
+        self.user= None
         self.setWindowTitle("TIME")
         self.setMinimumSize(QSize(1080, 720))
         self.setObjectName("landingWindow")
@@ -18,7 +18,7 @@ class LandingWindow(QFrame):
         self.setLineWidth(0)
 
         self.header = Header()
-        self.bookView = BookView(fetchAllBookIds())
+        self.bookView = BookView([1,2,3,4,5,6,7,8])
         self.sidebar = SideBar()
         viewQVlayout = QVBoxLayout()
 
@@ -36,8 +36,8 @@ class LandingWindow(QFrame):
 
         self.setLayout(mainQHlayout)
 
-    def setUserid(self, id):
-        self.userid = id
+    def setUser(self, user):
+        self.user = user
     
     def userProfileSwap(self, email: str):
         self.UserEmail.emit(email)
