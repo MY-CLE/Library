@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import (QVBoxLayout, QWidget, QLabel)
 from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import pyqtSignal
 from functional.book import Book
+import time
 
 from gui.windows.bookDetailsWindow import BookDetailsWindow
 class GuiBook(QWidget):
@@ -10,6 +11,7 @@ class GuiBook(QWidget):
 
     def __init__(self, book: Book):
         super(QWidget, self).__init__()
+        self.setMinimumHeight(200)
         self.id = book.getID()
         title = QLabel()
         title.setObjectName('bookTitleLable')
