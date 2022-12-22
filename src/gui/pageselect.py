@@ -11,8 +11,7 @@ class PageSelect(QMainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()
         self.setWindowTitle('Library')
-        self.routes = {'LoginWindow': 0, 'RegisterWindow': 1}
-        
+        self.routes = {}
         self.loginWindow = LoginWindow(self)
         self.loginWindow.sendUser.connect(self.setUser)
         self.loginWindow.pageSwap.connect(self.registrationPage)
@@ -22,8 +21,8 @@ class PageSelect(QMainWindow):
         self.registerWindow.newUser.connect(self.setUser)
         # Add them to custom Stacked Widget
         self.pages = QStackedWidget()
-        self.pages.addWidget(self.loginWindow)
-        self.pages.addWidget(self.registerWindow)
+        self.routes['LoginWindow'] = self.pages.addWidget(self.loginWindow)
+        self.routes['RegisterWindow'] = self.pages.addWidget(self.registerWindow)
         self.setCentralWidget(self.pages)
         self.changeWindowTo('LoginWindow')
 
@@ -40,13 +39,11 @@ class PageSelect(QMainWindow):
         self.changeWindowTo('LoginWindow')
 
     def userProfilePage(self):
-        print('User Profile Window')
         self.userDetailsWindow = UserDetailsWindow(self)
-        self.pages.addWidget(self.userDetailsWindow)
+        self.routes['UserDetailsWindow'] = self.pages.addWidget(self.userDetailsWindow)
         self.userDetailsWindow.setUser(self.user)
         self.userDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.userDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
-        self.routes['UserDetailsWindow'] = len(self.routes)
         self.changeWindowTo('UserDetailsWindow')
         
     def initLandingpage(self):
@@ -56,12 +53,11 @@ class PageSelect(QMainWindow):
         self.landingWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.landingWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.landingWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
-        self.pages.addWidget(self.landingWindow)
-        self.routes['LandingWindow'] = len(self.routes)
+        self.routes['LandingWindow'] = self.pages.addWidget(self.landingWindow)
+        
 
     def setUser(self, user: Account):
         self.user = user
-        print(user.email)
         print('main window got signal')
         if not 'LandingWindow' in self.routes:
             self.initLandingpage()
@@ -71,11 +67,10 @@ class PageSelect(QMainWindow):
 
     def bookclicked(self, book: Book):
         self.bookDetailsWindow = BookDetailsWindow(book, self.user)
-        self.pages.addWidget(self.bookDetailsWindow)
+        self.routes['BookDetailsWindow'] = self.pages.addWidget(self.bookDetailsWindow)
         self.bookDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.bookDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.bookDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
-        self.routes['BookDetailsWindow'] = len(self.routes)
         self.changeWindowTo('BookDetailsWindow')
 
     def returnHome(self):
