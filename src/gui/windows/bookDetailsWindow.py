@@ -1,5 +1,3 @@
-from functional.account import Account
-from functional.book import Book
 from gui.elements.detailsView import DetailsView
 from gui.elements.header import Header
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame)
@@ -9,16 +7,16 @@ from gui.elements.generalSidebar import SideBar
 
 
 class BookDetailsWindow(QFrame):
-    def __init__(self,book: Book, user: Account , parent=None):
+    def __init__(self,bookNo, parent=None):
         super(QFrame, self).__init__()
-        self.book = book
+        self.bookNo = bookNo
         self.setWindowTitle("Details")
         self.setMinimumSize(QSize(1080, 720))
         self.setObjectName("detailsWindow")
 
         self.sidebar = SideBar()
         self.header = Header()
-        self.details = DetailsView(book, user)
+        self.details = DetailsView(bookNo)
         viewQVlayout = QVBoxLayout()
         viewQVlayout.addWidget(self.header)
         viewQVlayout.addWidget(self.details)
