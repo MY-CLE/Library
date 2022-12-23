@@ -36,8 +36,8 @@ def insertBorrowedTable(user:Account, book:Book) -> None:
         DatabaseHandler().insert(f"INSERT INTO isborrowed (bookid, userid) VALUES ({book.getID()},{user.userid});")
 
 #add opposite borrowed status of book and current timestamp as borrowed date to db.
-def changeBorrowedStatus(book: Book) -> None:
-    update = f"UPDATE books SET isborrowed={not book.getIsBorrowed()},borroweddate=current_timestamp WHERE bookid={book.getID()}"
+def changeBorrowedStatus(book: Book, newStatus) -> None:
+    update = f"UPDATE books SET isborrowed={newStatus},borroweddate=current_timestamp WHERE bookid={book.getID()}"
     DatabaseHandler().insert(update)
     
 def updateBooksTable() -> None:
@@ -53,5 +53,5 @@ def removeBorrowedTable(book:Book) -> None:
     DatabaseHandler().insert(f"DELETE FROM isborrowed WHERE bookid = {book.getID()};")
 
 test = fetchBook(1)
-changeBorrowedStatus(test)
-print(test)
+#changeBorrowedStatus(test)
+#print(test)
