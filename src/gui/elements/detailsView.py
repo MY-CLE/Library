@@ -30,7 +30,7 @@ class TitleView(QFrame):
     def __init__(self, book: Book):
         super(QFrame, self).__init__()
         title = QLabel()
-        title.setText(book.getTitle())
+        title.setText(book.title)
         title.setObjectName('titleView')
 
         HoriLayout = QHBoxLayout()
@@ -44,7 +44,7 @@ class BookView(QFrame):
         super(QFrame, self).__init__()
         self.book = book
         self.currentUser = user
-        self.borrowedUserId = checkisBorrowedTable(self.book.getID())
+        self.borrowedUserId = checkisBorrowedTable(self.book.id)
         self.setObjectName('bookView')
         self.container = QWidget()
         self.container.setObjectName("bookViewContainer")
@@ -64,13 +64,13 @@ class BookView(QFrame):
         # Qt.AlignmentFlag.AlignHCenter)
 
         bookTitle = QLabel()
-        bookTitle.setText(book.getTitle())
+        bookTitle.setText(book.title)
 
         bookAuthor = QLabel()
-        bookAuthor.setText("Author: "+book.getAuthor())
+        bookAuthor.setText("Author: "+book.author)
         bookAuthor.setObjectName("details")
 
-        imgpath = os.path.join(os.path.abspath('src/assets/books/'), book.getPicture())
+        imgpath = os.path.join(os.path.abspath('src/assets/books/'), book.picture)
         image = QImage(imgpath)
         bookCover = QPixmap(image)
         bookCover = bookCover.scaledToWidth(200)
@@ -78,11 +78,11 @@ class BookView(QFrame):
         imageLabel.setPixmap(bookCover)
 
         bookGenre = QLabel()
-        bookGenre.setText("Genre: "+book.getGenre())
+        bookGenre.setText("Genre: "+book.genre)
         bookGenre.setObjectName("details")
 
         bookRating = QLabel()
-        bookRating.setText(f"Rating: {book.getAverageRating()}")
+        bookRating.setText(f"Rating: {book.getAverageRating}")
         bookRating.setObjectName("details")
 
         bookisBorrowed = QLabel()
@@ -93,15 +93,15 @@ class BookView(QFrame):
         bookisAvailable.setObjectName("details")
 
         bookBorrowedDate = QLabel()
-        bookBorrowedDate.setText(book.getBorrowedDate())
+        bookBorrowedDate.setText(book.borrowedDate)
         bookBorrowedDate.setObjectName("details")
 
         bookYear = QLabel()
-        bookYear.setText(book.getPublishingYear())
+        bookYear.setText(book.publishingYear)
         bookYear.setObjectName("details")
 
         bookPublisher = QLabel()
-        bookPublisher.setText(book.getPublisher())
+        bookPublisher.setText(book.publisher)
         bookPublisher.setObjectName("details")
 
         testLabelDesc = QLabel()

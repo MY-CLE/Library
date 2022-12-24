@@ -7,6 +7,8 @@ from gui.elements.userDetailsHeader import UserDetailsHeader
 from gui.elements.userDetailsSidebar import UserDetailsSidebar
 from gui.elements.userDetailsView import UserDetailsView
 
+from functional.account import Account
+
 from database.dbfunctions import getUser
 class UserDetailsWindow(QFrame):
 
@@ -41,7 +43,7 @@ class UserDetailsWindow(QFrame):
 
         self.setLayout(viewQVlayout)
 
-    def setUser(self, user):
+    def setUser(self, user: Account):
         currentUser = user
         if (currentUser):
             self.firstname = currentUser.firstname

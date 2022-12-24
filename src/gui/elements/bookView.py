@@ -7,7 +7,6 @@ from PyQt6.QtWidgets import (
 import sys
 sys.path.insert(0, "src//")
 
-import asyncio
 
 
 class BooksFilter(QFrame):

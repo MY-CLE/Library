@@ -152,7 +152,7 @@ class RegisterWindow(QFrame):
     def registerBtnPressed(self, firstname: str, lastname: str, phonenumber: int , email:str, password: str, cpassword: str):
 
         print(f"New User Registration {firstname},{lastname},{phonenumber},{email},{password},{cpassword}.")
-        newUser = Account(firstname,lastname,phonenumber,email,password,cpassword)
+        newUser = Account('',firstname,lastname,phonenumber,email,password,cpassword)
         match = newUser.password_match
         try:
             if(match):

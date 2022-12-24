@@ -12,19 +12,19 @@ class GuiBook(QWidget):
     def __init__(self, book: Book):
         super(QWidget, self).__init__()
         self.setMinimumHeight(200)
-        self.id = book.getID()
+        self.id = book.id
         title = QLabel()
         title.setObjectName('bookTitleLable')
 
-        if len(book.getTitle()) <= 20:
-            title.setText(book.getTitle())
+        if len(book.title) <= 20:
+            title.setText(book.title)
         else:
-            title.setText(book.getTitle()[:18] + '...')
+            title.setText(book.title[:18] + '...')
 
-        if not book.getPicture():
-            book.setPicture('50_shades_of_grey.jpg')
+        if not book.picture:
+            book.picture = '50_shades_of_grey.jpg'
         imgpath = os.path.join(os.path.abspath(
-            'src/assets/books/'), book.getPicture())
+            'src/assets/books/'), book.picture)
         image = QImage(imgpath)
         lable = PictureLabel(image, book)
         lable.clicked.connect(self.bookClicked)
