@@ -93,7 +93,7 @@ class BookView(QFrame):
         bookisAvailable.setObjectName("details")
 
         bookBorrowedDate = QLabel()
-        bookBorrowedDate.setText(book.borrowedDate)
+        bookBorrowedDate.setText(str(book.borrowedDate))
         bookBorrowedDate.setObjectName("details")
 
         bookYear = QLabel()

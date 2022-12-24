@@ -31,9 +31,12 @@ class Book(object):
     @property
     def getAverageRating(self) -> int:
         sum = 0
-        for rating in self.ratings:
-            sum += rating[0]
-        return round(sum / len(self.ratings))
+        if self.ratings == None:
+            return 0
+        else:
+            for rating in self.ratings:
+                sum += rating[0]
+            return round(sum / len(self.ratings))
 
 
     def addToDatabase(self) -> None:
