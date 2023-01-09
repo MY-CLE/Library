@@ -6,12 +6,13 @@ from PyQt6.QtCore import Qt,pyqtSignal
 from PyQt6.QtGui import QPixmap, QImage
 from functional.account import Account
 from functional.book import Book
-from database.dbfunctions import checkisBorrowedTable, insertBorrowedTable, removeBorrowedTable
+from database.dbfunctions import checkisBorrowedTable, insertBorrowedTable, removeBorrowedTable, changeBorrowedStatus
 
-class BtnStatus(Enum):
+class Status(Enum):
     AVALABLE = 0
     UNAVALABLE = 1
     RETURN = 2
+
 class DetailsView(QFrame):
     def __init__(self, book: Book, user: Account):
         super(QFrame, self).__init__()
@@ -39,7 +40,7 @@ class TitleView(QFrame):
 
 
 class BookView(QFrame):
-    borrowedBtnClicked = pyqtSignal(BtnStatus)
+    borrowedBtnClicked = pyqtSignal(Status)
     def __init__(self, book: Book, user: Account):
         super(QFrame, self).__init__()
         self.book = book
@@ -84,14 +85,11 @@ class BookView(QFrame):
         bookRating = QLabel()
         bookRating.setText(f"Rating: {book.getAverageRating()}")
         bookRating.setObjectName("details")
-
-        bookisBorrowed = QLabel()
-        bookisBorrowed.setText("Availability: Unavailable")
-        bookisBorrowed.setObjectName("details")
-        bookisAvailable = QLabel()
-        bookisAvailable.setText("Availability: Available")
-        bookisAvailable.setObjectName("details")
-
+        
+        self.bookisBorrowed = QLabel()
+        self.bookisBorrowed.setObjectName("details")
+        self.updateAvalabiltyLable()
+        
         bookBorrowedDate = QLabel()
         bookBorrowedDate.setText(book.getBorrowedDate())
         bookBorrowedDate.setObjectName("details")
@@ -114,7 +112,7 @@ class BookView(QFrame):
         self.textContainerVertLayout.addWidget(bookGenre)
         self.textContainerVertLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.textContainerVertLayout.addWidget(bookRating)
-        self.textContainerVertLayout.addWidget(bookisBorrowed)
+        self.textContainerVertLayout.addWidget(self.bookisBorrowed)
         self.textContainerVertLayout.addWidget(testLabelDesc)
         # self.textContainerVertLayout2.setAlignment(Qt.AlignmentFlag.AlignTop)
 
@@ -134,11 +132,11 @@ class BookView(QFrame):
         
         
         if self.currentUser.userid == self.borrowedUserId:
-            self.isBorrowedBtn = IsBorrowedBtn(BtnStatus.RETURN)
+            self.isBorrowedBtn = IsBorrowedBtn(Status.RETURN)
         elif self.borrowedUserId == 0:
-            self.isBorrowedBtn = IsBorrowedBtn(BtnStatus.AVALABLE)
+            self.isBorrowedBtn = IsBorrowedBtn(Status.AVALABLE)
         else:
-            self.isBorrowedBtn = IsBorrowedBtn(BtnStatus.UNAVALABLE)
+            self.isBorrowedBtn = IsBorrowedBtn(Status.UNAVALABLE)
         
         self.isBorrowedBtn.clicked.connect(self.borrowedBtnPressed)
         vertlayout = QVBoxLayout()
@@ -148,22 +146,31 @@ class BookView(QFrame):
     
     def borrowedBtnPressed(self):
         currentStatues = self.isBorrowedBtn.getStatus()
-        if currentStatues ==  BtnStatus.AVALABLE:
+        if currentStatues ==  Status.AVALABLE:
             print(self.currentUser.userid)
             insertBorrowedTable(self.currentUser, self.book)
-            self.isBorrowedBtn.setStatus(BtnStatus.RETURN)
-        elif currentStatues == BtnStatus.RETURN:
+            changeBorrowedStatus(self.book, 'true')
+            self.isBorrowedBtn.setStatus(Status.RETURN)
+            self.updateAvalabiltyLable()
+            
+        elif currentStatues == Status.RETURN:
             removeBorrowedTable(self.book)
-            self.isBorrowedBtn.setStatus(BtnStatus.AVALABLE)
+            changeBorrowedStatus(self.book, 'false')
+            self.isBorrowedBtn.setStatus(Status.AVALABLE)
+            self.updateAvalabiltyLable()
+            
         #self.borrowedBtnClicked.emit(self.isBorrowedBtn.getStatus())
-        
-
-        
-        
+    
+    def updateAvalabiltyLable(self):
+        if self.book.getIsBorrowed():
+            avalability = 'Availability: Unavalablie'
+        else:
+            avalability = 'Availability: Avalabile'
+        self.bookisBorrowed.setText(avalability)
         
 
 class IsBorrowedBtn(QPushButton):
-    def __init__(self, status: BtnStatus):
+    def __init__(self, status: Status):
         super(QPushButton, self).__init__() 
         self.btnStatus = status
         self.setMaximumWidth(150)
@@ -185,16 +192,16 @@ class IsBorrowedBtn(QPushButton):
         self.setStyleSheet('background: yellow')
     
     def changeStatus(self):
-        if self.btnStatus == BtnStatus.AVALABLE:
+        if self.btnStatus == Status.AVALABLE:
             self.setAvalible()
-        elif self.btnStatus == BtnStatus.UNAVALABLE:
+        elif self.btnStatus == Status.UNAVALABLE:
             self.setUnavalible()
-        elif self.btnStatus == BtnStatus.RETURN:
+        elif self.btnStatus == Status.RETURN:
             self.setReturn()
     
     def getStatus(self):
         return self.btnStatus
     
-    def setStatus(self, newStatus = BtnStatus.RETURN):
+    def setStatus(self, newStatus = Status.RETURN):
         self.btnStatus = newStatus
         self.changeStatus()
