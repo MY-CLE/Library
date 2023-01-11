@@ -52,17 +52,20 @@ class BookView(QFrame):
         self.container = QWidget()
         self.container.setObjectName("bookViewContainer")
         self.container.setMinimumWidth(500)
-        self.container.setMinimumHeight(500)
+        self.container.setMinimumHeight(400)
 
         self.bookGridLayout = QGridLayout()
         self.bookGridLayout.setAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.container.setLayout(self.bookGridLayout)
+        books = QWidget()
+        books.setLayout(self.bookGridLayout)
+        
         self.scroll = QScrollArea()
         self.scroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
         self.scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.scroll.setWidgetResizable(True)
         self.scroll.setStyleSheet('background: white; border: 0px')
-        self.scroll.setLayout(self.bookGridLayout)
+        self.scroll.setWidget(books)
+        
         containerLayout = QHBoxLayout()
         containerLayout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         containerLayout.addWidget(self.scroll)
@@ -85,8 +88,8 @@ class BookView(QFrame):
         self.book = GuiBook(book)
         self.book.sendClicked.connect(self.sendClickedBookview)
         self.bookCount = self.bookGridLayout.count()
-        print(int(self.bookCount/6), self.bookCount % 6)
-        self.bookGridLayout.addWidget(self.book, int(self.bookCount/6), self.bookCount % 6)
+        print(int(self.bookCount/5), self.bookCount % 5)
+        self.bookGridLayout.addWidget(self.book, int(self.bookCount/5), self.bookCount % 5)
 
     def sendClickedBookview(self, book: Book):
         self.bookclickedBookView.emit(book)
