@@ -10,7 +10,7 @@ from psycopg2 import Binary
 class Book(object):
 
     def __init__(self, id: int, title: str, author: str, genre: str, publishingYear: int, 
-    borrowedDate: date, publisher: str, ratings: float, isBorrowed:bool, picture: str) -> None:
+    borrowedDate: date, publisher: str, ratings: float, isBorrowed:bool, picture: str, description: str) -> None:
         self.__id = id
         self.__title = title
         self.__author = author
@@ -22,6 +22,7 @@ class Book(object):
         self.__genre = genre
         self.__borrowedDate = borrowedDate
         self.__picture = picture
+        self.__description = description
         
           
     def getID(self) -> id:
@@ -63,6 +64,8 @@ class Book(object):
     def addRating(self, newRating: Rating) -> None:
         self.__ratings.append(newRating)
 
+    def getDescription(self) -> str:
+        return self.__description
     # get average rating of a book rounded to an int.
     # added if/else to avoid divison by zero error, when there are no ratings.
     def getAverageRating(self) -> int:

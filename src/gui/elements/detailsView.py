@@ -104,9 +104,10 @@ class BookView(QFrame):
 
         testLabelDesc = QLabel()
         testLabelDesc.setObjectName("details")
-        testLabelDesc.setText(
-            "DescDescDescDescDescDesc\nDescDescDescDescDesc\nDescDescDescDescDescDesc\nDescDescDescDescDesc\nDescDescDesc")
-
+        description = book.getDescription()
+        if len(description)>100:
+            description = description[:100] +  '...'
+        testLabelDesc.setText(description)
         self.textContainerVertLayout = QVBoxLayout()
         self.textContainerVertLayout.addWidget(bookAuthor)
         self.textContainerVertLayout.addWidget(bookGenre)
