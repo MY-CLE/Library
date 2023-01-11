@@ -1,3 +1,4 @@
+from gui.windows.borrowedBooksWindow import BorrowedBooksWindow
 from gui.windows.bookDetailsWindow import BookDetailsWindow
 from gui.windows.landingWindow import LandingWindow
 from gui.windows.loginWindow import LoginWindow
@@ -52,8 +53,18 @@ class PageSelect(QMainWindow):
         self.landingWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.landingWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.landingWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+        self.landingWindow.sidebar.addBookBtn.clicked.connect(self.borrowedBooksPage)
         self.routes['LandingWindow'] = self.pages.addWidget(self.landingWindow)
         self.landingWindow.bookView.bookclickedBookView.connect(self.bookclicked)
+    
+    def borrowedBooksPage(self):
+        self.borrowedBooksWindow = BorrowedBooksWindow(self.user)
+        self.borrowedBooksWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
+        self.borrowedBooksWindow.sidebar.logoutBtn.clicked.connect(self.logout)
+        self.borrowedBooksWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+        self.borrowedBooksWindow.bookView.bookclickedBookView.connect(self.bookclicked)
+        self.routes['BorrowedBooksWindow'] = self.pages.addWidget(self.borrowedBooksWindow)
+        self.changeWindowTo('BorrowedBooksWindow')
         
 
     def setUser(self, user: Account):
@@ -79,6 +90,8 @@ class PageSelect(QMainWindow):
             self.pages.removeWidget(self.pages.widget(self.routes.pop('BookDetailsWindow')))
         if 'UserDetailsWindow' in self.routes:
             self.pages.removeWidget(self.pages.widget(self.routes.pop('UserDetailsWindow')))
+        if 'BorrowedBooksWindow' in self.routes:
+            self.pages.removeWidget(self.pages.widget(self.routes.pop('BorrowedBooksWindow')))
 
     def logout(self):
         self.changeWindowTo('LoginWindow')
@@ -88,3 +101,5 @@ class PageSelect(QMainWindow):
             self.pages.removeWidget(self.pages.widget(self.routes.pop('UserDetailsWindow')))
         if 'LandingWindow' in self.routes:
             self.pages.removeWidget(self.pages.widget(self.routes.pop('LandingWindow')))
+        if 'BorrowedBooksWindow' in self.routes:
+            self.pages.removeWidget(self.pages.widget(self.routes.pop('BorrowedBooksWindow')))

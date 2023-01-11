@@ -58,5 +58,3 @@ class PictureLabel(QLabel):
 
     def mousePressEvent(self, event):
         self.clicked.emit(self.book)
-        #self.stats = DetailWindow(self.imgParam, self.titleParam)
-        # self.stats.show()

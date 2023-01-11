@@ -52,6 +52,14 @@ def checkisBorrowedTable(bookId):
 def removeBorrowedTable(book:Book) -> None:
     DatabaseHandler().insert(f"DELETE FROM isborrowed WHERE bookid = {book.getID()};")
 
-test = fetchBook(1)
+def getborrowedBookIdsByUser(user: Account):
+    res = DatabaseHandler().parser(f"SELECT bookid FROM isborrowed WHERE userid = {user.userid}")
+    formatedResult = []
+    for item in res:
+        formatedResult.append(item[0])
+    return formatedResult
+    
+
+#test = fetchBook(1)
 #changeBorrowedStatus(test)
 #print(test)
