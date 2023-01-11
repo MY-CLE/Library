@@ -65,6 +65,7 @@ class BookView(QFrame):
         # Qt.AlignmentFlag.AlignHCenter)
 
         bookTitle = QLabel()
+        bookTitle.setObjectName('bookDetailTitle')
         bookTitle.setText(book.getTitle())
 
         bookAuthor = QLabel()
