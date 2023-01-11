@@ -35,6 +35,7 @@ class GuiBook(QWidget):
         bookLayout.addWidget(lable)
         bookLayout.addWidget(title)
         bookLayout.addStretch()
+        self.setContentsMargins(5,5,5,5)
         self.setLayout(bookLayout)
 
     def bookClicked(self, id):
@@ -58,5 +59,3 @@ class PictureLabel(QLabel):
 
     def mousePressEvent(self, event):
         self.clicked.emit(self.book)
-        #self.stats = DetailWindow(self.imgParam, self.titleParam)
-        # self.stats.show()

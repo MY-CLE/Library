@@ -211,6 +211,16 @@ QPushButton#isBorrowBtn {
   border-radius: 20;
 }
 
+QLabel#borrowedBooksTitle {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+}
+QLabel#borrowedBooksSubTitle {
+  font-size: 30px;
+  color: white;
+}
+
 QLabel#bookTitleLable {
   font-size: 14px;
   color: black;
