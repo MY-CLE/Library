@@ -100,7 +100,8 @@ QWidget#userDetailsViewContainerInner {
 }
 
 QPushButton#homeBtn {
-  background-image: url(src/assets/icons/home.png);
+  /*background-image: url(src/assets/icons/home_new.png);*/
+  border-image: url(src/assets/icons/home_new.png);
   background-position: center;
   border: 2px solid white;
 }
@@ -110,18 +111,21 @@ QPushButton#profilBtn {
   border: 2px solid white;
 }
 QPushButton#addBookBtn {
-  background-image: url(src/assets/icons/save-for-later.png);
+  /*background-image: url(src/assets/icons/view-list_new.png);*/
+  border-image: url(src/assets/icons/view-list_new.png);
   background-position: center;
   border: 2px solid white;
 }
 
 QPushButton#logoutBtn {
-  background-image: url(src/assets/icons/logout_small.png);
+  /*background-image: url(src/assets/icons/login_new.png);*/
+  border-image: url(src/assets/icons/login_new.png);
   background-position: center;
   border: 2px solid white;
 }
 QPushButton#settingsBtn {
-  background-image: url(src/assets/icons/settings.png);
+  /*background-image: url(src/assets/icons/cog_new.png);*/
+  border-image: url(src/assets/icons/cog_new.png);
   background-position: center;
   border: 2px solid white;
 }
