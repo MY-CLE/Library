@@ -1,7 +1,7 @@
 import os
 import re
 from PyQt6.QtGui import QPixmap, QIcon
-from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame)
+from PyQt6.QtWidgets import (QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLineEdit, QLabel, QFrame, QMessageBox)
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
 from database.dbfunctions import userLogin, getUser
 from functional.account import Account
@@ -134,6 +134,9 @@ class LoginWindow(QFrame):
                     self.sendUser.emit(user)
                     self.emailTextInput.setText('')
                     self.passwordTextInput.setText('')
+                else:
+                    msgbox = QMessageBox.information(self, "Invalid Login", "You used a invalid emailaddress, password combination")
+                
 
     #this is a signal fierd by the registerBtnPressed
     def registerBtnPressed(self):
@@ -148,7 +151,7 @@ class LoginWindow(QFrame):
             if (email == '') or (password == ''):
                 raise ValueError
         except ValueError as e:
-            print("please put in a Email adress and Password ")
+            msg = QMessageBox.information(self, "Invalid Login", "You need to give a username and password to login")
             return False
         
         try:
@@ -156,7 +159,7 @@ class LoginWindow(QFrame):
             if filter_email.findall(email) == []:
                 raise ValueError
         except ValueError as e:
-            print("Error pls use a valid E-Mailadress")
+            msg = QMessageBox.information(self, "Invalid Login", "You need to give a valid Email address")
             return False
         
         return True

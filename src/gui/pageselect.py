@@ -82,6 +82,7 @@ class PageSelect(QMainWindow):
         self.bookDetailsWindow.sidebar.homeBtn.clicked.connect(self.returnHome)
         self.bookDetailsWindow.sidebar.logoutBtn.clicked.connect(self.logout)
         self.bookDetailsWindow.sidebar.profileBtn.clicked.connect(self.userProfilePage)
+        self.bookDetailsWindow.sidebar.addBookBtn.clicked.connect(self.borrowedBooksPage)
         self.changeWindowTo('BookDetailsWindow')
 
     def returnHome(self):
