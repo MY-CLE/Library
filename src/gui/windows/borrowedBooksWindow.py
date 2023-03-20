@@ -1,11 +1,12 @@
 from PyQt6.QtWidgets import (QHBoxLayout, QVBoxLayout, QFrame, QLabel)
-from PyQt6.QtCore import QSize
+from PyQt6.QtCore import QSize, pyqtSignal
 from database.dbfunctions import getborrowedBookIdsByUser
 from functional.account import Account
 from gui.elements.bookView import BookView
 from gui.elements.header import Header
 from gui.elements.generalSidebar import SideBar
 class BorrowedBooksWindow(QFrame):
+    UserEmail = pyqtSignal(str)
     def __init__(self, user: Account, parent=None):
         super(QFrame, self).__init__()
         self.user= user

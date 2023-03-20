@@ -6,9 +6,9 @@ from PyQt6.QtCore import QSize, Qt, pyqtSignal
 from database.dbfunctions import userLogin, getUser
 from functional.account import Account
 # This Class displays a login page from which the user can login to his account
-# It contains 2 Text Inputs and one login button, the forgotten password lable is purly for visual
-# after the LoginBtn is pressed a function is  called which comunicates with the DB and returns a value
-# after a succsessfull login the this function calles a parent function to change the current displyed widgets
+# It contains 2 Text Inputs and one login button, the forgotten password label is purely for visual
+# after the LoginBtn is pressed a function is  called which communicates with the DB and returns a value
+# after a successful login the this function calls a parent function to change the current displayed widgets
 
 class LoginWindow(QFrame):
     
@@ -30,11 +30,11 @@ class LoginWindow(QFrame):
         title.setMaximumHeight(40)
         
         #Forgotten Password Lable
-        forgotenpwd = QLabel()
-        forgotenpwd.setText("Forgotten Password?")
-        forgotenpwd.setFixedSize(250,20)
-        forgotenpwd.setAlignment(Qt.AlignmentFlag.AlignBottom)
-        forgotenpwd.setObjectName("forgottenpwdLable")
+        forgottenpwd = QLabel()
+        forgottenpwd.setText("Forgotten Password?")
+        forgottenpwd.setFixedSize(250,20)
+        forgottenpwd.setAlignment(Qt.AlignmentFlag.AlignBottom)
+        forgottenpwd.setObjectName("forgottenpwdLable")
 
         
         #Textinput
@@ -72,7 +72,7 @@ class LoginWindow(QFrame):
         registerForwardingBtn.setObjectName("forwardingBtn")
         registerForwardingBtn.clicked.connect(lambda: self.registerBtnPressed())
 
-        # The Widgets are conatined in a QWidget to create a white background for the visual effects
+        # The Widgets are contained in a QWidget to create a white background for the visual effects
         container = QWidget()
         container.setObjectName("loginContainer")
         container.setFixedSize(400,300)
@@ -86,7 +86,7 @@ class LoginWindow(QFrame):
         containerLayout.addWidget(self.emailTextInput)
         containerLayout.setSpacing(12)
         containerLayout.addWidget(self.passwordTextInput)
-        containerLayout.addWidget(forgotenpwd)
+        containerLayout.addWidget(forgottenpwd)
         containerLayout.setSpacing(12)
         containerLayout.addWidget(loginBtn)        
         containerLayout.addWidget(registerForwardingBtn)
@@ -124,7 +124,7 @@ class LoginWindow(QFrame):
         return int(self.loginStatus)
     
     
-    #this is a signal fierd by the loginBtnPressed
+    #this is a signal fired by the loginBtnPressed
     def loginBtnPressed(self, email: str, pwd: str):
             if self.validateInput(email, pwd):
                 userid = userLogin(email, pwd)[0][0]
